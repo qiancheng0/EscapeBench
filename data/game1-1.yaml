@@ -1,0 +1,670 @@
+
+- name: living room
+  desc: There are two doors, a refrigerator, a telephone cabinet, and a painting with a clock on it. The left door leads to the study, and the right door leads to the exit.
+  scene_relations:
+    To the dining room and kitchen: dining room and kitchen
+    To the bedroom: bedroom
+    To the telephone cabinet close-up: telephone cabinet close-up
+    To the study after unlocking: study
+  items:
+  - position: Beside the wall
+    item:
+      name: telephone cabinet
+      interactable: True
+      states:
+      - desc: An old-fashioned telephone cabinet stands here.
+        neg_reward: Perhaps you should see it up close
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_visible, scene, telephone cabinet close-up, True
+          - change_interact, False
+          reward: you can see telephone cabinet now.
+
+  - position: Left side of the room
+    item:
+      name: left door to the study
+      states:
+      - desc: A locked door that leads to the study.
+        neg_reward: The door is locked. You need something to open it.
+        transitions:
+        - wait_for:
+          - apply, study key
+          trigger:
+          - change_state, 1
+          reward: the door is now unlocked now.
+      - desc: The door to the study is now unlocked.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_visible, scene, study, True
+          - change_state, 2
+          - change_interact, False
+          reward: The door to the study is open, and you can enter the study.
+      - desc: The door to the study is open, and you can enter the study.
+
+  - position: Right side of the room
+    item:
+      name: right door to the exit
+      interactable: True
+      states:
+      - desc: A locked door that leads to the exit, the lock needs a 9-digit code all in numbers
+        neg_reward: The door is locked. You need something to open it.
+        transitions:
+        - wait_for:
+          - input, 655324223
+          trigger:
+          - change_interact, False
+          reward: The exit door unlocks, and you can now leave. GAME END!
+
+
+- name: telephone cabinet close-up
+  desc: A closer look at the telephone cabinet, with a hairpin on top and a drawer below.
+  visible: False
+  scene_relations:
+    Back to the living room: living room
+  items:
+  - position: On top of the cabinet
+    item:
+      name: drawer
+      interactable: True
+      states:
+      - desc: The drawer is locked, you might need something to pry it open.
+        neg_reward: The drawer is locked tightly. You need a tool to open it.
+        transitions:
+        - wait_for:
+          - apply, hairpin
+          trigger:
+          - change_state, 1
+          - change_visible, tool, carving knife, True
+          - change_interact, False
+          reward: The drawer unlocks, revealing the carving knife.
+      - desc: The drawer is now open.
+
+  - position: On top of the cabinet
+    item:
+      name: telephone
+      states:
+      - desc: An old-fashioned rotary telephone, but there's a busy signal when you pick it up.
+        neg_reward: The line is busy. There's nothing useful to hear.
+
+  tools:
+  - position: On top of the cabinet
+    tool:
+      name: hairpin
+      states:
+      - desc: A small hairpin with long ends, made of hard metal, shining gold in color.
+        apply_to:
+        - drawer
+
+  - position: Inside the drawer
+    tool:
+      name: carving knife
+      visible: False
+      states:
+      - desc: A sharp carving knife, with silver blade and wooden handle.
+        apply_to:
+        - cardboard box
+
+- name: bedroom
+  desc: There is a bed, a visible hammer handle, a toolbox, a cardboard box, and a door leading to the bathroom.
+  scene_relations:
+    To the living room: living room
+    To the toolbox close-up: toolbox close-up
+    To the cardboard box close-up: cardboard box close-up
+    To the bathroom: bathroom
+  items:
+  - position: Left side of the room
+    item:
+      name: bathroom door
+      interactable: True
+      states:
+      - desc: A door leading to the bathroom, but it's missing a door handle.
+        neg_reward: The door is locked and missing a handle, you cannot open without it.
+        transitions:
+        - wait_for:
+          - apply, door handle
+          trigger:
+          - change_state, 1
+          reward: The door now has a handle and can be opened.
+      - desc: The door now has a handle and can be opened.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_visible, scene, bathroom, True
+          - change_state, 2
+          - change_interact, False
+          reward: The door is now open.
+      - desc: The door is now open.
+
+  tools:
+  - position: On the floor next to the toolbox
+    tool:
+      name: hammer handle
+      visible: True
+      states:
+      - desc: The handle of a hammer.
+        apply_to:
+        - hammer
+
+
+
+- name: toolbox close-up
+  desc: A closer look at the toolbox.
+  scene_relations:
+    Back to the bedroom: bedroom
+  items:
+  - position: besides the bed
+    item:
+      name: toolbox
+      interactable: True
+      states:
+      - desc: The toolbox is locked and requires a password to open.
+        neg_reward: You need to enter the correct password to open it, it is 5-digit.
+        transitions:
+        - wait_for:
+          - input, cs546
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, screwdriver, True
+          - change_visible, tool, fuse, True
+          reward: The toolbox is now open.
+      - desc: The toolbox is now open.
+
+  tools:
+  - position: Inside the toolbox
+    tool:
+      name: screwdriver
+      visible: False
+      states:
+      - desc: A screwdriver that can be used to remove or tighten screws.
+        apply_to:
+        - ventilation fan
+
+  - position: Inside the toolbox
+    tool:
+      name: fuse
+      visible: False
+      states:
+      - desc: A fuse that can be used to connect things.
+        apply_to:
+        - desk lamp
+
+
+- name: cardboard box close-up
+  desc: A closer look at the cardboard box.
+  scene_relations:
+    Back to the bedroom: bedroom
+  items:
+  - position: Beside the bed
+    item:
+      name: cardboard box
+      interactable: True
+      states:
+      - desc: The cardboard box is sealed shut.
+        neg_reward: You need a sharp tool to open this box.
+        transitions:
+        - wait_for:
+          - apply, carving knife
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, door handle, True
+          reward: The cardboard box is now open.
+      - desc: The cardboard box is now open.
+
+  tools:
+  - position: Inside the cardboard box
+    tool:
+      name: door handle
+      visible: False
+      states:
+      - desc: A door handle hidden inside the cardboard box.
+        apply_to:
+        - bathroom door
+
+
+
+- name: bathroom
+  desc: The bathroom contains a mirror, a ventilation fan, and a plunger that can be collected. The mirror and the ventilation fan have close-up views.
+  visible: False
+  scene_relations:
+    To the bedroom: bedroom
+    To the mirror close-up: mirror close-up
+    To the ventilation fan close-up: ventilation fan close-up
+
+  tools:
+  - position: Near the bathtub
+    tool:
+      name: plunger
+      visible: True
+      states:
+      - desc: A dirty plunger that could clear clogged drains or toilets.
+        apply_to:
+        - garbage
+
+
+- name: mirror close-up
+  desc: A close-up view of the broken mirror.
+  scene_relations:
+    Back to the bathroom: bathroom
+  items:
+  - position: On the mirror
+    item:
+      name: mirror
+      interactable: True
+      states:
+      - desc: The mirror is broken, and several pieces of it are missing.
+        neg_reward: The mirror is incomplete, you need to find and place all missing parts to complete it.
+        transitions:
+        - wait_for:
+          - apply, shard_1
+          - apply, shard_2
+          - apply, shard_3
+          - apply, shard_4
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The mirror is now complete. It reflects a vague message saying 'cs546'
+      - desc: All mirror shards have been placed, and the mirror now reflects a message 'cs546'.
+
+
+- name: ventilation fan close-up
+  desc: A close-up view of the ventilation fan in the bathroom.
+  scene_relations:
+    Back to the bathroom: bathroom
+  items:
+  - position: On the ceiling
+    item:
+      name: ventilation fan
+      interactable: True
+      states:
+      - desc: A ventilation fan is attached to the ceiling, screwed tight with four screws.
+        neg_reward: There's something inside the fan, but you need a tool to open it.
+        transitions:
+        - wait_for:
+          - apply, screwdriver
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, locker key, True
+          reward: You have used the screwdriver to open the fan and found a key inside.
+      - desc: The ventilation fan is open.
+
+  tools:
+  - position: Inside the ventilation fan
+    tool:
+      name: locker key
+      visible: False
+      states:
+      - desc: A small key with a tag that reads "locker" 
+        apply_to:
+        - locked locker door
+
+- name: dining room and kitchen
+  desc: A kitchen with several interactable areas. the dining table, the cabinet above the stove, the left and right cabinets, the sink, and the cabinet above the sink.
+  scene_relations:
+    To the living room: living room
+    To the dining table close-up: dining table close-up
+    To the cabinet above stove close-up: cabinet above stove close-up
+    To the left cabinet close-up: left cabinet close-up
+    To the right cabinet close-up: right cabinet close-up
+    To the sink close-up: sink close-up
+    To the cabinet above sink close-up: cabinet above sink close-up
+
+
+- name: dining table close-up
+  desc: A close-up view of the dining table with various items on it.
+  scene_relations:
+    Back to the dining room and kitchen: dining room and kitchen
+  tools:
+  - position: On the table
+    tool:
+      name: shard_1
+      visible: True
+      states:
+      - desc: A piece of flat broken piece reflecting light
+        apply_to:
+        - mirror
+
+  items:
+  - position: On the table
+    item:
+      name: pizza slice
+      interactable: True
+      states:
+      - desc: A cold slice of pizza sits on the table.
+        neg_reward: Just a cold slice of pizza. Nothing useful here.
+
+  - position: On the table
+    item:
+      name: newspaper
+      interactable: True
+      states:
+      - desc: An old newspaper is on the table.
+        neg_reward: It's just an old newspaper. Nothing of importance.
+
+  - position: On the table
+    item:
+      name: spoiled oatmeal
+      interactable: True
+      states:
+      - desc: A bowl of spoiled oatmeal.
+        neg_reward: It's a bowl of spoiled oatmeal. No use for this.
+
+
+- name: cabinet above stove close-up
+  desc: A close-up view of the cabinet above the stove. The left side holds food and spices, and the right side holds a flashlight and a pot.
+  scene_relations:
+    Back to the dining room and kitchen: dining room and kitchen
+  items:
+  - position: Left side of the cabinet
+    item:
+      name: food and spices
+      states:
+      - desc: Various food items and spices are stored here. They don't seem useful.
+        neg_reward: Just some food and spices. Nothing of interest.
+
+  - position: Right side of the cabinet
+    item:
+      name: pot
+      states:
+      - desc: A pot is stored here, but you can't take it with you.
+        neg_reward: The pot is too heavy to carry around. Nothing useful inside.
+
+  tools:
+  - position: Right side of the cabinet
+    tool:
+      name: flashlight
+      visible: True
+      states:
+      - desc: A flashlight is here, but it currently is out of power.
+        wait_for:
+        - battery
+      - desc: The flashlight now has a battery and is ready to use.
+        apply_to:
+        - study wall
+
+
+- name: left cabinet close-up
+  desc: A close-up view of the left cabinet below the stove.
+  scene_relations:
+    Back to the dining room and kitchen: dining room and kitchen
+  items:
+  - position: In the drawer
+    item:
+      name: empty drawer
+      states:
+      - desc: The drawer is completely empty.
+  - position: In the bottom cabinet
+    item:
+      name: safe
+      interactable: True
+      states:
+      - desc: A locked safe that requires a four-digit password.
+        neg_reward: The safe is locked. You need to enter a four-digit code to open it.
+        transitions:
+        - wait_for:
+          - input, 4713
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: You have opened the safe and found a note with the code "655324223."
+      - desc: The safe is now open, and inside you find a piece of paper that writes 655324223.
+
+
+- name: right cabinet close-up
+  desc: A close-up view of the right cabinet below the stove.
+  scene_relations:
+    Back to the dining room and kitchen: dining room and kitchen
+  items:
+  - position: In the bottom cabinet
+    item:
+      name: empty bottom cabinet
+      states:
+      - desc: The bottom part of the cabinet is empty.
+  tools:
+  - position: In the top drawer
+    tool:
+      name: battery
+      visible: True
+      states:
+      - desc: A single battery is found here, seems still usable.
+        apply_to:
+        - flashlight
+
+
+- name: cabinet above sink close-up
+  desc: A close-up view of the cabinet above the sink.
+  scene_relations:
+    Back to the dining room and kitchen: dining room and kitchen
+  items:
+  - position: Left side of the cabinet
+    item:
+      name: clutter_left
+      states:
+      - desc: Inside contains some miscellaneous items that seems of no use.
+  tools:
+  - position: Right side of the cabinet
+    tool:
+      name: shard_2
+      visible: True
+      states:
+      - desc: A piece of flat broken piece reflecting light
+        apply_to:
+        - mirror
+
+- name: sink close-up
+  desc: A close-up view of the sink. The sink is full of garbage, and there is a trash bin and a cabinet underneath that are not interactable.
+  scene_relations:
+    Back to the dining room and kitchen: dining room and kitchen
+  items:
+  - position: Under the sink
+    item:
+      name: trash bin
+      states:
+      - desc: A trash bin is placed under the sink, but there's nothing useful here.
+
+  - position: Under the sink
+    item:
+      name: cabinet_under_sink
+      states:
+      - desc: The cabinet under the sink is not accessible right now.
+
+  - position: In the sink
+    item:
+      name: garbage
+      states:
+      - desc: The sink is full of garbage, preventing you from seeing the bottom.
+        neg_reward: The sink is clogged with garbage, you might need something to clear it.
+        transitions:
+        - wait_for:
+          - apply, plunger
+          trigger:
+          - change_state, 1
+          reward: The garbage has been cleared, revealing something shiny at the bottom.
+      - desc: The garbage has been cleared, revealing something shiny at the bottom.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_visible, tool, study key, True
+          - change_interact, False
+          - change_state, 2
+          reward: You've cleared the garbage and found a key at the bottom of the sink.
+      - desc: The sink is now clear.
+
+  tools:
+  - position: In the sink
+    tool:
+      name: study key
+      visible: False
+      states:
+      - desc: A gold key with a tag but word is vague on it
+        apply_to:
+        - left door to the study
+
+
+- name: study
+  desc: A room filled with books and puzzles. There's a safe, a desk, photos on the wall.
+  visible: False
+  scene_relations:
+    Back to the living room: living room
+    To the photo close-up: photo close-up
+    To the desk close-up: desk close-up
+    To the locker close-up: locker close-up
+    To the wall close-up: wall close-up
+
+
+- name: wall close-up
+  desc: A closer look at the wall, showing a set of framed photos.
+  scene_relations:
+    Back to the study: study
+    To the photo close-up: photo close-up
+  
+  items:
+  - position: Middle of the wall
+    item:
+      name: study wall
+      interactable: True
+      states:
+      - desc: A wall that seems not solid behind
+        neg_reward: Maybe there's something hidden behind this wall, you have to break it.
+        transitions:
+        - wait_for:
+          - apply, hammer
+          trigger:
+          - change_state, 1
+          reward: The wall is broken, but it's dark inside.
+      - desc: The wall has been smashed open, but it's too dark to see inside.
+        neg_reward: The wall is broken, but you need some light to see inside.
+        transitions:
+        - wait_for:
+          - apply, flashlight
+          trigger:
+          - change_state, 2
+          - change_interact, False
+          reward: The smashed wall is lit by the flashlight, revealing a hidden message, which is "A=4 D=1 G=3 M=7"
+      - desc: The smashed wall is lit by the flashlight, revealing a hidden message, which is "A=4 D=1 G=3 M=7"
+
+- name: photo close-up
+  desc: A close-up view of the three framed photos on the wall. One of them seems slightly off.
+  scene_relations:
+    Back to the wall close-up: wall close-up
+  items:
+  - position: Left side of the photo set
+    item:
+      name: photo_1
+      interactable: True
+      states:
+      - desc: An old photo. Nothing seems out of place here.
+        neg_reward: Just an old photo, nothing of interest.
+
+  - position: Center of the photo set
+    item:
+      name: photo_2
+      interactable: True
+      states:
+      - desc: A slightly faded photo, but there's nothing strange about it.
+        neg_reward: Nothing unusual with this one.
+
+  - position: Right side of the photo set
+    item:
+      name: photo_3
+      interactable: True
+      states:
+      - desc: This photo looks a little off, as if something is hidden behind it.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_visible, tool, shard_3, True
+          - change_interact, False
+          - change_state, 1
+          reward: You found a piece of broken mirror hidden behind this photo.
+      - desc: The photo has been moved.
+    
+  tools:
+  - position: Behind photo_3
+    tool:
+      name: shard_3
+      visible: False
+      states:
+      - desc: A piece of flat broken piece reflecting light
+        apply_to:
+        - mirror
+
+
+- name: desk close-up
+  desc: A close-up view of the desk. It's covered with papers and books.
+  scene_relations:
+    Back to the study: study
+  items:
+  - position: On the desk
+    item:
+      name: desk lamp
+      interactable: True
+      states:
+      - desc: The desk lamp is unplugged, and the power is out.
+        neg_reward: There's no power, and the wire seems is cut broken.
+        transitions:
+        - wait_for:
+          - apply, fuse
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The lamp is now working, shedding light on letters "AMDG" on the desk.
+      - desc: The desk lamp has been fixed, and it lights up the desk. You see some letters, which is "AMDG."
+
+
+- name: locker close-up
+  desc: A close-up view of the locker. The right two doors are open, but the left one is locked.
+  scene_relations:
+    Back to the study: study
+  items:
+  - position: Left side of the locker
+    item:
+      name: locked locker door
+      states:
+      - desc: The left locker door is locked. It may require a key to open.
+        neg_reward: You need a key to unlock this door.
+        transitions:
+        - wait_for:
+          - apply, locker key
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, hammer, True
+          reward: The locker door is now open, revealing a hammerhead inside.
+      - desc: The locker door is now open.
+  - position: Right side of the locker
+    item:
+      name: open locker doors
+      states:
+      - desc: The right two locker doors are already open, but they are empty.
+        neg_reward: The lockers are empty. There's nothing useful inside.
+
+  tools:
+  - position: Inside the locked locker
+    tool:
+      name: hammer
+      visible: False
+      states:
+      - desc: The hammer only have a head, seems need something else to be useful.
+        wait_for:
+        - hammer handle
+      - desc: The hammer is now fully assembled, with the metal head sharp to smash things.
+        apply_to:
+        - study wall
+
+  - position: Beside the cardboard box near the locker
+    tool:
+      name: shard_4
+      states:
+      - desc: A piece of flat broken piece reflecting light
+        apply_to:
+        - mirror

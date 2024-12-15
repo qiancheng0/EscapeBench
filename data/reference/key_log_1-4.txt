@@ -1,0 +1,256 @@
+{
+    "position": "hallway",
+    "action_answer": "click(pump)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(bicycle spoke)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(emergency hammer)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(glass)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(tape)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(wire)"
+}
+{
+    "position": "hallway",
+    "action_answer": "apply(emergency hammer, glass box)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(watch)"
+}
+{
+    "position": "hallway",
+    "action_answer": "craft(glass, tape)"
+}
+{
+    "position": "hallway",
+    "action_answer": "craft(tape, wire)"
+}
+{
+    "position": "hallway",
+    "action_answer": "apply(bicycle spoke, lockhole)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(bunch of keys)"
+}
+{
+    "position": "hallway",
+    "action_answer": "craft(wire, bunch of keys)"
+}
+{
+    "position": "hallway",
+    "action_answer": "apply(bunch of keys, first door on the right)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(toolbox)"
+}
+{
+    "position": "hallway",
+    "action_answer": "click(handle)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "click(piece 1)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "click(piece 2)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "click(rubber patch)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "craft(pump, rubber patch)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "apply(rubber patch, sink)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "click(key 1)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "apply(key 1, box 1)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "click(nozzle)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "craft(handle, nozzle)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "apply(nozzle, toilet)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "click(component of coded lock)"
+}
+{
+    "position": "hallway",
+    "action_answer": "apply(component of coded lock, coded lock)"
+}
+{
+    "position": "hallway",
+    "action_answer": "input(17:45, coded lock)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(frying pan)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(small key)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(piece 3)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(piece 4)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(key 2)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(piece 1, circuit board)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(piece 2, circuit board)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(piece 3, circuit board)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(piece 4, circuit board)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(key 3)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(key 2, door on the right)"
+}
+{
+    "position": "hallway -> kitchen -> storage room",
+    "action_answer": "click(gas tank)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(light switch)"
+}
+{
+    "position": "hallway -> kitchen -> storage room",
+    "action_answer": "click(garden shears)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(key 3, door on the left)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "click(triangular key)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "click(brick)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "input(7049, keypad safe)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "click(buttons)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "apply(buttons, cabinet)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "apply(brick, cabinet)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "click(chisel)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(small key, hearth)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(gas tank, hearth)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(chisel, block of ice)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(piece of ice)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "apply(triangular key, locked cabinet)"
+}
+{
+    "position": "hallway -> washroom",
+    "action_answer": "click(flexible tube)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "craft(garden shears, flexible tube)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(flexible tube, hearth)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(piece of ice, hearth)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "apply(frying pan, hearth)"
+}
+{
+    "position": "hallway -> kitchen",
+    "action_answer": "click(swipe card)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "apply(swipe card, front door)"
+}
+{
+    "position": "hallway -> kitchen -> hidden room",
+    "action_answer": "input(690716, front door)"
+}

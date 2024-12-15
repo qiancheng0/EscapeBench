@@ -1,0 +1,913 @@
+- name: warehouse outside
+  desc: The outside view of the ware house. The van is parked on the right. The warehouse's rolling doors are in the front.
+  scene_relations:
+    Go to the garbage disposal place: garbage disposal place
+    Explore the crane in the front: crane overview
+    Go to the door in left corner: warehouse door corner
+  items:
+  - position: high on the wall
+    item:
+      name: dagger inserted in sign
+      states:
+      - desc: There's a dagger inserted in a red hydrant sign. Too high to reach it with hands.
+        neg_reward: You may try to use something to get it down
+        transitions:
+        - wait_for:
+          - apply, tennis ball
+          trigger:
+          - change_visible, tool, dagger, True
+          - change_visible, False
+          - change_interact, False
+          reward: The dagger falls down, you can now pick it up
+  tools:
+  - position: Beside the van on the ground
+    tool:
+      name: wet shipping list
+      states:
+      - desc: a wet shipping list with title "consignment notes" on it
+        wait_for:
+        - blower dryer
+      - desc: shipping list is dry now, with a large "S-16" written on the second page 
+  - position: Falling on the ground
+    tool:
+      name: dagger
+      visible: False
+      states:
+      - desc: a black dagger with a silver blade
+        apply_to:
+        - brown box with missing number
+
+- name: garbage disposal place
+  desc: There's a garbage bin or the left. The ground is messy and full of wasted things.
+  scene_relations:
+    Back to the warehouse outside: warehouse outside
+  items:
+  - position: On the left
+    item:
+      name: green garbage bin
+      states:
+      - desc: The lid of the garbage bin is closed and locked.
+        neg_reward: You need a key to open the black lid of the bin
+        transitions:
+        - wait_for:
+          - apply, square key
+          trigger:
+          - change_state, 1
+          - change_visible, tool, paper piece 'J', True
+          - change_interact, False
+          reward: The garbage bin is now open, there's a piece of paper inside
+      - desc: The garbage bin is now open
+  tools:
+  - position: Inside the garbage bin
+    tool:
+      name: paper piece 'J'
+      visible: False
+      states:
+      - desc: a small piece of paper with a letter 'J' on it
+        apply_to:
+        - name slot
+  - position: On the ground beside the garbage bin
+    tool:
+      name: hammer
+      states:
+      - desc: a hammer with a wooden handle and a metal silver head
+        apply_to:
+        - warehouse door
+  - position: Beside the old tyre
+    tool:
+      name: diagram
+      states:
+      - desc: a diagram with a circuit on it, showing how electric swtiches are connected - "A03 crane, A09 exit door, A12 card reader, A13 office door"
+
+- name: crane overview
+  desc: There's a crane in the middle, maybe used for lifting heavy things.
+  scene_relations:
+    Back to the warehouse outside: warehouse outside
+  items:
+  - position: In the middle
+    item:
+      name: crane
+      interactable: False
+      states:
+      - desc: The crane is currently down, there's a button beside, but currently no power
+        neg_reward: You may try to give it power to see how it works
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, chisel, True
+          - change_interact, False
+          reward: The crane is on now, it is lifting up
+      - desc: The crane is in lifted position
+  tools:
+  - position: On the crane's surface
+    tool:
+      name: silver key
+      states:
+      - desc: a silver little key with a square tail
+        apply_to:
+        - electric box
+  - position: Under the crane on the ground
+    tool:
+      name: chisel
+      visible: False
+      states:
+      - desc: a silver chisel, very long and thin in shape
+        apply_to:
+        - warehouse door
+
+- name: warehouse door corner
+  desc: There's electric box on the left side of wall, the door on the right seems loocked.
+  scene_relations:
+    Back to the warehouse outside: warehouse outside
+    Explore inside the electric box: electric box inside
+    Go inside the warehouse: warehouse leftside overview
+  items:
+  - position: On the left wall
+    item:
+      name: electric box
+      states:
+      - desc: a blue iron box with a yellow voltage sign on it
+        neg_reward: You shold try to unlock the box first
+        transitions:
+        - wait_for:
+          - apply, silver key
+          trigger:
+          - change_state, 1
+          - change_visible, scene, electric box inside, True
+          - change_interact, False
+          reward: The electric box is now open, there are some switches inside
+      - desc: An opened electric box
+  - position: On the right side
+    item:
+      name: warehouse door
+      states:
+      - desc: a rusty iron door in green color, with lock on it. The door is locked.
+        neg_reward: You may try to open this door through an unconventional way
+        transitions:
+        - wait_for:
+          - apply, chisel
+          trigger:
+          - change_state, 1
+          reward: You have stuck the chisel into the door
+      - desc: a rusty iron door in green color, with a chisel in the key hole
+        neg_reward: You may try to open this door through an unconventional way
+        transitions:
+        - wait_for:
+          - apply, hammer
+          trigger:
+          - change_state, 2
+          - change_visible, scene, warehouse leftside overview, True
+          - change_interact, False
+          reward: The door's lock is broken, the door is now open
+      - desc: a rusty iron door in green color, with a broken lock, door is open
+ 
+- name: electric box inside
+  visible: False
+  desc: There's a bunch of switches inside the electric box, with red as turning off and green as turning on
+  scene_relations:
+    Back to the corner of the warehouse: warehouse door corner
+  items:
+  - position: In side the box
+    item:
+      name: switch A03
+      states:
+      - desc: A03 red (off)
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, item, crane, True
+          - change_interact, False
+          reward: Switch A03 is now green (on)
+      - desc: A03 green (on)
+  - position: In side the box
+    item:
+      name: switch A09
+      states:
+      - desc: A09 red (off)
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, item, exit door, True
+          - change_interact, False
+          reward: Switch A09 is now green (on)
+      - desc: A09 green (on)
+  - position: In side the box
+    item:
+      name: switch A12
+      states:
+      - desc: A12 red (off)
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, item, card reader, True
+          - change_interact, False
+          reward: Switch A12 is now green (on)
+      - desc: A12 green (on)
+  - position: In side the box
+    item:
+      name: switch A13
+      states:
+      - desc: A13 red (off)
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, item, office door, True
+          - change_interact, False
+          reward: Switch A13 is now green (on)
+      - desc: A13 green (on)
+
+- name: warehouse leftside overview
+  visible: False
+  desc: There's an exit door at the end of left hallway in the front, with some green storage left of hallway. There's a room with a door and window on right side, you cannot see clearly inside.
+  scene_relations:
+    Back to outside the door of the warehouse: warehouse door corner
+    Go to the left hall way to exit: left hallway
+    Go to the hallway in the middle: middle hallway
+    Go into the front desk office: front desk office overview
+  items:
+  - position: On the left side of room's wall
+    item:
+      name: frosted glass window
+      states:
+      - desc: The window is frosted, but flat and smooth. There's a crack from top to bottom in the middle.
+        neg_reward: You may try to break this window to see what's inside
+        transitions:
+        - wait_for:
+          - apply, toilet plunger
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, square key, True
+          reward: The window is now broken open, you could see inside, there's a square key on the table
+      - desc: The window is broken open, there's a square key inside
+  - position: On the wall beside the door
+    item:
+      name: daily service password
+      interactable: False
+      states:
+      - desc: The page writes a table "Place 1 - H 5, N 6, J 1, A 7, S 8 | Place 2 - O 8, A 3, Y 2, N 4, K 7 | Place 3 - C 2, Y 8, O 9, K 4, E 8 | Place 4 - S 1, E 3, H 9, K 5, C 4".
+  - position: On the wall beside the door
+    item:
+      name: card reader
+      interactable: False
+      states:
+      - desc: A black card reader hanging on the wall, with a wire connected up to the ceiling. It needs power to work.
+        neg_reward: You may try to open it in a brute way, might try to short-circuit it
+        transitions:
+        - wait_for:
+          - apply, alarm clock battery
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, scene, front desk office overview, True
+          reward: The door should be open now, you could enter the room.
+      - desc: The card reader is broken open, the door is now open
+  tools:
+  - position: On the table inside the window
+    tool:
+      name: square key
+      visible: False
+      states:
+      - desc: a square key with a small hole on upper left, seems to be used to open lid
+        apply_to:
+        - green garbage bin
+
+- name: front desk office overview
+  visible: False
+  desc: There's a L-shaped desk on the left side, a green locker beside the desk, and boxes of papers everywhere.
+  scene_relations:
+    Go to front desk locker: front desk locker
+    Back to the left side of warehouse: warehouse leftside overview
+  items:
+  - position: On the L-shaped desk
+    item:
+      name: old-fashioned phone
+      states:
+      - desc: On the screen it shows enter the PUK code, with a 8-digit input box
+        neg_reward: You may try to input the correct code
+        transitions:
+        - wait_for:
+          - input, 84459731
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The phone is now unlocked, there's a chat hostory with Harry on the phone
+      - desc: On the screen there's a chat window with Harry. A line says "I forgot the locker password, can you help me?", Harry replies "Sure, the password is 3499"
+
+- name: front desk locker
+  desc: There's a green locker on the right side beside the desk
+  scene_relations:
+    Back to the front desk office: front desk office overview
+  items:
+  - position: On the locker
+    item:
+      name: front desk locker lock
+      states:
+      - desc: There are 4 digits on the lock
+        neg_reward: Try to get some clue from Harry's chat history
+        transitions:
+        - wait_for:
+          - input, 3499
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, telescopic hook, True
+          reward: The locker is now open, there's a long white wire and a telescopic hook inside
+      - desc: The locker is now open
+  tools:
+  - position: Inside the front desk locker
+    tool:
+      name: telescopic hook
+      visible: False
+      states:
+      - desc: a telescopic hook with a long green handle and a silver hook at the top
+        apply_to:
+        - messy wire wrapped on ceiling
+
+- name: left hallway
+  desc: There's five green storage cabinate in the middle beside the wall, three of then has name Harry, Oliver, Jason, the other one without name. At the end of hallway there's an iron door with a lock. Seems the lock needs power to work.
+  scene_relations:
+    Back to left side of warehouse: warehouse leftside overview
+  items:
+  - position: In the middle
+    item:
+      name: digit password lock
+      interactable: False
+      states:
+      - desc: The door of the cabinate previously without name on it is closed, there's a digit lock on it. It needs 4 digits to open.
+        neg_reward: You may try to open this digital lock, its owner is Jack
+        transitions:
+        - wait_for:
+          - input, 1325
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, keycard with lanyard, True
+          reward: There's a keycard with lanyard inside the cabinate
+      - desc: The digit lock is now open, the cabinate is open
+  - position: On one of the cabinate
+    item:
+      name: name slot
+      states:
+      - desc: The name slot of that cabinate without name on it. It's currently not fully filled.
+        neg_reward: You may try to get this slot fully filled
+        transitions:
+        - wait_for:
+          - apply, paper piece 'a'
+          - apply, paper piece 'c'
+          - apply, paper piece 'k'
+          - apply, paper piece 'J'
+          trigger:
+          - change_interact, item, digit password lock, True
+          reward: The name slot is now fully filled, with the owner's name "Jack". The digit lock is now open for input.
+      - desc: The name slot is now fully filled, with the owner's name "Jack"
+  - position: On one of the cabinate
+    item:
+      name: cabinet key lock
+      states:
+      - desc: There's a yellow bolt sign on this cabinet, below there's a lock.
+        neg_reward: You may try to open this lock to see what's inside
+        transitions:
+        - wait_for:
+          - apply, gold key with bolt sign
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, blue tape, True
+          - change_visible, tool, blower dryer, True
+          reward: The lock is now open, there's a pile of things in the cabinet.
+      - desc: The lock is open, there's a pile of things in the cabinet, including some clothes and some paper rubbish.
+  - position: At the end of hallway
+    item:
+      name: exit door
+      interactable: False
+      states:
+      - desc: The door is locked with a digit password lock. There's a Sigma sign on the top of the door.
+        neg_reward: You have to find clue and solve th password.
+        transitions:
+        - wait_for:
+          - input, 100
+          trigger:
+          - change_interact, False
+          reward: The exit door is now open, GAME END!
+  tools:
+  - position: On the ground under the cabinet
+    tool:
+      name: paper piece 'a'
+      states:
+      - desc: a small piece of paper with a letter 'a' on it
+        apply_to:
+        - name slot
+  - position: Inside the digit password lock cabinate
+    tool:
+      name: keycard with lanyard
+      visible: False
+      states:
+      - desc: a keycard with a red lanyard, with a name "Jack" on it
+        apply_to:
+        - office door
+  - position: Inside the key-locked cabinet
+    tool:
+      name: blue tape
+      visible: False
+      states:
+      - desc: a roll of blue tapes
+        apply_to:
+        - wire on pillar
+  - position: Inside the key-locked cabinet
+    tool:
+      name: blower dryer
+      visible: False
+      states:
+      - desc: a blower with green color appearance
+        apply_to:
+        - wet shipping list
+
+- name: middle hallway
+  desc: There's pile of boxes on the left, and roller shutter door on the right. The hallway is clean with a few paper pieces on the ground. The far end of hallway is region full of shelves.
+  scene_relations:
+    Go straight to the shelves region: shelves region overview
+    Go to office door overview on left side: office door overview
+    Explore a pile of boxes beside office door: boxes pile in hallway
+    Back to left side of warehouse: warehouse leftside overview
+    Back to outside the door of the warehouse: warehouse door corner
+
+- name: boxes pile in hallway
+  desc: There's a pile of boxes on the left side of hallway, some closed while some open.
+  scene_relations:
+    Back to middle hallway: middle hallway
+  items:
+  - position: On a box
+    item:
+      name: yellow wire roll
+      states:
+      - desc: There's a roll of yellow wire, with one end of the wire exposed
+        neg_reward: You may need a piece of wire from here
+        transitions:
+        - wait_for:
+          - apply, scissors
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, False
+          - change_visible, tool, yellow wire, True
+          reward: You have cut a piece of wire from the roll
+      - desc: The wire is now cut from the roll
+  - position: On the ground
+    item:
+      name: blue tool box
+      states:
+      - desc: A blue tool box with a sign of communicator, seems need a 5-digit password to open.
+        neg_reward: You have to find some clue to open this box.
+        transitions:
+        - wait_for:
+          - input, 23415
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, screwdriver, True
+          reward: The tool box is now open, there's a screwdriver inside
+      - desc: The tool box is open now.
+  tools:
+  - position: Beside the wire roll
+    tool:
+      name: yellow wire
+      visible: False
+      states:
+      - desc: a wire with a yellow cover, with one end exposed
+        apply_to:
+        - alarm clock battery
+  - position: Inside the blue tool box
+    tool:
+      name: screwdriver
+      visible: False
+      states:
+      - desc: a screwdriver with a red handle and a silver head
+        apply_to:
+        - alarm clock
+
+- name: office door overview
+  desc: There's an office door in front of you, and the window of office on the left side.
+  scene_relations:
+    Go into the office: office room overview
+    Back to middle hallway: middle hallway
+  items:
+  - position: In the middle
+    item:
+      name: office door
+      interactable: False
+      states:
+      - desc: The office door is currently locked. There's another card reader beside the door. It needs power to open.
+        neg_reward: You may try to open the door.
+        transitions:
+        - wait_for:
+          - apply, keycard with lanyard
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, scene, office room overview, True
+          reward: The office door is now open, you could enter the room.
+      - desc: The office door is now open
+  tools:
+  - position: On the ground beside the door
+    tool:
+      name: paper piece 'k'
+      states:
+      - desc: a small piece of paper with a letter 'k' on it
+        apply_to:
+        - name slot
+
+- name: office room overview
+  visible: False
+  desc: The office room is extremely messy, with a desk in the middle, some drawers on the left, and a piles of boxes everywhere.
+  scene_relations:
+    Go to explore behind the desk: office room desk
+    Go to check the drawers: office room drawers
+    Back to outside the office: middle hallway
+  items:
+  - position: In the back of room
+    item:
+      name: wall in office room
+      states:
+      - desc: There's a part of wall that seems new and different from the others, whiter and smoother.
+        neg_reward: There might be hidden space behind this wall
+        transitions:
+        - wait_for:
+          - apply, sledghammer
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, exit code paper, True
+          reward: The wall is now broken, there's a piece of paper with a code behind the wall
+      - desc: The wall is now broken, there's a space behind
+  tools:
+  - position: Behind the wall
+    tool:
+      name: exit code paper
+      visible: False
+      states:
+      - desc: a piece of paper with a code written "12 + 28 + 25 + 35"
+
+- name: office room desk
+  desc: There's boxes of paper behind the desk, and a green chair.
+  scene_relations:
+    Back to office room overview: office room overview
+  tools:
+  - position: On the boxes
+    tool:
+      name: ruler
+      states:
+      - desc: a straight ruler with a length of 30cm, made of steel
+        apply_to:
+        - closed cabinet under drawer
+  - position: Beside the chair
+    tool:
+      name: painting
+      interactable: False
+      states:
+      - desc: a portrait painting with yellow, red, blue, and green colors
+
+- name: office room drawers
+  desc: There are some scientific instruments on the drawers. A safe is inside empty cabinet, and there are six smaller drawers on the right side.
+  scene_relations:
+    Back to office room overview: office room overview
+  items:
+  - position: In the small drawers on the right
+    item:
+      name: corner of piece of paper
+      states:
+      - desc: The corner of a piece of paper is out of tightly closed drawer, but you cannot directly pull it out with hands
+        neg_reward: Try to get this paper out carefully
+        transitions:
+        - wait_for:
+          - apply, tweezers
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, False
+          - change_visible, tool, piece of paper code, True
+          reward: The paper falls on the ground, there's a code on it
+      - desc: The drawer is now empty
+  - position: Inside the empty cabinet
+    item:
+      name: iron safe
+      states:
+      - desc: An iron safe with a color pattern of red, green, __ , yellow. You need to input a color to open it.
+        neg_reward: Try to open this safe with a color
+        transitions:
+        - wait_for:
+          - input, blue
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, karabiner, True
+          reward: The safe is now open, there's a karabiner inside
+      - desc: The safe is now open
+  - position: Below the safe
+    item:
+      name: closed cabinet under drawer
+      states:
+      - desc: A cabinet but with doors tightly closed, seems need something to pry it open
+        neg_reward: Try to pry open this cabinet with something
+        transitions:
+        - wait_for:
+          - apply, ruler
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, tool, scissors, True
+          - change_visible, tool, tweezers, True
+          reward: The cabinet is now open, there's a pair of scissors and a pair of tweezers inside
+      - desc: The cabinet is now open
+  - position: On top of the drawers
+    item:
+      name: communicator
+      states:
+      - desc: An empty communicator with five channels
+        neg_reward: It may need some water to work
+        transitions:
+        - wait_for:
+          - apply, measuring cup
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The water inside the communicator is has height level 2, 3, 4, 1, 5 respectively in each channel
+      - desc: The water level in each channel is 2, 3, 4, 1, 5 respectively
+  tools:
+  - position: Fallen on the ground
+    tool:
+      name: piece of paper code
+      visible: False
+      states:
+      - desc: a piece of code written "PKU-code 84459731"
+  - position: Inside the safe
+    tool:
+      name: karabiner
+      visible: False
+      states:
+      - desc: a karabiner with a silver color, strong enough to hold weights. Could be used to connect things together
+        apply_to:
+        - blue container
+  - position: Inside the cabinet
+    tool:
+      name: scissors
+      visible: False
+      states:
+      - desc: a pair of scissors with a red handle and a silver blade
+        apply_to:
+        - yellow wire roll
+  - position: Inside the cabinet
+    tool:
+      name: tweezers
+      visible: False
+      states:
+      - desc: a pair of tweezers with a silver handle
+        apply_to:
+        - corner of piece of paper
+  - position: on the top of the drawers
+    tool:
+      name: measuring cup
+      states:
+      - desc: a measuring cup that used to contain 100ml of water
+        apply_to:
+        - wash basin
+      - desc: a measuring cup with water inside
+        apply_to:
+        - communicator
+
+- name: shelves region overview
+  desc: There are all the shelves with different things and boxes on the shelf. In the middle there lies a large containers, on the right side there's a small desk like place for item register.
+  scene_relations:
+    Go to the middle of all the shelves: shelves region middle
+    Go to check the table: shelves region table
+    Go to check shelves on the left: shelves region left
+    Back to middle hallway: middle hallway
+
+- name: shelves region table
+  desc: There's a table, a lamp on it on left side, an alarm clock in the middle, and a pen and some notes on the right.
+  scene_relations:
+    Back to shelves region overview: shelves region overview
+  items:
+  - position: On the table
+    item:
+      name: alarm clock
+      states:
+      - desc: A old alarm clock, a little bit tilted upwards. It's still working.
+        neg_reward: You may try to see what's below the clock
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, gold key with bolt sign, True
+          reward: The alarm closk is pushed down, there's a key below
+      - desc: The alarm clock is pushed down in the middle of the table. Thers's 4 screws on the back of the clock.
+        neg_reward: You may try to get something to open the clock
+        transitions:
+        - wait_for:
+          - apply, screwdriver
+          trigger:
+          - change_state, 2
+          - change_visible, tool, alarm clock battery, True
+          reward: The alarm closk is opened from the back, there's a battery inside
+      - desc: The alarm clock is opened
+  tools:
+  - position: Under the alarm clock
+    tool:
+      name: gold key with bolt sign
+      visible: False
+      states:
+      - desc: a gold key with a bolt sign on it
+        apply_to:
+        - cabinet key lock
+  - position: Inside the alarm clock
+    tool:
+      name: alarm clock battery
+      visible: False
+      states:
+      - desc: a blue battery with a sign of 1.5V
+        wait_for:
+        - blue plasticine
+      - desc: a blue battery with a sign of 1.5V, a piece of blue plasticine is sticked on the battery
+        wait_for:
+        - yellow wire
+      - desc: a blue battery with a sign of 1.5V, a piece of yellow wire is sticked on the battery. It could now o short-circuit an appliance
+        apply_to:
+        - card reader
+
+- name: shelves region left
+  desc: There's a bunch of boxes on the shelf, one with a target sign, others all starts with "S- ...".
+  scene_relations:
+    Back to shelves region overview: shelves region overview
+  items:
+  - position: On the second level of shelf
+    item:
+      name: brown box with missing number
+      states:
+      - desc: There's a brown box with "S- ...", a two digit number missing.
+        neg_reward: You may try to input the missing number
+        transitions:
+        - wait_for:
+          - input, 16
+          trigger:
+          - change_state, 1
+          reward: The brown box is now ready to be opened
+      - desc: The brown box now shows "S-16", the box cannot be opened by hand
+        neg_reward: Maybe some tools are needed to open this box
+        transitions:
+        - wait_for:
+          - apply, dagger
+          trigger:
+          - change_state, 2
+          - change_interact, False
+          - change_visible, tool, blue plasticine, True
+          reward: The brown box is now open, there's a bunch of blue plasticine inside
+      - desc: An already opened brown box
+  tools:
+  - position: inside the brown box
+    tool:
+      name: blue plasticine
+      visible: False
+      states:
+      - desc: a blue plasticine, seems still soft, can stick wire and battery together
+        apply_to:
+        - alarm clock battery
+
+- name: shelves region middle
+  desc: In the middle there's a large blue conteiner, and there's a button on the left side on the pillar. On the ceiling there's a electric machine with wires connected to it. There's a place to wash hands on the left side.
+  scene_relations:
+    Go to explore device on pillar: control device on pillar
+    Go to left side wash basin: wash basin place
+    Back to shelves region overview: shelves region overview
+  items:
+  - position: On the ceiling
+    item:
+      name: messy wire wrapped on ceiling
+      states:
+      - desc: There's messy wire wrapped on the ceiling, with a wire hanging down connected to a ring, but you cannot reach it with hands
+        neg_reward: You may try to pull the messy wire down to straighten it
+        transitions:
+        - wait_for:
+          - apply, telescopic hook
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_interact, item, blue container, True
+          reward: The alarm closk is pushed down, there's a key below
+      - desc: The wire is now straightened and pulled down, with a ring on one side close to the blue container's top
+  - position: On the ground
+    item:
+      name: blue container
+      interactable: False
+      states:
+      - desc: The container seems very heavy, currently lying on the ground. There's a silver ring on the top. Only strong electric power can lift it up.
+        neg_reward: You may find a way to lift this container up
+        transitions:
+        - wait_for:
+          - apply, karabiner
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_interact, item, red buttons on box, True
+          reward: The alarm closk is pushed down, there's a key below
+      - desc: The container is now connected to the electric machine on the ceiling
+      - desc: The container is now connected to the electric machine on the ceiling, lifted up
+  tools:
+  - position: Under the blue container on the ground
+    tool:
+      name: sledghammer
+      visible: False
+      states:
+      - desc: a heavy sledghammer with a wooden handle and a metal head, could be used to break things hard
+        apply_to:
+        - wall in office room
+
+- name: control device on pillar
+  desc: A close look at the device on the pillar, with buttons on a yellow box and wires connected to the ceiling.
+  scene_relations:
+    Back to shelves region middle: shelves region middle
+  items:
+  - position: On top of the yellow box
+    item:
+      name: wire on pillar
+      states:
+      - desc: The upper half of the wire is connected to the ceiling, the lower half is connected to the yellow box, but it's broken now.
+        neg_reward: You have to fix this wire by boundling them together
+        transitions:
+        - wait_for:
+          - apply, blue tape
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_visible, item, red buttons on box, True
+          reward: Both ends of the wire are now connected, you may use this device normally now
+      - desc: The wire is now fixed, bounded together by blue tape
+  - position: on the yellow box
+    item:
+      name: red buttons on box
+      visible: False
+      interactable: False
+      states:
+      - desc: There are two red buttons having upward and downward arrows on them, with a small start button on the top. It needs power to work.
+        neg_reward: You may try to push the button in order to start the electric machine on the ceiling
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_state, item, blue container, 2
+          - change_visible, tool, sledghammer, True
+          reward: The electric machine is now on, the blue container is lifted up, something appears below
+      - desc: The red button could now function nirmally
+        
+- name: wash basin place
+  desc: There's a wash basin on the left side, with a mirror on the wall. A pile of boxes are on the right side.
+  scene_relations:
+    Back to shelves region middle: shelves region middle
+  items:
+  - position: on the left side
+    item:
+      name: wash basin
+      states:
+      - desc: The water is running, with a soap on the left side of the basin
+        neg_reward: You may want too try getting water from here
+        transitions:
+        - wait_for:
+          - apply, measuring cup
+          trigger:
+          - change_interact, False
+          - change_state, tool, measuring cup, 1
+          reward: The water is now in the measuring cup
+  tools:
+  - position: Under the mirror
+    tool:
+      name: paper piece 'c'
+      states:
+      - desc: a small piece of paper with a letter 'c' on it
+        apply_to:
+        - name slot
+  - position: On the ground beside the basin
+    tool:
+      name: toilet plunger
+      states:
+      - desc: a plunger with a wood handle and red rubber head forming a suction cup
+        apply_to:
+        - frosted glass window
+  - position: On pile of boxes
+    tool:
+      name: tennis ball
+      states:
+      - desc: a yellow tennis ball, seems still bouncing well
+        apply_to:
+        - dagger inserted in sign

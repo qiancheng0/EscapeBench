@@ -1,0 +1,380 @@
+{
+    "position": "outside of the cabin house -> stairs close-up",
+    "action_answer": "click(chalk)"
+}
+{
+    "position": "outside of the cabin house -> stairs close-up",
+    "action_answer": "click(stone)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside",
+    "action_answer": "apply(stone, window)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> workspace cabinet close-up",
+    "action_answer": "click(cabinet door)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> workspace cabinet close-up",
+    "action_answer": "click(battery)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> desk close-up",
+    "action_answer": "click(ruler)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> desk close-up",
+    "action_answer": "click(second drawer on the right)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> workspace shelf close-up",
+    "action_answer": "click(yellow cube)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> workspace shelf close-up",
+    "action_answer": "click(red pyramid)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> workspace shelf close-up",
+    "action_answer": "click(blue hemisphere)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> car photos and map close-up",
+    "action_answer": "click(map)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic",
+    "action_answer": "click(painting)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic",
+    "action_answer": "click(magnet)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up",
+    "action_answer": "apply(ruler, attic door)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up",
+    "action_answer": "click(adhesive tape)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up",
+    "action_answer": "click(green cylinder)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> shelf above sink close-up",
+    "action_answer": "click(glycerin)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> drawers below sink close-up",
+    "action_answer": "click(lower left drawer below sink)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> drawers below sink close-up",
+    "action_answer": "click(lower right drawer below sink)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> drawers below sink close-up",
+    "action_answer": "click(table sheet)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> shelf above food preparation area close-up",
+    "action_answer": "click(left door of the shelf above food preparation area)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> drawers below food preparation area close-up",
+    "action_answer": "click(shelf below food preparation area)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> drawers below food preparation area close-up",
+    "action_answer": "click(pestle)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> drawers below food preparation area close-up",
+    "action_answer": "click(drawer below food preparation area)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> drawers below food preparation area close-up",
+    "action_answer": "click(cup of cold water)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> sink close-up",
+    "action_answer": "click(brush)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen",
+    "action_answer": "craft(pestle, chalk)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> mirror close-up",
+    "action_answer": "apply(chalk, mirror)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> mirror close-up",
+    "action_answer": "apply(brush, mirror)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> mirror close-up",
+    "action_answer": "apply(adhesive tape, mirror)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> mirror close-up",
+    "action_answer": "click(adhesive tape with fingerprint)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up -> fingerprint scanner close-up",
+    "action_answer": "apply(adhesive tape with fingerprint, fingerprint scanner)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up",
+    "action_answer": "click(attic safe)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up",
+    "action_answer": "click(badge with tree pattern)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> kitchen door close-up",
+    "action_answer": "apply(badge with tree pattern, five badge slots)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> clock and photos close-up",
+    "action_answer": "click(scalpel)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up -> toolbox close-up",
+    "action_answer": "input(5487, toolbox keypad pannel)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up",
+    "action_answer": "click(unlocked toolbox)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up",
+    "action_answer": "click(screwdriver)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up",
+    "action_answer": "apply(scalpel, wooden barrel)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up",
+    "action_answer": "click(rope)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up -> living room safe close-up",
+    "action_answer": "apply(screwdriver, battery slot)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up -> living room safe close-up",
+    "action_answer": "apply(battery, battery slot)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up",
+    "action_answer": "click(unlocked living room safe)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room cabinet close-up",
+    "action_answer": "click(wrench)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "click(spade card)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "click(fire stick)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> clock and photos close-up",
+    "action_answer": "apply(spade card, adhesive tape remaining)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> desk close-up",
+    "action_answer": "input(330, first drawer on the right)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> desk close-up",
+    "action_answer": "click(first drawer on the right)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> desk close-up",
+    "action_answer": "click(badge with castle pattern)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up -> fingerprint scanner close-up",
+    "action_answer": "apply(wrench, loose bolt)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> attic -> attic door close-up -> fingerprint scanner close-up",
+    "action_answer": "click(badge with bird pattern)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> workspace shelf close-up",
+    "action_answer": "apply(green cylinder, empty 4th shelf position)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> workspace shelf close-up",
+    "action_answer": "click(green cylinder placed on shelf)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room drawer close-up",
+    "action_answer": "input(diamond-square-triangle-circle, lock of living room drawer)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room drawer close-up",
+    "action_answer": "click(chain)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room drawer close-up",
+    "action_answer": "click(left door of living room drawer)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room drawer close-up",
+    "action_answer": "click(badge with hill pattern)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> ceiling door close-up",
+    "action_answer": "apply(rope, ceiling door)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> ceiling door close-up -> second floor",
+    "action_answer": "click(handle)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> kitchen door close-up",
+    "action_answer": "apply(badge with castle pattern, five badge slots)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> kitchen door close-up",
+    "action_answer": "apply(badge with bird pattern, five badge slots)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> kitchen door close-up",
+    "action_answer": "apply(badge with hill pattern, five badge slots)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> kitchen door close-up",
+    "action_answer": "input(D2-A5-D5-G5-D8, five password displays)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage room safe close-up",
+    "action_answer": "apply(magnet, magnet slot)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage room safe close-up",
+    "action_answer": "click(right door of storage room safe)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage room safe close-up",
+    "action_answer": "click(big brush)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage shelf close-up",
+    "action_answer": "click(lock block)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage shelf close-up",
+    "action_answer": "click(weight)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> cellar door close-up",
+    "action_answer": "apply(handle, handle slot)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> cellar door close-up",
+    "action_answer": "click(cellar door)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> cellar door close-up",
+    "action_answer": "click(plier)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> cellar door close-up",
+    "action_answer": "click(firewood)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "craft(weight, chain)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "craft(big brush, chain)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> ceiling door close-up -> second floor",
+    "action_answer": "apply(chain, fireplace pipe)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "click(key)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "apply(firewood, fireplace)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room shelf close-up",
+    "action_answer": "apply(key, book with lock)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room shelf close-up",
+    "action_answer": "click(book with lock)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> living room shelf close-up",
+    "action_answer": "click(potassium)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "apply(potassium, fireplace)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "apply(glycerin, fireplace)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "apply(cup of cold water, fireplace)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "click(mug)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "apply(fire stick, fireplace)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "apply(plier, weird container)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "click(note sheet)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> sink close-up",
+    "action_answer": "apply(mug, tap)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> sink close-up",
+    "action_answer": "click(cup of hot water)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> living room -> fireplace close-up",
+    "action_answer": "input(| 1 | 4 |   | 8 |\\n|   |   | 6 |   |\\n| 2 | 7 | 5 |   |\\n|   |   | 3 |   |, inner fireplace wall)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage room safe close-up",
+    "action_answer": "apply(lock block, password lock)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage room safe close-up",
+    "action_answer": "input(0368, password lock)"
+}
+{
+    "position": "outside of the cabin house -> windows close-up from outside -> workspace area -> kitchen -> storage room -> storage room safe close-up",
+    "action_answer": "click(red button)"
+}

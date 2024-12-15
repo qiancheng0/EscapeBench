@@ -1,0 +1,264 @@
+{
+    "position": "entrace of a shop",
+    "action_answer": "click(bulletin board)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "click(entrance key)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "click(cable)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "apply(entrance key, entrance door)"
+}
+{
+    "position": "entrace of a shop -> reception room",
+    "action_answer": "click(pliers)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "craft(cable, pliers)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "click(flashlight)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> administration office corner",
+    "action_answer": "click(photographic film)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> administration office corner",
+    "action_answer": "click(pencil)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> administration office corner",
+    "action_answer": "click(waste paper)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> administration office corner",
+    "action_answer": "apply(pencil, draft)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> administration office corner",
+    "action_answer": "input(GB24, desk safe)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> administration office corner",
+    "action_answer": "click(mirror)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "apply(flashlight, air duct)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "apply(mirror, air duct)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "apply(cable, air duct)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "click(golden key)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "apply(golden key, administration office door)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "click(sprayer)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "click(calendary)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "click(entrance guard card)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "apply(entrance guard card, drawer)"
+}
+{
+    "position": "entrace of a shop -> reception room",
+    "action_answer": "input(1040, wall safe)"
+}
+{
+    "position": "entrace of a shop -> reception room",
+    "action_answer": "click(bronze key)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "click(scissors)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "apply(bronze key, left inner office door)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(photographic film 2)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(photographic film 3)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(ladder)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(chemical agent)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "craft(sprayer, chemical agent)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(art knife)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(electrical cable)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "apply(photographic film, white board)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "apply(photographic film 2, white board)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "apply(photographic film 3, white board)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "apply(art knife, store room safe)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(crowbar)"
+}
+{
+    "position": "entrace of a shop -> reception room",
+    "action_answer": "apply(crowbar, cracked floor)"
+}
+{
+    "position": "entrace of a shop -> reception room",
+    "action_answer": "click(silver key)"
+}
+{
+    "position": "entrace of a shop -> reception room",
+    "action_answer": "click(code note)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "input(3816, bookshelf safe)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "click(fragment)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "apply(fragment, cart safe)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "click(screwdriver)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "click(abrasive paper)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office",
+    "action_answer": "apply(sprayer, wooden door)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "apply(screwdriver, photo frame)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "click(old photo in frame)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> right side of inner office",
+    "action_answer": "input(1986, bookshelf safe 2)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> right side of inner office",
+    "action_answer": "click(photographic film 4)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "apply(photographic film 4, white board)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(cartridge)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "click(control panel)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "apply(silver key, mailbox)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "click(package item)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "craft(scissors, package item)"
+}
+{
+    "position": "entrace of a shop",
+    "action_answer": "craft(abrasive paper, package item)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "apply(cartridge, printer)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office",
+    "action_answer": "click(printed note)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "apply(control panel, left bookshelf safe)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "apply(ladder, groove)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "apply(electrical cable, camera)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office",
+    "action_answer": "apply(package item, large mouse pad)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "input(Genshin, left bookshelf safe)"
+}
+{
+    "position": "entrace of a shop -> reception room -> administration office -> inner office -> left side of inner office -> store room",
+    "action_answer": "input(10011001, left bookshelf safe)"
+}

@@ -1,0 +1,180 @@
+{
+    "position": "hallway -> blocked path close-up",
+    "action_answer": "click(drawer without lock)"
+}
+{
+    "position": "hallway -> blocked path close-up",
+    "action_answer": "click(drawer without lock)"
+}
+{
+    "position": "hallway -> blocked path close-up",
+    "action_answer": "click(paper1)"
+}
+{
+    "position": "hallway -> hallway right -> large cabinet close-up",
+    "action_answer": "click(large cabinet door)"
+}
+{
+    "position": "hallway -> hallway right -> large cabinet close-up",
+    "action_answer": "click(key for room 805)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 door view",
+    "action_answer": "apply(key for room 805, room 805 door)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 door view",
+    "action_answer": "click(room 805 door)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> 805 right room",
+    "action_answer": "click(drill bit)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> left bookshelf close-up",
+    "action_answer": "click(book1)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> left bookshelf close-up",
+    "action_answer": "click(book4)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> left bookshelf close-up",
+    "action_answer": "click(book2)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> left bookshelf close-up",
+    "action_answer": "click(book3)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> left bookshelf close-up",
+    "action_answer": "click(book5)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> left bookshelf close-up",
+    "action_answer": "click(keycard)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> right bookshelf close-up",
+    "action_answer": "click(battery)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> bedside table close-up",
+    "action_answer": "input(150, bedside drawer)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> bedside table close-up",
+    "action_answer": "click(bedside drawer)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> bedside table close-up",
+    "action_answer": "click(paper2)"
+}
+{
+    "position": "hallway -> hallway right -> operating room door overview",
+    "action_answer": "apply(keycard, operating room door)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> surgical table close-up",
+    "action_answer": "click(small key)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> operating room cabinet close-up -> upper cabinet close-up",
+    "action_answer": "click(paper3)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> operating room cabinet close-up -> lower cabinet close-up",
+    "action_answer": "click(door handle)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> operating room cabinet close-up -> lower cabinet close-up",
+    "action_answer": "input(8*4+6=6*7-4, locked drawer)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> operating room cabinet close-up -> lower cabinet close-up",
+    "action_answer": "click(locked drawer)"
+}
+{
+    "position": "hallway -> hallway right -> small cabinet close-up",
+    "action_answer": "apply(door handle, small cabinet door)"
+}
+{
+    "position": "hallway -> hallway right -> small cabinet close-up",
+    "action_answer": "click(small cabinet door)"
+}
+{
+    "position": "hallway -> hallway right -> small cabinet close-up",
+    "action_answer": "click(paper4)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> desk close-up",
+    "action_answer": "apply(paper1, drawer with code lock)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> desk close-up",
+    "action_answer": "apply(paper2, drawer with code lock)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> desk close-up",
+    "action_answer": "apply(paper3, drawer with code lock)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> desk close-up",
+    "action_answer": "apply(paper4, drawer with code lock)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> desk close-up",
+    "action_answer": "click(drawer with code lock)"
+}
+{
+    "position": "hallway -> hallway right -> room 805 -> desk close-up",
+    "action_answer": "click(lubricant)"
+}
+{
+    "position": "hallway -> cabinet close-up",
+    "action_answer": "apply(lubricant, padlock)"
+}
+{
+    "position": "hallway -> cabinet close-up",
+    "action_answer": "apply(small key, padlock)"
+}
+{
+    "position": "hallway -> cabinet close-up",
+    "action_answer": "click(padlock)"
+}
+{
+    "position": "hallway -> cabinet close-up",
+    "action_answer": "click(padlock)"
+}
+{
+    "position": "hallway -> cabinet close-up",
+    "action_answer": "click(ladder)"
+}
+{
+    "position": "hallway -> hallway right -> ventilation fan close-up",
+    "action_answer": "apply(ladder, ventilation fan)"
+}
+{
+    "position": "hallway -> hallway right -> ventilation fan close-up",
+    "action_answer": "click(ventilation fan)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> anatomy poster close-up",
+    "action_answer": "input(2333, safe)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> anatomy poster close-up",
+    "action_answer": "click(safe)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> anatomy poster close-up",
+    "action_answer": "apply(battery, unfunctional drill)"
+}
+{
+    "position": "hallway -> hallway right -> operating room -> anatomy poster close-up",
+    "action_answer": "apply(drill bit, unfunctional drill)"
+}
+{
+    "position": "hallway -> hallway right -> ventilation fan close-up -> elevator room -> elevator interior",
+    "action_answer": "apply(electric drill, circuit board)"
+}

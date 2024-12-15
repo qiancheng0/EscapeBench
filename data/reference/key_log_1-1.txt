@@ -1,0 +1,160 @@
+{
+    "position": "living room",
+    "action_answer": "click(telephone cabinet)"
+}
+{
+    "position": "living room -> telephone cabinet close-up",
+    "action_answer": "click(hairpin)"
+}
+{
+    "position": "living room -> telephone cabinet close-up",
+    "action_answer": "apply(hairpin, drawer)"
+}
+{
+    "position": "living room -> telephone cabinet close-up",
+    "action_answer": "click(carving knife)"
+}
+{
+    "position": "living room -> bedroom",
+    "action_answer": "click(hammer handle)"
+}
+{
+    "position": "living room -> bedroom -> cardboard box close-up",
+    "action_answer": "apply(carving knife, cardboard box)"
+}
+{
+    "position": "living room -> bedroom -> cardboard box close-up",
+    "action_answer": "click(door handle)"
+}
+{
+    "position": "living room -> bedroom",
+    "action_answer": "apply(door handle, bathroom door)"
+}
+{
+    "position": "living room -> bedroom",
+    "action_answer": "click(bathroom door)"
+}
+{
+    "position": "living room -> bedroom -> bathroom",
+    "action_answer": "click(plunger)"
+}
+{
+    "position": "living room -> dining room and kitchen -> dining table close-up",
+    "action_answer": "click(shard_1)"
+}
+{
+    "position": "living room -> dining room and kitchen -> cabinet above stove close-up",
+    "action_answer": "click(flashlight)"
+}
+{
+    "position": "living room -> dining room and kitchen -> right cabinet close-up",
+    "action_answer": "click(battery)"
+}
+{
+    "position": "living room -> dining room and kitchen -> sink close-up",
+    "action_answer": "apply(plunger, garbage)"
+}
+{
+    "position": "living room -> dining room and kitchen -> sink close-up",
+    "action_answer": "click(garbage)"
+}
+{
+    "position": "living room -> dining room and kitchen -> sink close-up",
+    "action_answer": "click(study key)"
+}
+{
+    "position": "living room",
+    "action_answer": "apply(study key, left door to the study)"
+}
+{
+    "position": "living room",
+    "action_answer": "click(left door to the study)"
+}
+{
+    "position": "living room -> study -> photo close-up",
+    "action_answer": "click(photo_3)"
+}
+{
+    "position": "living room -> study -> photo close-up",
+    "action_answer": "click(shard_3)"
+}
+{
+    "position": "living room -> study -> locker close-up",
+    "action_answer": "click(shard_4)"
+}
+{
+    "position": "living room -> dining room and kitchen -> cabinet above sink close-up",
+    "action_answer": "click(shard_2)"
+}
+{
+    "position": "living room -> bedroom -> bathroom -> mirror close-up",
+    "action_answer": "apply(shard_3, mirror)"
+}
+{
+    "position": "living room -> bedroom -> bathroom -> mirror close-up",
+    "action_answer": "apply(shard_4, mirror)"
+}
+{
+    "position": "living room -> bedroom -> bathroom -> mirror close-up",
+    "action_answer": "apply(shard_2, mirror)"
+}
+{
+    "position": "living room -> bedroom -> bathroom -> mirror close-up",
+    "action_answer": "apply(shard_1, mirror)"
+}
+{
+    "position": "living room -> bedroom -> toolbox close-up",
+    "action_answer": "input(cs546, toolbox)"
+}
+{
+    "position": "living room -> bedroom -> toolbox close-up",
+    "action_answer": "click(screwdriver)"
+}
+{
+    "position": "living room -> bedroom -> toolbox close-up",
+    "action_answer": "click(fuse)"
+}
+{
+    "position": "living room -> bedroom -> bathroom -> ventilation fan close-up",
+    "action_answer": "apply(screwdriver, ventilation fan)"
+}
+{
+    "position": "living room -> bedroom -> bathroom -> ventilation fan close-up",
+    "action_answer": "click(locker key)"
+}
+{
+    "position": "living room -> study -> locker close-up",
+    "action_answer": "apply(locker key, locked locker door)"
+}
+{
+    "position": "living room -> study -> locker close-up",
+    "action_answer": "click(hammer)"
+}
+{
+    "position": "living room -> study -> locker close-up",
+    "action_answer": "craft(hammer, hammer handle)"
+}
+{
+    "position": "living room -> study -> wall close-up",
+    "action_answer": "apply(hammer, study wall)"
+}
+{
+    "position": "living room -> study -> wall close-up",
+    "action_answer": "craft(battery, flashlight)"
+}
+{
+    "position": "living room -> study -> wall close-up",
+    "action_answer": "apply(flashlight, study wall)"
+}
+{
+    "position": "living room -> study -> desk close-up",
+    "action_answer": "apply(fuse, desk lamp)"
+}
+{
+    "position": "living room -> dining room and kitchen -> left cabinet close-up",
+    "action_answer": "input(4713, safe)"
+}
+{
+    "position": "living room",
+    "action_answer": "input(655324223, right door to the exit)"
+}

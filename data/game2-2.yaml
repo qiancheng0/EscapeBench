@@ -1,0 +1,696 @@
+- name: entrace of a shop
+  desc: You are standing in front of the entrance of a shop. The iron door is locked, with a huge window wall next to it.
+  scene_relations:
+    Enter: reception room
+  items:
+    - position: on the brick wall
+      item:
+        name: bulletin board
+        states:
+          - desc: a bulletin board with a bunch of papers
+            neg_reward: You may try to see what's behind
+            transitions:
+              - wait_for:
+                  - click
+                trigger:
+                  - change_visible, tool, entrance key, True
+                  - change_interact, False
+                reward: You find a key on the bulletin board
+    - position: at the entrance
+      item: 
+        name: entrance door
+        states:
+          - desc: the entrance door is locked
+            neg_reward: You may try to unlock this door
+            transitions:
+              - wait_for:
+                  - apply, entrance key
+                trigger:
+                  - change_state, 1
+                  - change_visible, scene, reception room, True
+                  - change_interact, False
+                reward: The entrance door is unlocked
+          - desc: the entrance door is open
+    - position: on the left wall
+      item:
+        name: mailbox
+        states:
+          - desc: a locked mailbox with a small silver keyhole
+            neg_reward: You may try to unlock this mailbox
+            transitions:
+              - wait_for:
+                  - apply, silver key
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, package item, True
+                  - change_interact, False
+                reward: The mailbox is unlocked, there is a package inside
+          - desc: an opened mailbox
+  tools:
+    - position: in the mail box
+      tool:
+        name: package item
+        visible: False
+        states:
+          - desc: a package made of hard-textured paper, closed tightly
+            wait_for:
+              - scissors
+          - desc: the item inside is an air cylinder
+            wait_for:
+              - abrasive paper
+          - desc: a polished air cylinder
+            apply_to:
+              - large mouse pad
+    - position: behind the bulletin board
+      tool:
+        name: entrance key
+        visible: False
+        states:
+          - desc: an ordinary key with large size
+            apply_to:
+              - entrance door
+    - position: on the wall near a mailbox
+      tool:
+        name: cable
+        states:
+          - desc: a cable fixed on the wall, with a thick layer of insulating sheath
+            wait_for:
+              - pliers
+          - desc: a long and thin cable, with one end curved into a hook
+            apply_to:
+              - air duct
+
+- name: reception room
+  desc: You are in a reception room. There is a sofa at the right, with some antique decorations.
+  visible: False
+  scene_relations:
+    Back to the entrance: entrace of a shop
+    Go the the administration office: administration office
+  items:
+    - position: on the wall
+      item:
+        name: wall safe
+        states:
+          - desc: a wall safe that requires a 4-digit password
+            neg_reward: You may try to unlock this safe with a valid password
+            transitions:
+              - wait_for:
+                  - input, 1040
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, bronze key, True
+                  - change_interact, False
+                reward: The wall safe is unlocked, there is a bronze key inside
+          - desc: an opened wall safe
+    - position: on the floor
+      item:
+        name: cracked floor
+        states:
+          - desc: a cracked floor, a little tilted, but you cannot remove with hands directly
+            neg_reward: You may try to interact with the cracked floor and see what's inside
+            transitions:
+              - wait_for:
+                  - apply, crowbar
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, silver key, True
+                  - change_visible, tool, code note, True
+                  - change_interact, False
+                reward: You find a silver key in the cracked floor, along with a piece of note
+          - desc: a cracked floor with a hole
+  tools:
+    - position: in the cracked floor
+      tool:
+        visible: False
+        name: code note
+        states:
+          - desc: a code note with a number "3816" on it
+    - position: under the sofa
+      tool:
+        name: pliers
+        states:
+          - desc: a pair of pliers, with sharp jaws to cut things
+            apply_to:
+              - cable
+    - position: in the wall safe
+      tool:
+        name: bronze key
+        visible: False
+        states:
+          - desc: a bronze key
+            apply_to:
+              - left inner office door
+    - position: under the cracked floor
+      tool:
+        name: silver key
+        visible: False
+        states:
+          - desc: a silver key
+            apply_to:
+              - mailbox
+
+
+- name: administration office
+  desc: You are in an administration office. There is a desk in the middle, with some bookshelves near the wall.
+  scene_relations:
+    Back to the reception room: reception room
+    Go to the corner: administration office corner
+    Go to the inner office: inner office
+  items:
+    - position: on the wall
+      item:
+        name: air duct
+        states:
+          - desc: an air duct, dark and hard to see clearly
+            neg_reward: You may try to look into air duct more clearly with light
+            transitions:
+              - wait_for:
+                  - apply, flashlight
+                trigger:
+                  - change_state, 1
+                reward: You light up the air duct, there seems to be a turn of direction inside, you cannnot see further what's after the turn
+          - desc: an air duct, lighted up with a flashlight, there seems to be a turn of direction inside, you cannnot see further what's after the turn
+            neg_reward: You may want to see what's further inside the air duct
+            transitions:
+              - wait_for:
+                  - apply, mirror
+                trigger:
+                  - change_state, 2
+                reward: You put a mirror inside the air duct, and you find a golden key, but you cannot reach it
+          - desc: an air duct, lighted up and with complex turn inside, there's a key inside but out of reach
+            neg_reward: You may try to get the key out of the air duct
+            transitions:
+              - wait_for:
+                  - apply, cable
+                trigger:
+                  - change_state, 3
+                  - change_visible, tool, golden key, True
+                  - change_interact, False
+                reward: You can now get the golden key out of the air duct
+          - desc: an air duct, lighted up and with complex turn inside
+    - position: at the left side of the administration office
+      item:
+        name: administration office door
+        states:
+          - desc: the administration office door is locked, with a gold color keyhole
+            neg_reward: You may try to unlock this door with a matched key
+            transitions:
+              - wait_for:
+                  - apply, golden key
+                trigger:
+                  - change_state, 1
+                  - change_visible, scene, inner office, True
+                  - change_interact, False
+                reward: The administration office door is unlocked
+          - desc: the administration office door is open
+    - position: on the desk
+      item:
+        name: printer
+        states:
+          - desc: a printer showing no ink, not working now
+            neg_reward: You may try to make the printer work again
+            transitions:
+              - wait_for:
+                  - apply, cartridge
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, printed note, True
+                reward: The printer is working, printed out a note
+          - desc: a printer with cartridge, working now
+  tools:
+    - position: out of the printer
+      tool:
+        name: printed note
+        visible: False
+        states:
+          - desc: a printed note with a string of number "11000011" on it
+    - position: on the white bookshelf
+      tool:
+        name: flashlight
+        states:
+          - desc: a flashlight with battery, can be turned on
+            apply_to:
+              - air duct
+    - position: in the air duct
+      tool:
+        name: golden key
+        visible: False
+        states:
+          - desc: a golden key shining brightly
+            apply_to:
+              - administration office door
+
+- name: administration office corner
+  desc: You are in the corner of the administration office. There is a small window on the left, and the light shining from the window is quite bright.
+  scene_relations:
+    Back to the administration office: administration office
+  items:
+    - position: on the desk
+      item:
+        name: draft
+        states:
+          - desc: a draft with some notes, seems some writings are unfinished
+            neg_reward: The draft seems to have some hidden information unfinished, you may continue write and interact to find out
+            transitions:
+              - wait_for:
+                  - apply, pencil
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                reward: You find a note on the draft, with two letters "GB"
+          - desc: a draft with some notes and a hidden note "GB"
+    - position: on the desk
+      item:
+        name: desk safe
+        states:
+          - desc: a desk safe that needs a 4-digit password, two alphabets combined with two numbers
+            neg_reward: You may try to unlock this safe with a valid password
+            transitions:
+              - wait_for:
+                  - input, GB24
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, mirror, True
+                  - change_interact, False
+                reward: The desk safe is unlocked, there is a mirror inside
+          - desc: an opened desk safe
+  tools:
+    - position: on the clapboard
+      tool:
+        name: photographic film
+        states:
+          - desc: a photographic film that seems clearer with a white background
+            apply_to:
+              - white board
+    - position: on the desk
+      tool:
+        name: pencil
+        states:
+          - desc: a normal pencil with a lead inside
+            apply_to:
+              - draft
+    - position: at the corner on the floor
+      tool:
+        name: waste paper
+        states:
+          - desc: a waste paper with two numbers "24", maybe hint for something
+    - position: in the desk safe
+      tool:
+        name: mirror
+        visible: False
+        states:
+          - desc: an intact small mirror that reflect light well 
+            apply_to:
+              - air duct
+
+- name: inner office
+  desc: You are in an inner office. There is a desk in the middle, and this room is darker than the outer office room, as the curtain is closed.
+  visible: False
+  scene_relations:
+    Back to the administration office: administration office
+    Turn left: left side of inner office
+    Turn right: right side of inner office
+  items:
+    - position: in the middle of the desk top
+      item:
+        name: large mouse pad 
+        states:
+          - desc: a large mouse pad with a a strange sign you cannot understand. There's a round hole in the middle seems to fit something in.
+            neg_reward: You may try to put in something with a round cross-section
+            transitions:
+              - wait_for:
+                  - apply, package item
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                reward: You find the strange sign becomes clear through the cylinder. It's a "XOR" sign.
+          - desc: a mouse pad with a "XOR" sign on it looking through the air cylinder
+    - position: on the wall
+      item:
+        name: calendary
+        states:
+          - desc: a calendary with multi pages, seems something embedded inside
+            neg_reward: You may try to interact with the calendary
+            transitions:
+              - wait_for:
+                  - click
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, entrance guard card, True
+                  - change_interact, False
+                reward: You find an entrance guard card on the calendary
+          - desc: a calendary, turned to second page
+    - position: on the floor
+      item:
+        name: groove
+        states:
+          - desc: grooves on the floor, seems used to anchor something to be stable
+            neg_reward: You may try to put something into the groove
+            transitions:
+              - wait_for:
+                  - apply, ladder
+                trigger:
+                  - change_state, 1
+                  - change_interact, item, camera, True
+                reward: You find a camera on the ceiling
+          - desc: a groove with a ladder on it, now you could reach the camera
+    - position: on the wall near the ceiling
+      item:
+        name: camera
+        interactable: False
+        states:
+          - desc: a camera high on the ceiling, you cannot reach with hands. It's currently turned off
+            neg_reward: You may try to power on the camera
+            transitions:
+              - wait_for:
+                  - apply, electrical cable
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                reward: The camera is working, and you find a word "Genshin" on the screen
+          - desc: a camera working now, with a word "Genshin" on the screen
+    - position: on the desk
+      item:
+        name: photo frame
+        states:
+          - desc: a photo frame with a photo inside. There is a screw on the back
+            neg_reward: You may try to look close up to the photo inside
+            transitions:
+              - wait_for:
+                  - apply, screwdriver
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, old photo in frame, True
+                reward: You can now get the photo out of the frame
+          - desc: The photo frame is open on the back now
+    - position: below the desk
+      item:
+        name: drawer
+        states:
+          - desc: a drawer that seems locked by a digital lock, need authorization to open
+            neg_reward: You may try to open this locked drawer
+            transitions:
+              - wait_for:
+                  - apply, entrance guard card
+                trigger:
+                  - change_state, 1
+                  - change_interact, item, drawer, False
+                reward: The drawer is opened, and there is a paper with a number "1040"
+          - desc: an opened drawer
+  tools:
+    - position: in the photo frame
+      tool:
+        name: old photo in frame
+        visible: False
+        states:
+          - desc: a photo with "1986" written on the back, seems taken in that year
+    - position: on the bookshelf
+      tool:
+        name: sprayer
+        states:
+          - desc: a sprayer, with some strange signs on it, currently empty
+            wait_for:
+              - chemical agent
+          - desc: a sprayer with chemical agent, may have some specific uses
+            apply_to:
+              - wooden door
+    - position: behind the calendary
+      tool:
+        name: entrance guard card
+        visible: False
+        states:
+          - desc: an digital entrance guard card
+            apply_to:
+              - drawer
+
+- name: right side of inner office
+  desc: You are at the right side of the inner office. There is a bookshelf and a safe.
+  scene_relations:
+    Back to the inner office: inner office
+  items:
+    - position: on the bookshelf
+      item:
+        name: bookshelf safe 2
+        states:
+          - desc: a bookshelf safe, with a 4-digit password
+            neg_reward: You may try to unlock this safe using some hints you have got
+            transitions:
+              - wait_for:
+                  - input, 1986
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, photographic film 4, True
+                  - change_interact, False
+                reward: The bookshelf safe is unlocked, there is a photographic film 4 inside
+          - desc: an opened bookshelf safe
+  tools:
+    - position: in the bookshelf safe 2
+      tool:
+        name: photographic film 4
+        visible: False
+        states:
+          - desc: a photographic film 4, seems to be the last one
+            apply_to:
+              - white board
+
+- name: left side of inner office
+  desc: You are at the left side of the inner office. There is a desk and some shelves.
+  scene_relations:
+    Back to the inner office: inner office
+    Go to the store room: store room
+  tools:
+    - position: in the top drawer of the shelf
+      tool:
+        name: scissors
+        states:
+          - desc: a pair of scissors, very sharp
+            apply_to:
+              - package item
+    - position: in the bookshelf safe
+      tool:
+        name: fragment
+        visible: False
+        states:
+          - desc: a fragment made of metal, seems could be part of something
+            apply_to:
+              - cart safe
+    - position: in the cart safe
+      tool:
+        name: screwdriver
+        visible: False
+        states:
+          - desc: a screwdriver with a flat head
+            apply_to:
+              - photo frame
+    - position: in the cart safe
+      tool:
+        name: abrasive paper
+        visible: False
+        states:
+          - desc: a piece of abrasive paper that could polish something
+            apply_to:
+              - package item
+  items:
+    - position: near the shelf, on your right side
+      item:
+        name: left inner office door
+        states:
+          - desc: the left inner office door is locked
+            neg_reward: You may try to unlock this door with an effective key
+            transitions:
+              - wait_for:
+                  - apply, bronze key
+                trigger:
+                  - change_state, 1
+                  - change_visible, scene, store room, True
+                  - change_interact, item, left inner office door, False
+                reward: The left inner office door is unlocked
+          - desc: the left inner office door is open
+    - position: on the bookshelf
+      item:
+        name: bookshelf safe
+        states:
+          - desc: a bookshelf safe, with a 4-digit password
+            neg_reward: You may try to unlock this safe with a valid password
+            transitions:
+              - wait_for:
+                  - input, 3816
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, fragment, True
+                  - change_interact, item, bookshelf safe, False
+                reward: The bookshelf safe is unlocked, there is a fragment in it
+          - desc: an opened bookshelf safe
+    - position: near the bookshelf
+      item:
+        name: cart safe
+        states:
+          - desc: a cart safe, there's an empty slot on the top
+            neg_reward: You may try to unlock this safe
+            transitions:
+              - wait_for:
+                  - apply, fragment
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, screwdriver, True
+                  - change_visible, tool, abrasive paper, True
+                  - change_interact, item, cart safe, False
+                reward: The cart safe is unlocked, there is a screwdriver and an abrasive paper inside
+          - desc: an opened cart safe
+    - position: on the left of the view
+      item:
+        name: wooden door
+        states:
+          - desc: a wooden door that has some unclear traces of writing on it
+            neg_reward: You may try to use some specific solution to make the writing clear
+            transitions:
+              - wait_for:
+                  - apply, sprayer
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                reward: The writing on the wooden door is now clear, you see a 8-digit number
+          - desc: a wooden door with some clear writing on it, showing "01011010"
+
+- name: store room
+  desc: You are in a store room. There are some shelves with various items.
+  visible: False
+  scene_relations:
+    Back to the left side of inner office: left side of inner office
+  items:
+    - position: on the wall at the right corner
+      item:
+        name: white board
+        states:
+          - desc: a white board with some notes, there's a space vacant to put multiple things on it
+            neg_reward: You may try to put something on the white board
+            transitions:
+              - wait_for:
+                  - apply, photographic film
+                  - apply, photographic film 2
+                  - apply, photographic film 3
+                  - apply, photographic film 4
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, cartridge, True
+                  - change_visible, tool, control panel, True
+                  - change_interact, False
+                reward: You find a cartridge and a control panel behind the white board
+          - desc: a white board with a cartridge and a control panel behind it
+    - position: near the right bookshelf
+      item:
+        name: store room safe
+        states:
+          - desc: a store room safe, the lock is very old and rusty
+            neg_reward: You may try to break the lock in some way
+            transitions:
+              - wait_for:
+                  - apply, art knife
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, crowbar, True
+                  - change_interact, False
+                reward: The store room safe is unlocked, there is a crowbar inside
+          - desc: an opened store room safe
+    - position: on the left bookshelf
+      item:
+        name: left bookshelf safe
+        states:
+          - desc: a left bookshelf safe, currently without a control screen
+            neg_reward: You may first try to make the safe system works
+            transitions:
+              - wait_for:
+                  - apply, control panel
+                trigger:
+                  - change_state, 1
+                reward: The left bookshelf safe is now with a control screen
+          - desc: a left bookshelf safe, with a screen showing "GAME", requires a password input
+            neg_reward: You may try to unlock this safe through hint on the screen
+            transitions:
+              - wait_for:
+                  - input, Genshin
+                trigger:
+                  - change_state, 2
+                reward: The screen gives a correct signal, you may try to input the next password
+          - desc: a left bookshelf safe, with a screen now showing "MATH", requires a eight-digit password input
+            neg_reward: You may try to unlock this safe through the final password, use all the hints and a bit math knowledge you have got
+            transitions:
+              - wait_for:
+                  - input, 10011001
+                trigger:
+                  - change_state, 3
+                  - change_interact, False
+                reward: The left bookshelf safe is unlocked, GAME END!
+          - desc: an opened left bookshelf safe
+  tools:
+    - position: on the second layer of the boolshelf
+      tool:
+        name: electrical cable
+        states:
+          - desc: an electrical cable that is able to power on some devices
+            apply_to:
+              - camera
+    - position: on the top of the shelf
+      tool:
+        name: art knife
+        states:
+          - desc: an art knife, with a sharp blade to cut through even hard materials
+            apply_to:
+              - store room safe
+    - position: on the top of the shelf
+      tool:
+        name: photographic film 2
+        states:
+          - desc: another photographic film
+            apply_to: 
+              - white board
+    - position: in the middle of the room
+      tool:
+        name: ladder
+        states:
+          - desc: a ladder about 2 meters high
+            apply_to:
+              - groove
+    - position: on the middle bookshelf
+      tool:
+        name: chemical agent
+        states:
+          - desc: a chemical agent
+            apply_to:
+              - sprayer
+    - position: in the book on the middle layer of the bookshelf
+      tool:
+        name: photographic film 3
+        states:
+          - desc: a third photographic film
+            apply_to: 
+              - white board
+    - position: in the store room safe
+      tool:
+        name: crowbar
+        visible: False
+        states:
+          - desc: a crowbar with a curved end that may pry things open
+            apply_to:
+              - cracked floor
+    - position: behind the white board
+      tool:
+        name: cartridge
+        visible: False
+        states:
+          - desc: a normal cartridge
+            apply_to:
+              - printer
+    - position: behind the white board
+      tool:
+        name: control panel
+        visible: False
+        states:
+          - desc: a control panel with LED screen
+            apply_to:
+              - left bookshelf safe
+    
+
+

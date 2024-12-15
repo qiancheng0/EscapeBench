@@ -1,0 +1,180 @@
+{
+    "position": "letter -> apartment entrance",
+    "action_answer": "click(bronze key)"
+}
+{
+    "position": "letter -> apartment entrance",
+    "action_answer": "apply(bronze key, apartment door)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> cloakroom",
+    "action_answer": "click(fragment)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> cloakroom",
+    "action_answer": "click(shoelaces)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> cloakroom",
+    "action_answer": "apply(bronze key, locker)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> cloakroom",
+    "action_answer": "click(crowbar)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> hallway cabinet",
+    "action_answer": "click(hook)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> hallway cabinet",
+    "action_answer": "craft(shoelaces, hook)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "click(fragment 2)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "click(scrip 2)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "apply(crowbar, a painting)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room 2",
+    "action_answer": "click(screwdriver)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room 2",
+    "action_answer": "click(scrip)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room 2",
+    "action_answer": "input(424389, safe 2)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room 2",
+    "action_answer": "click(picklock)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor",
+    "action_answer": "apply(picklock, bathroom door)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> bathroom",
+    "action_answer": "click(golden key)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> bathroom",
+    "action_answer": "click(fragment 3)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> bathroom",
+    "action_answer": "click(connector)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> bathroom",
+    "action_answer": "apply(shoelaces, sewer)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> bathroom",
+    "action_answer": "click(cylindrical key)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor",
+    "action_answer": "apply(golden key, suitcase)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor",
+    "action_answer": "click(fragment 4)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor",
+    "action_answer": "click(credential)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "apply(cylindrical key, locked box)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "click(sim card)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "apply(sim card, phone)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "input(47515, phone)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "apply(fragment, safe)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "apply(fragment 2, safe)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "apply(fragment 3, safe)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "apply(fragment 4, safe)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room",
+    "action_answer": "click(gem)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> cloakroom",
+    "action_answer": "apply(gem, Cthulhu ornament)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room -> sanctum",
+    "action_answer": "click(paper)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room",
+    "action_answer": "apply(connector, tool box)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> bathroom",
+    "action_answer": "apply(screwdriver, drawer of the cabinet)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> bathroom",
+    "action_answer": "click(lever)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room",
+    "action_answer": "apply(lever, tool box)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room",
+    "action_answer": "click(paper 2)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room -> sanctum",
+    "action_answer": "input(870472, locked box 2)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room -> sanctum",
+    "action_answer": "click(round key)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room -> sanctum",
+    "action_answer": "apply(round key, tellurion)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room -> sanctum",
+    "action_answer": "click(tap)"
+}
+{
+    "position": "letter -> apartment entrance -> apartment hallway -> corridor -> study room -> utility room -> sanctum",
+    "action_answer": "apply(tap, pipe)"
+}

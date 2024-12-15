@@ -1,0 +1,228 @@
+{
+    "position": "basement entrance",
+    "action_answer": "click(floor tile area)"
+}
+{
+    "position": "basement entrance",
+    "action_answer": "click(piece of trash paper)"
+}
+{
+    "position": "basement entrance",
+    "action_answer": "click(key card)"
+}
+{
+    "position": "basement entrance",
+    "action_answer": "click(silver key)"
+}
+{
+    "position": "basement entrance",
+    "action_answer": "click(belt)"
+}
+{
+    "position": "basement entrance",
+    "action_answer": "click(wrench)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "apply(silver key, rusty cabinate)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "click(spade)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "apply(wrench, water pipe)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "click(valve handle)"
+}
+{
+    "position": "basement entrance -> basement leftside -> control machine set",
+    "action_answer": "apply(valve handle, distribution box control)"
+}
+{
+    "position": "basement entrance -> basement leftside -> control machine set",
+    "action_answer": "apply(belt, gear set)"
+}
+{
+    "position": "basement entrance -> basement leftside -> control machine set",
+    "action_answer": "click(distribution box control)"
+}
+{
+    "position": "basement entrance -> basement leftside -> control machine set",
+    "action_answer": "click(used valve handle)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "apply(used valve handle, water pipe)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "click(water pipe)"
+}
+{
+    "position": "basement entrance",
+    "action_answer": "apply(spade, floor tile area)"
+}
+{
+    "position": "basement entrance",
+    "action_answer": "click(control handle)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "apply(control handle, machine control panel)"
+}
+{
+    "position": "basement entrance -> basement leftside",
+    "action_answer": "click(machine control panel)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> computer desk",
+    "action_answer": "apply(key card, card reader)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> computer desk",
+    "action_answer": "click(lighter)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> computer desk",
+    "action_answer": "click(printed code paper)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> wall of safes",
+    "action_answer": "apply(key card, safe 2)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> wall of safes",
+    "action_answer": "input(7248, safe 2)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> wall of safes",
+    "action_answer": "click(measuring cup)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(drawer 2)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(flask)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(solution bottles)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(iron hoop)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "apply(solution bottles, blender machine)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(concentrated solution)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "apply(measuring cup, water box)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "craft(measuring cup, flask)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "craft(concentrated solution, flask)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "input(9750, cabinate 1)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(alcohol burner)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "craft(lighter, alcohol burner)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "apply(alcohol burner, experiment table pad)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "apply(flask, experiment table pad)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(strong acid)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "input(7509, drawer 1)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> experiment table area",
+    "action_answer": "click(frequency list)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview",
+    "action_answer": "apply(strong acid, cabin door lock)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "click(blue tool box)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "click(metal plate)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "apply(metal plate, grinding wheel)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "apply(metal plate, mechanical case)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "click(safe key)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> wall of safes",
+    "action_answer": "apply(safe key, safe 1)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> wall of safes",
+    "action_answer": "click(sound list)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> wall of safes",
+    "action_answer": "apply(iron hoop, safe 3)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> wall of safes",
+    "action_answer": "click(cable)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "apply(cable, recorder)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "input(crow, waveform detector)"
+}
+{
+    "position": "basement entrance -> hallway behind door -> lab room overview -> cabin room",
+    "action_answer": "input(130, waveform detector)"
+}
+{
+    "position": "basement entrance -> hallway behind door",
+    "action_answer": "input(2463, iron door)"
+}

@@ -1,0 +1,513 @@
+- name: letter
+  desc: A letter appears at the beginning of the scene, which is from the son of the detective's friend. He begs the detective to look for his missing father, who becomes autistic recently. There is a key to his father's apartment inside the letter.
+  scene_relations:
+    Start the game: apartment entrance
+
+- name: apartment entrance
+  desc: At the apartment entrance, there is a door with a bronze keyhole.
+  scene_relations:
+    Enter the apartment: apartment hallway
+  items:
+    - position: On the wall
+      item:
+        name: apartment door
+        states:
+          - desc: the apartment door is locked
+            neg_reward: You should try to open this door with the key
+            transitions:
+              - wait_for:
+                  - apply, bronze key
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, scene, apartment hallway, True
+                reward: The apartment door is opened, there is a hallway inside
+          - desc: the apartment door is open
+    - position: On the right of the door
+      item:
+        name: doorbell
+        states:
+          - desc: an electric doorbell
+            neg_reward: You try to ring the doorbell, nothing else happens
+  tools:
+    - position: In the letter
+      tool:
+        name: bronze key
+        states:
+          - desc: a bronze key, seems a personal one with multiple uses
+            apply_to:
+              - apartment door
+              - locker
+
+- name: apartment hallway
+  desc: The apartment hallway is decorated with wooden floor. There are two windows on the right side wall.
+  visible: False
+  scene_relations:
+    Turn left: cloakroom
+    Turn right: hallway cabinet
+    Go straight: corridor
+    Go to bathroom: bathroom
+
+- name: cloakroom
+  desc: The cloakroom is on the left side of the apartment hallway. It is a small room with some coat hangers and a locker.
+  scene_relations:
+    Turn right: apartment hallway
+  tools:
+    - position: on a coat
+      tool:
+        name: fragment
+        states:
+          - desc: a metal fragment, shape of en elegant curve
+            apply_to:
+              - safe
+    - position: on a pair of shoes
+      tool:
+        name: shoelaces
+        states:
+          - desc: a bundle of shoelaces, made of cord, very thin, long, and strong
+            wait_for:
+              - hook
+          - desc: a bundle of shoelaces with a hook
+            apply_to:
+              - sewer
+    - position: inside the locker
+      tool:
+        name: crowbar
+        visible: False
+        states:
+          - desc: a crowbar made of iron, with a flat end and a curved end
+            apply_to:
+              - a painting
+  items:
+    - position: on the right of the cloakroom
+      item:
+        name: locker
+        states:
+          - desc: the locker is locked
+            neg_reward: Seems the owner's personal locker, you should try to open it
+            transitions:
+              - wait_for:
+                  - apply, bronze key
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, crowbar, True
+                reward: The locker is opened, there is a crowbar inside
+          - desc: the locker is open
+    - position: along the way
+      item:
+        name: Cthulhu ornament
+        states:
+          - desc: a Cthulhu ornament with a tiny slot on the top
+            neg_reward: You may try to fit something into the slot
+            transitions:
+              - wait_for:
+                  - apply, gem
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, scene, sanctum, True
+                reward: The gem is put on the Cthulhu ornament
+          - desc: the Cthulhu ornament with a gem on the top
+
+- name: hallway cabinet
+  desc: There is a cabinet in the hallway, with some representative items from some coutries.
+  scene_relations:
+    Turn left: apartment hallway
+  tools:
+    - position: on the cabinet
+      tool:
+        name: hook
+        states:
+          - desc: a hook made of iron, with a curved open end, could be bound with something
+            apply_to:
+              - shoelaces
+
+- name: corridor
+  desc: The corridor is bright with some Cthulhu decorations.
+  scene_relations:
+    Turn left: world map
+    Go straight: study room
+    Go back: apartment hallway
+    Go to bathroom: bathroom
+  items:
+    - position: on the left bottom of the corridor
+      item:
+        name: suitcase
+        states:
+          - desc: a locked suitcase, with a golden keyhole
+            neg_reward: You should try to open this suitcase with a matched key
+            transitions:
+              - wait_for:
+                  - apply, golden key
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, fragment 4, True
+                  - change_visible, tool, credential, True
+                reward: The suitcase is opened, there is a metal fragment and a credential inside
+          - desc: the suitcase is open
+    - position: on the left wall
+      item:
+        name: bathroom door
+        states:
+          - desc: the bathroom door is locked, with a rusty keyhole
+            neg_reward: You should try to open this door in some unusual way
+            transitions:
+              - wait_for:
+                  - apply, picklock
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, scene, bathroom, True
+                reward: The bathroom door is opened
+          - desc: the bathroom door is open
+  tools:
+    - position: inside the suitcase
+      tool:
+        name: fragment 4
+        visible: False
+        states:
+          - desc: a metal fragment, shape of a elegant curve
+            apply_to:
+              - safe
+    - position: inside the suitcase
+      tool:
+        name: credential
+        visible: False
+        states:
+          - desc: a credential, with a five-digit number "47515"
+
+- name: world map
+  desc: A world map is hanging on the wall. There are some pins on the map.
+  scene_relations:
+    Back to the corridor: corridor
+
+- name: study room
+  desc: The study room is meessy with some paintings on the wall, and some books on a bookshelf.
+  scene_relations:
+    Turn left: utility room
+    Turn right: utility room 2
+    Go back: corridor
+  items:
+    - position: on the wall
+      item:
+        name: tool box
+        states:
+          - desc: a locked tool box, seems need multiple tools to open
+            neg_reward: You may try to open this tool box through a brute force way
+            transitions:
+              - wait_for:
+                  - apply, connector
+                  - apply, lever
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, paper 2, True
+                reward: The tool box is opened, there is a paper inside
+          - desc: the tool box is open, with a paper inside
+  tools:
+    - position: in the tool box
+      tool:
+        name: paper 2
+        visible: False
+        states:
+          - desc: a paper with a string "870472"
+
+- name: utility room
+  desc: The utility room is a small room with a bookshelf and a cabinet.
+  scene_relations:
+    Turn right: study room
+    Go to the sanctum: sanctum
+  tools:
+    - position: in the top drawer of the cabinet
+      tool:
+        name: fragment 2
+        states:
+          - desc: another metal fragment, shape of a elegant curve
+            apply_to:
+              - safe
+    - position: in the locked box
+      tool:
+        name: sim card
+        visible: False
+        states:
+          - desc: a very normal sim card
+            apply_to:
+              - phone
+    - position: in the safe
+      tool:
+        name: gem
+        visible: False
+        states:
+          - desc: a tiny gem without any stand, shining blue light, seems valuable 
+            apply_to:
+              - Cthulhu ornament
+    - position: on top of the bookshelf
+      tool:
+        name: scrip 2
+        states:
+          - desc: a scrip with a string of numbers "424389"
+  items:
+    - position: on the wall
+      item:
+        name: a painting
+        states:
+          - desc: a painting hanging on the wall, a little bit loose
+            neg_reward: You should try to find a way to take the painting off
+            transitions:
+              - wait_for:
+                  - apply, crowbar
+                trigger:
+                  - change_state, 1
+                  - change_visible, False
+                  - change_visible, item, safe, True
+                reward: The painting is taken off, there is a safe behind the painting
+          - desc: the painting is taken off, with a safe behind
+    - position: on the wall
+      item:
+        name: safe
+        visible: False
+        interactable: False
+        states:
+          - desc: a safe with a round groove on the door, seems will trigger something
+            neg_reward: You should try to open this safe by filling the groove
+            transitions:
+              - wait_for:
+                  - apply, fragment
+                  - apply, fragment 2
+                  - apply, fragment 3
+                  - apply, fragment 4
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, gem, True
+                reward: The safe is opened, there is a gem inside
+          - desc: the safe is open
+    - position: on the wall
+      item:
+        name: locked box
+        states:
+          - desc: a locked box with a round keyhole, seems complex inside
+            neg_reward: You should try to open this box through a matched key
+            transitions:
+              - wait_for:
+                  - apply, cylindrical key
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, sim card, True
+                reward: The locked box is opened
+          - desc: the locked box is open
+    - position: on the bookshelf
+      item:
+        name: phone
+        states:
+          - desc: The phone is currently not working, showing on the screen "No signal"
+            neg_reward: You should try to make the phone work
+            transitions:
+              - wait_for:
+                  - apply, sim card
+                trigger:
+                  - change_state, 1
+                reward: The sim card is inserted into the phone
+          - desc: a phone with a sim card inserted, now the phone could be used normally
+            neg_reward: You could now dial with a phone number
+            transitions:
+              - wait_for:
+                  - input, 47515
+                trigger:
+                  - change_state, 2
+                  - change_interact, item, safe, True
+                reward: The phone is ringing
+          - desc: the phone is ringing now, something happens ...
+
+- name: utility room 2
+  desc: The utility room 2 is a small room with a cabinet and some small ornaments.
+  scene_relations:
+    Turn left: study room
+  tools:
+    - position: inside a vase
+      tool:
+        name: screwdriver
+        states:
+          - desc: a screwdriver, a common one with a flat end and a cross end
+            apply_to:
+              - drawer of the cabinet
+    - position: on the floor
+      tool:
+        name: scrip
+        states:
+          - desc: a scrip with a sentence "The Persistence of Memory, 1931"
+    - position: in the safe at bottom of the cabinet
+      tool:
+        name: picklock
+        visible: False
+        states:
+          - desc: a picklock with a long and thin end
+            apply_to:
+              - bathroom door
+  items:
+    - position: at bottom of the cabinet
+      item:
+        name: safe 2
+        states:
+          - desc: another safe that is locked, with a digital lock requiring a 6-digit number
+            neg_reward: You should try to open this safe with a matched password
+            transitions:
+              - wait_for:
+                  - input, 424389
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, picklock, True
+          - desc: the safe is open
+
+- name: bathroom
+  desc: The bathroom is clean with a bathtub and a mirror, with marble wall.
+  visible: False
+  scene_relations:
+    Go back: corridor
+  tools:
+    - position: below the carpet on the floor
+      tool:
+        name: golden key
+        states:
+          - desc: a golden key with shining light, a leather strap attached
+            apply_to:
+              - suitcase
+    - position: next to the bathtub
+      tool:
+        name: fragment 3
+        states:
+          - desc: another metal fragment, shape of a elegant curve
+            apply_to:
+              - safe
+    - position: in the bathtub
+      tool:
+        name: connector
+        states:
+          - desc: a connector, seems could be used to connect and anchor something
+            apply_to:
+              - tool box
+    - position: in the sewer
+      tool:
+        name: cylindrical key
+        visible: False
+        states:
+          - desc: a cylindrical key with a round end
+            apply_to:
+              - locked box
+    - position: in the drawer of the cabinet
+      tool:
+        name: lever
+        visible: False
+        states:
+          - desc: a lever, long and thin with a flat end, seems strong enough
+            apply_to:
+              - tool box
+  items:
+    - position: in the bathtub
+      item:
+        name: sewer
+        states:
+          - desc: the sewer is blocked, and it seems there is something in it
+            neg_reward: You should try to find a way to get the thing from the blocked sewer
+            transitions:
+              - wait_for:
+                  - apply, shoelaces
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, cylindrical key, True
+                  - change_interact, False
+                reward: The sewer is unblocked, there is a cylindrical key inside
+          - desc: the sewer is unblocked
+    - position:
+      item:
+        name: drawer of the cabinet
+        states:
+          - desc: the drawer is locked, with a screw on the handle
+            neg_reward: You should try to open this drawer
+            transitions:
+              - wait_for:
+                  - apply, screwdriver
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, lever, True
+                reward: The drawer is opened, there is a lever inside
+          - desc: the drawer is open
+
+- name: sanctum
+  desc: The sanctum is a small room.
+  visible: False
+  scene_relations:
+    Go back: utility room
+  items:
+    - position: on the cabinet
+      item:
+        name: locked box 2
+        states:
+          - desc: a locked box with a digital lock requiring a 6-digit number password
+            neg_reward: You should try to open this box with a matched 6-digit number
+            transitions:
+              - wait_for:
+                  - input, 870472
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, tool, round key, True
+                reward: The locked box is opened, there is a round key inside
+          - desc: the locked box is open
+    - position: at the corner of the room
+      item:
+        name: tellurion
+        states:
+          - desc: a tellurion that has a block tilted up, with a triangle-shaped hole on the top
+            neg_reward: You should try to find a way to turn the tellurion on
+            transitions:
+              - wait_for:
+                  - apply, round key
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, tap, True
+                  - change_interact, False
+                reward: The tellurion is turned, there is a tap inside
+          - desc: the tellurion is turned, with a tap inside
+    - position: near the cabinet
+      item:
+        name: pipe 
+        states:
+          - desc: a pipe on the wall, seems something missing at the bottom
+            neg_reward: You should try to find a way to ensemble the pipe with something
+            transitions:
+              - wait_for:
+                  - apply, tap
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                reward: The pipe is tapped. The exit door is opened. GAME END!
+          - desc: the pipe is tapped
+  tools:
+    - position: on the table
+      tool:
+        name: paper
+        states:
+          - desc: a normal paper with some drawings of blue, red and yellow colors
+    - position: in a locked box
+      tool:
+        name: round key
+        visible: False
+        states:
+          - desc: a key with head like a triangle
+            apply_to:
+              - tellurion
+    - position: inside the tellurion
+      tool:
+        name: tap
+        visible: False
+        states:
+          - desc: a normal tap made of steel, with an end round shape, nothing inside
+            apply_to:
+              - pipe
+

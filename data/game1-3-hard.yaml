@@ -1,0 +1,414 @@
+- name: the hallway
+  desc: You got out of an elevator and you are in a hallway.
+  visible: True
+  scene_relations:
+    Go to left corner close-up: left corner of the hallway
+    Go to the elevator room: the elevator room
+    Go to the billiard room: the billiard room
+  items:
+    - position: At the right side
+      item:
+        name: black door
+        states:
+          - desc: A black wooden door.
+            transitions:
+              - wait_for:
+                  - apply, gold key
+                trigger:
+                  - change_state, 1
+                  - change_interact, False
+                  - change_visible, scene, the billiard room, True
+                reward: You Opened the door. Now you can go to the billiard room.
+          - desc: A brick wall. You already pocked the brick with the different color inside with the pipe
+    - position: At the left side
+      item:
+        name: brick wall
+        states:
+          - desc: A brick wall. One brick has a different color and shakes when you touch it.
+            transitions:
+              - wait_for:
+                  - apply, pipe
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, strange key, True
+                  - change_interact, False
+                reward: You pocked the brick with the different color inside with the pipe, reavling a strange key.
+          - desc: A brick wall. You already pocked the brick with the different color inside with the pipe.
+    - position: On the end of the hallway
+      item:
+        name: exit door
+        states:
+          - desc: A door marked as exit. Have to authorize to open.
+            transitions:
+              - wait_for:
+                  - apply, key card 2
+                trigger:
+                  - change_state, 1
+                reward: You opened the door and exited. GAME END!
+          - desc: N/A
+    - position: On the wall at the right side
+      item:
+        name: photo
+        states:
+          - desc: A photo of a graveyard.
+  tools:
+    - position: On the wall at the right side
+      tool:
+        name: paper 1
+        states:
+          - desc: A piece of paper titled experiment participants. It says -- Patient 2 John, Patient 3 Eric, Patient 4 Steven, Patient 5 Jack, Patient 6 Violet, Patient 7 Patrick, Patient 8 Andera...
+    - position: In the brick wall
+      tool:
+        name: strange key
+        visible: False
+        states:
+          - desc: A strange key.
+            apply_to:
+            - wooden groove
+
+- name: left corner of the hallway
+  desc: You are looking at the left corner of the hallway.
+  visible: True
+  scene_relations:
+    Back to the hallway: the hallway
+  items:
+    - position: On the floor
+      item:
+        name: book
+        states:
+          - desc: A book.
+            transitions:
+                - wait_for:
+                    - click
+                  trigger:
+                    - change_state, 1
+                  reward: You opened the book. It's a history book about middle ages and renaissance.
+          - desc: An opened history book about middle ages and renaissance. The book has more pages.
+            transitions:
+                - wait_for:
+                    - click
+                  trigger:
+                    - change_state, 2
+                  reward: You turned a page in the book. 
+          - desc: An opened history book about middle ages and renaissance. On the second page there's a picture about pool playing. The book has more pages.
+            transitions:
+                - wait_for:
+                    - click
+                  trigger:
+                    - change_state, 3
+                    - change_interact, False
+                  reward: You turned a page in the book. 
+          - desc: An opened history book about middle ages and renaissance. On the second page there's a picture about pool playing. On the last page, it says "Nov 17th, Patrick, Steven, John, Andera".
+  tools:
+    - position: near the wall
+      tool:
+        name: pipe
+        states:
+          - desc: A section of water pipe. It's made of steel with hard texture.
+            apply_to:
+              - brick wall
+
+- name: the elevator room
+  desc: the elevator room. There's no elevator and the room is empty.
+  visible: True
+  scene_relations:
+    Back to the hallway: the hallway
+  items:
+    - position: On the wall
+      item:
+        name: control panel
+        states:
+          - desc: The control panel of the elevator.
+    - position: Under the elevator door
+      item:
+        name: wooden groove
+        states:
+          - desc: A piece of wood with a groove in the middle.
+            transitions:
+                - wait_for:
+                    - apply, strange key
+                  trigger:
+                    - change_visible, item, lockbox, True
+                    - change_state, 1
+                    - change_visible, item, wooden groove, False
+                  reward: You inserted the key into the groove. A secret door opened and you saw a locked box.
+          - desc: N/A
+    - position: Under the elevator door
+      item:
+        name: lockbox
+        visible: False
+        states:
+          - desc: A lockbox with a 4-digit password on it.
+            transitions:
+                - wait_for:
+                    - input, 7428
+                  trigger:
+                    - change_state, 1
+                    - change_visible, tool, gold key, True
+                  reward: You opened the lockbox and found a key inside.
+          - desc: A opened lockbox.
+  tools:
+    - position: in the lockbox
+      tool:
+        name: gold key
+        visible: False
+        states:
+          - desc: A gold key.
+            apply_to:
+              - black door
+
+- name: the billiard room
+  desc: the billiard room, a room with a pool table, a bar, and a front desk.
+  visible: False
+  scene_relations:
+    Back to the hallway: the hallway
+    Go to front desk close-up: front desk
+    Go the the pool table close-up: pool table
+  items:
+    - position: Near the bar
+      item:
+        name: bar stool
+        states:
+          - desc: A black bar stool.
+    - position: On the right wall
+      item:
+        name: nails and board
+        states:
+          - desc: A wooden board fixed with nails. Seems like there's something behind.
+            transitions:
+                - wait_for:
+                    - apply, hammer
+                  trigger:
+                    - change_interact, False
+                    - change_visible, tool, pool ball 2, True
+                  reward: You knocked off the nails with the hammer. Behind the wooden board was another pool ball.
+          - desc: A brick wall behind the wooden door. Someone wrote on the wall -- 'you don't want to get there'.
+    - position: Near the front desk
+      item:
+        name: wooden door
+        states:
+          - desc: A wooden door. It seems to be the staff channel.
+            transitions:
+              - wait_for:
+                  - apply, bronze key
+                trigger:
+                  - change_state, 1
+                reward: You opened the door. Behind it was a brick wall. Someone wrote on the wall -- you don't want to get there.
+          - desc: A brick wall behind the wooden door. Someone wrote on the wall -- 'you don't want to get there'.
+    - position: On the floor
+      item:
+        name: suitcase
+        states:
+          - desc: A leather suitcase with key hole. It's closed.
+            transitions:
+                - wait_for:
+                    - apply, key in the wall
+                  trigger:
+                    - change_visible, tool, pool ball 4, True
+                    - change_visible, tool, hammer, True
+                    - change_interact, False
+                  reward: You opened the suitcase.
+          - desc: A suitcase. It's opened.
+  tools:
+    - position: on the pool table
+      tool:
+        name: bottle of wine
+        states:
+          - desc: A bottle of wine with bar code on the back.
+            apply_to:
+              - cashier
+    - position: on a bookshelf
+      tool:
+        name: pool ball 1
+        states:
+          - desc: A pool ball with number 1.
+            apply_to:
+              - pockets
+    - position: in the suitcase
+      tool:
+        name: pool ball 4
+        visible: False
+        states:
+          - desc: A pool ball with number 4.
+            apply_to:
+              - pockets
+    - position: behind the wooden board
+      tool:
+        name: pool ball 2
+        visible: False
+        states:
+          - desc: A pool ball with number 2.
+            apply_to:
+              - pockets
+    - position: in the suitcase
+      tool:
+        name: hammer
+        visible: False
+        states:
+          - desc: A hammer, with a wooden handle and a metal head.
+            apply_to:
+              - nails and board
+    - position: in a hidden space on the wall
+      tool:
+        name: key in the wall
+        visible: False
+        states:
+          - desc: A key that you found in the wall.
+            apply_to:
+              - suitcase
+
+- name: front desk
+  desc: the front desk in the billiard room.
+  scene_relations:
+    Back to the billiard room: the billiard room
+  items:
+    - position: On the wall
+      item:
+        name: posters
+        states:
+          - desc: Some posters. One of them says -- you can escape!
+    - position: On the desk
+      item:
+        name: button
+        states:
+          - desc: A red button, you do not know what it does.
+            transitions:
+                - wait_for:
+                    - click
+                  trigger:
+                    - change_visible, tool, key in the wall, True
+                    - change_interact, False
+                  reward: Something happened ...
+          - desc: A red button. It has already been pressed.
+    - position: On the desk
+      item:
+        name: cashier
+        states:
+          - desc: A cashier. There's a card slot, a numeric keypad, a infrared scanner, and a screen that says please authorize.
+            transitions:
+                - wait_for:
+                    - apply, key card 1
+                  trigger:
+                    - change_state, 1
+                  reward: Using the key card, you authorized the identity. The cashier is now working.
+          - desc: A cashier. There's a card slot, a numeric keypad, a infrared scanner. It's authorized and can work now.
+            transitions:
+                - wait_for:
+                    - apply, bottle of wine
+                  trigger:
+                    - change_visible, tool, key card 2, True
+                    - change_interact, False
+                  reward: After scanning the bottle of wine, the locker for change opens. You found another key card inside the cashier.
+            
+    - position: On the desk
+      item:
+        name: safe
+        states:
+          - desc: A safe with a 4-digit password
+            transitions:
+                - wait_for:
+                    - input, 4305
+                  trigger:
+                    - change_state, 1
+                    - change_interact, False
+                    - change_visible, tool, pool ball 3, True
+                  reward: You opened the safe and found a pool ball inside.
+          - desc: A safe with a 4-digit password. It's opened now.
+  tools:
+    - position: on the wine cabinet
+      tool:
+        name: knife
+        states:
+          - desc: A very sharp knife.
+            apply_to:
+              - chair
+    - position: in the safe
+      tool:
+        name: pool ball 3
+        visible: False
+        states:
+          - desc: A pool ball with number 3.
+            apply_to:
+              - pockets
+    - position: in the cashier's change locker
+      tool:
+        name: key card 2
+        visible: False
+        states:
+          - desc: A key card.
+            apply_to:
+              - exit door
+
+- name: pool table
+  desc: A pool table.
+  scene_relations:
+    Back to the billiard room: the billiard room
+  items:
+    - position: on the corners of the pool table
+      item:
+        name: pockets
+        states:
+          - desc: Strange chararters are carved on its four pockets -- XI-IX, XV-XIV, X-VII, IX-V.
+            transitions:
+                - wait_for:
+                    - apply, pool ball 1
+                    - apply, pool ball 2
+                    - apply, pool ball 3
+                    - apply, pool ball 4
+                  trigger:
+                    - change_state, 1
+                  reward: You put balls inside but they're in the wrong direction. Please input a 4-digit permutation of balls numbered 1 to 4.
+          - desc: Strange chararters are carved on its four pockets -- XI-IX, XV-XIV, X-VII, IX-V. Looks like roman numerals. You put balls into the pockets but they're in the wrond direction. Please input a 4-digit permutation of balls.
+            transitions:
+                - wait_for:
+                    - input, 2134
+                  trigger:
+                    - change_visible, tool, key card 1, True
+                    - change_interact, False
+                    - change_state, 2
+                  reward: You permutated the balls correctly and found a key card.
+          - desc: The pockets are all with balls inside. A secret slot is revealed.
+    - position: on the side of the table
+      item:
+        name: chair
+        states:
+          - desc:  A luxurious chair. There is something metal embedded in the backrest. The seat cushion is bumping. 
+            neg_reward: You may click to collect what's embedded in chair, and use tool to see what's inside the cushion.
+            transitions:
+                - wait_for:
+                    - click
+                  trigger:
+                    - change_visible, tool, bronze key, True
+                    - change_state, 1
+                  reward: You saw a key embedded in the chair.
+          - desc: A luxurious chair.  The seat cushion is bumping. 
+            neg_reward: You may use tool to see what's inside the cushion.
+            transitions:
+                - wait_for:
+                    - apply, knife
+                  trigger:
+                    - change_visible, tool, paper 2, True
+                  reward: You cut the cushion of the chair and found a paper inside.
+  tools:
+    - position: in the chair
+      tool:
+        name: bronze key
+        visible: False
+        states:
+          - desc: A bronze key.
+            apply_to:
+              - wooden door
+    - position: in the chair's cushion
+      tool:
+        name: paper 2
+        visible: False
+        states:
+          - desc: A piece of paper with mathematic calculations. Four graphics are in the middle -- square, triangle, circle and pentagon.
+    - position: in a secret slot of the pool table
+      tool:
+        name: key card 1
+        visible: False
+        states:
+          - desc: A key card.
+            apply_to:
+              - cashier

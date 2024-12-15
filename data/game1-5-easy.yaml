@@ -1,0 +1,703 @@
+- name: initial room
+  desc: You are in an abandoned underground passage. The light is dim. The walls are made of bricks.
+  visible: True
+  scene_relations:
+    Go to iron fence close-up: iron fence close-up
+    Go to room on the right: room on the right
+    Go to room on the left: room on the left
+    Go to the stair: stair
+  items:
+    - position: on the ceiling
+      item:
+        name: fan
+        states:
+          - desc: A huge fan. It's not working.
+
+- name: iron fence close-up
+  desc: An iron gate. One of the bars is aging and becoming loose.
+  scene_relations:
+    Beck to Initial room: initial room
+  items:
+    - position: on the bottom
+      item:
+        name: old bar
+        states:
+          - desc: A piece of iron bar. It is old and rusty. You can see a gas can behind, but you can't reach it. Might use a tool to cut it open.
+            neg_reward: You may try to open this rusty iron door through a brute way by cutting the bar open.
+            transitions:
+              - wait_for:
+                  - apply, hacksaw
+                trigger:
+                  - change_visible, False
+                  - change_visible, tool, gas can, True
+                reward: You cut the bar open.
+  tools:
+    - position: behind the iron bar
+      tool:
+        name: gas can
+        visible: False
+        states:
+            - desc: An empty gas can. Could store gas or liquid like oil.
+              apply_to:
+                - oil drum
+            - desc: A gas can filled with oil, ready to be used now as some power source.
+              apply_to:
+                - boiler
+
+
+- name: room on the right
+  desc: Another room in the underground passage. Theere's a safety door and a power distribution box.
+  scene_relations:
+    Back to Initial room: initial room
+    Go to dormitory: the dormitory
+    Go to distribution box close-up: distribution box close-up
+  items:
+    - position: on left wall
+      item:
+        name: lock of power distribution box
+        states:
+          - desc: A locked power distribution box, with a small keyhole shining silver light on it.
+            neg_reward: You need to find a a matched key to open it.
+            transitions:
+              - wait_for:
+                  - apply, key 1
+                trigger:
+                  - change_visible, scene, distribution box close-up, True
+                  - change_visible, False
+                reward: You opened the distribution box. Now you can go to its close-up.
+    - position: on the front
+      item:
+        name: safety door 1
+        states:
+          - desc: A locked safety door. It's elecrtically controlled. You have to find power source and provide electricity elsewhere to open it.
+
+- name: distribution box close-up
+  visible: False
+  desc: the distribution box close-up.
+  scene_relations:
+    Back to room on the right: room on the right
+  items:
+    - position: on the wall
+      item:
+        name: power distribution box
+        states:
+          - desc: A power distribution box. The indicator light is closed, requiring energy to open it. You may need to find power first before you can interact with it.
+            neg_reward: Try to provide energy for the distribution box. Maybe you can go to other places first ...
+          - desc: A power distribution box. The indicator light is now open. There's one lever inside that you can turn on.
+            neg_reward: Try simply interact with the lever to see what will happen.
+            transitions:
+              - wait_for:
+                  - click
+                trigger:
+                  - change_state, 2
+                  - change_visible, scene, the dormitory, True
+                  - change_visible, item, safety door 1, False
+                reward: You turned on the lever. A door is opened ...
+          - desc: A power distribution box. One lever is already turned on. You can see an empty slot for another lever.
+            neg_reward: Try to find another lever to put on the slot.
+            transitions:
+              - wait_for:
+                  - apply, lever
+                trigger:
+                  - change_state, 3
+                  - change_visible, scene, the control room, True
+                  - change_visible, item, safety door 3, False
+                reward: You put on another lever and turned it on. A door is opened ...
+          - desc: A power distribution box. Both levers are turned on. The doors are all opened.
+
+- name: stair
+  desc: A downward spiral staircase. There are a few oil drums at the corner.
+  scene_relations:
+    Back to Initial room: initial room
+    Go to the boiler room: the boiler room
+  items:
+    - position: at the corner
+      item:
+        name: oil drum
+        states:
+          - desc: A oil drum filled with oil. It cannot be moved. There's a port on the top, maybe should connect with something else.
+            neg_reward: You may need a pipe-like tool to connect with it first in order to extract oil out of it.
+            transitions:
+              - wait_for:
+                  - apply, hose
+                trigger:
+                  - change_state, 1
+                reward: You put the hose on the oil drum.
+          - desc: A oil drum filled with oil. A hose is attached to it. Now it's ready to use a container to extract the oil.
+            neg_reward: You need a container to store the extracted oil from it, find one that could contain liquid.
+            transitions:
+              - wait_for:
+                  - apply, gas can
+                trigger:
+                  - change_visible, False
+                  - change_state, tool, gas can, 1
+                reward: You extracted the oil and stored it in the container.
+  tools:
+    - position: at the entrance
+      tool:
+        name: hose
+        states:
+          - desc: A hose with round head, could connect both ends of something, could transmit liquid or gas.
+            apply_to:
+            - oil drum
+    - position: on the oil drum
+      tool:
+        name: key 1
+        states:
+          - desc: A small silver key shining light. It might be used to open something.
+            apply_to:
+            - lock of power distribution box
+    - position: under the oil drum
+      tool:
+        name: paper 1
+        states:
+          - desc: A paper that writes a large pi (a mathematical constant with infinite digits), seems like a math hint for a password.
+
+
+- name: the boiler room
+  desc: The boiler room. The floor is covered with a mess of pipes. On the left are several huge fans, which have stopped working.
+  scene_relations:
+    Back to the stair: stair
+    Go to the secret office: secret office
+  items:
+    - position: on the front
+      item:
+        name: safety door 2
+        states:
+          - desc: A locked safety door. It's elecrtically controlled. You have to find power source and provide electricity elsewhere to open it.
+    - position: on the right
+      item:
+        name: boiler
+        states:
+          - desc: A closed boiler. It says '--use gas--' on it. It's not working now and in need of a power source.
+            neg_reward: You may use gas as power source to run the boiler.
+            transitions:
+              - wait_for:
+                  - apply, gas can
+                trigger:
+                  - change_state, 1
+                reward: You filled the boiler with oil. It's now running and you san see a lock on its control panel.
+          - desc: A running boiler. You can see a lock on its control panel. There's a keyhole on it.
+            neg_reward: Try to open the control panel.
+            transitions:
+              - wait_for:
+                  - apply, key 2
+                trigger:
+                  - change_state, item, power distribution box, 1
+                  - change_state, 2
+                reward: You opened the control panel and switched a lever. You heard a electric sound outside, something happens ...
+          - desc: A running boiler, electricity is now provided to the power distribution box.
+    - position: on the floor
+      item:
+        name: iron box
+        states:
+          - desc: A locked iron box. There's a 4-digit password, and a dot between the first and the second digit. Do not enter dot, just input the 4 digits.
+            neg_reward: You need to input the correct password. Pay attention to why there's a dot between the digits, seems related to a floating point number.
+            transitions:
+              - wait_for:
+                  - input, 3141
+                trigger:
+                  - change_visible, False
+                  - change_visible, tool, saw blade, True
+                reward: You opened the box and found a saw blade inside.
+  tools:
+    - position: in the iron box
+      tool:
+        name: saw blade
+        visible: False
+        states:
+            - desc: A saw blade. Cannot be used directly now, need to connect with something to hold.
+              apply_to:
+              - hacksaw
+    - position: on the wall
+      tool:
+        name: key 2
+        states:
+            - desc: Another key, might be used to open something.
+              apply_to:
+                - boiler
+    - position: in the iron box
+      tool:
+        name: hacksaw
+        states:
+            - desc: A saw but missing th blade now, only the handle is left. Find the missing part and assemble them.
+              wait_for:
+                - saw blade
+            - desc: A complete saw, with blade made of iron, sharp to cut things open.
+              apply_to:
+                - old bar
+
+
+- name: secret office
+  visible: False
+  desc: A secret office behind the boiler room.
+  scene_relations:
+    Back to the boiler room: the boiler room
+    Go to the bathroom: the bathroom
+    Go to second floor passage: second floor passage
+  items:
+    - position: by the wall
+      item:
+        name: ladder
+        states:
+          - desc: A ladder hanging from the ceiling. Too high to reach. Nothing else special.
+    - position: on the table
+      item:
+        name: film processing toolset
+        states:
+          - desc: Some advanced tools. They can imprint data of film onto photo papers. There's a piece of paper that says -- voilet-blue-yellow. You may need multiple tools applied to imprint the film.
+            neg_reward: Some material are missing. Take the paper as as hint and find multiple materials needed. Also you need film and photo paper to imprint besides what's on the hint.
+            transitions:
+              - wait_for:
+                  - apply, blue liquid
+                  - apply, yellow liquid
+                  - apply, ultra-voilet light
+                  - apply, film
+                  - apply, photo paper
+                trigger:
+                  - change_visible, False
+                  - change_visible, tool, imprinted photo paper, True
+                reward: You successfully processed the film and now you can pick up the imprinted photo paper.
+  tools:
+    - position: near the film processing toolset
+      tool:
+        name: yellow liquid
+        states:
+          - desc: A bottle of yellow liquid. It's sealed.
+            apply_to:
+              - film processing toolset
+    - position: on a cupboard
+      tool:
+        name: wrench
+        states:
+          - desc: A wrench that could screw or unscrew things.
+            apply_to:
+              - water pipe
+    - position: on the film processing toolset
+      tool:
+        name: imprinted photo paper
+        visible: False
+        states:
+          - desc: A imprinted photo paper with some characters -- 1991281, seems like a 7-digit password hint.
+
+
+- name: the bathroom
+  desc: A bathroom in the secret office. All the furniture are damaged.
+  scene_relations:
+    Back to the secret office: secret office
+  items:
+    - position: on the wall
+      item:
+        name: shaking mirror
+        states:
+          - desc: A mirror, seems very fragile, and it's shaking, you may simply take it off.
+            neg_reward: You may try to break it through simply interact with it.
+            transitions:
+              - wait_for:
+                  - click
+                trigger:
+                  - change_state, 1
+                reward: You broke the mirror and was a combination lock behind it.
+          - desc: A broken mirror. There's a 5-digit combination with characters CDOWY beside it. The font is gothic, but these initial seems a special permuted hint.
+            neg_reward: You need to input the correct password, try to think about what the characters mean, you may need to re-permutate the hint you have at hands.
+            transitions:
+              - wait_for:
+                  - input, 18437
+                trigger:
+                  - change_visible, scene, second floor passage, True
+                  - change_visible, item, ladder, False
+                reward: You opened the lock. A mechanism was triggered on the room nearby ...
+    - position: on another wall
+      item:
+        name: graffiti
+        states:
+          - desc: Some graffiti in gothic -- ^Care ^Yourself ^Or the ^Doctor ^Will, the initials are strange.
+    - position: on the ceiling
+      item:
+        name: water pipe
+        states:
+          - desc: A water pipe, with a screw on it but it's loose now. You may further unscrew it off.
+            neg_reward: You need some tool to further unscrew it to see what's inside.
+            transitions:
+              - wait_for:
+                  - apply, wrench
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, paper 4, True
+                reward: You unscrewed the pipe and found a piece of paper inside.
+          - desc: A water pipe. You already unscrewed it.
+  tools:
+    - position: in the water pipe
+      tool:
+        name: paper 4
+        visible: False
+        states:
+          - desc: A piece of paper with a pattern in gothic -- 17483. Seems like a hint but have to re-permutate it to get the correct password to use.
+
+
+- name: room on the left
+  desc: A room at the corner.
+  scene_relations:
+    Back to Initial room: initial room
+    Go to the control room: the control room
+  items:
+    - position: on the front
+      item:
+        name: safety door 3
+        states:
+          - desc: A locked safety door. It's elecrtically controlled. You have to find power source and provide electricity elsewhere to open it.
+
+
+- name: the dormitory
+  visible: False
+  desc: An abandoned dormitory. The beds are covered with dust.
+  scene_relations:
+    Back to room on the right: room on the right
+    Go to bed close-up: bed close-up
+    Go to cabinet close-up: cabinet close-up
+  items:
+    - position: on the desk
+      item:
+        name: plug
+        states:
+          - desc: A plug sealed by a screw, you can't pick it up now. You may need a tool to unscrew it.
+            transitions:
+              - wait_for:
+                  - apply, screwdriver
+                trigger:
+                  - change_visible, False
+                  - change_visible, tool, pickable plug, True
+                reward: You loosened the screw with the screwdriver. Now you can pick up the plug.
+    - position: on the ceiling
+      item:
+        name: vent pipe
+        states:
+          - desc: A vent pipe blocked by barbed wire. You can see something inside. Try to cut the wire to get it.
+            neg_reward: You may need to get rid of the barbed wire first to get the thing inside.
+            transitions:
+              - wait_for:
+                  - apply, wire cutter
+                trigger:
+                  - change_visible, False
+                  - change_visible, tool, disk 2, True
+                reward: You found a disk inside.
+    - position: on the desk
+      item:
+        name: paper
+        states:
+          - desc: A white piece of paper, but seems there's something written on it but hidden now.
+            neg_reward: There's something written on the paper, you may use some special chemical to reveal it.
+            transitions:
+              - wait_for:
+                  - apply, iodine
+                trigger:
+                  - change_state, 1
+                reward: Some blue writings appeared on the paper -- ZZ, 40, AZ, X0.
+          - desc: A paper with blue writings -- ZZ, 40, AZ, X0. Eight digits in total, seems have to solve the puzzle to get the correct password.
+    - position: on the wall
+      item:
+        name: strange lock
+        states:
+          - desc: A strange lock with 7-digit password. There's a film-shaped pattern beside it.
+            neg_reward: You need to input the correct password according to the hint beside it.
+            transitions:
+              - wait_for:
+                  - input, 1991281
+                trigger:
+                  - change_visible, tool, dynamite, True
+                  - change_visible, False
+                reward: The lock was opened and you found some dynamite inside.
+  tools:
+    - position: on the desk
+      tool:
+        name: pickable plug
+        visible: False
+        states:
+          - desc: A plug that can be used to connect electric devices to power.
+            apply_to:
+              - computer
+    - position: behind the vent pipe
+      tool:
+        name: disk 2
+        visible: False
+        states:
+          - desc: A disk, may contain some important data inside.
+            apply_to:
+              - computer
+    - position: behind the strange lock
+      tool:
+        name: dynamite
+        visible: False
+        states:
+          - desc: Some dynamite, but you can't ignite them now. Try assembling it with something to control it.
+            wait_for:
+                - remote detonator
+          - desc: Some dynamite. You can ignite it on the place you want now.
+            apply_to:
+              - safety door 5
+
+- name: bed close-up
+  desc: Some dust-covered bed. There are a pillow and a quilt on one bed, a camera on another bed.
+  scene_relations:
+    Back to the dormitory: the dormitory
+  items:
+    - position: on the bed
+      item:
+        name: pillow
+        states:
+          - desc: A pillow, seems there's something under it. Try to pick it up.
+            neg_reward: You may simply interact with the pillow to see what's under it.
+            transitions:
+              - wait_for:
+                  - click
+                trigger:
+                  - change_visible, tool, disk 1, True
+                reward: You picked up the pillow and found a disk under it.
+    - position: on the bed
+      item:
+        name: quilt
+        states:
+          - desc: A quilt. Some words are written on it -- don't close your eyes. Nothing else special.
+  tools:
+    - position: under the pillow
+      tool:
+        name: disk 1
+        visible: False
+        states:
+          - desc: A disk, may contain some important data inside.
+            apply_to:
+              - computer
+    - position: in the camera
+      tool:
+        name: film
+        states:
+          - desc: A roll of old-fashioned film. It's blurred, special methods are required to see the images.
+            apply_to:
+              - film processing toolset
+
+
+- name: cabinet close-up
+  desc: Some cabinets. One of them are open, others are closed.
+  scene_relations:
+    Back to the dormitory: the dormitory
+  items:
+    - position: on the door of one cabinet
+      item:
+        name: combination lock
+        states:
+          - desc: A 4-digit combination lock. You need to input the correct 4-digit password get from some hints.
+            neg_reward: You need to find the correct 4-digit password to open it. Find a 4-digit hint.
+            transitions:
+              - wait_for:
+                  - input, 2451
+                trigger:
+                  - change_visible, tool, disk 3, True
+                  - change_visible, tool, duct tape, True
+                  - change_visible, False
+                reward: You opened the lock and found a disk and a duct tape inside.
+    - position: on the door of one cabinet
+      item:
+        name: rotary lock
+        states:
+          - desc: A rotary lock. You need to rotate 4 times. Input 8 digits that represent the angle of 4 rotations.
+            neg_reward: You need to find the correct rotation angles. Try to solve the puzzle first before get back and open it.
+            transitions:
+              - wait_for:
+                  - input, 55401530
+                trigger:
+                  - change_visible, tool, screwdriver, True
+                  - change_visible, tool, lever, True
+                  - change_visible, False
+                reward: You opened the lock and found a screwdriver and a lever inside.
+  tools:
+    - position: in the open cabinet
+      tool:
+        name: iodine
+        states:
+          - desc: A bottle of iodine, a special chemical that may reveal hidden messages.
+            apply_to:
+              - paper
+    - position: in the locked cabinet
+      tool:
+        name: screwdriver
+        visible: False
+        states:
+          - desc: A screwdriver that could screw or unscrew things.
+            apply_to:
+              - plug
+    - position: in the locked cabinet
+      tool:
+        name: lever
+        visible: False
+        states:
+          - desc: A lever made of iron. It's heavy and seems could fit into a slot somewhere.
+            apply_to:
+              - power distribution box
+    - position: in the locked cabinet
+      tool:
+        name: duct tape
+        visible: False
+        states:
+          - desc: Duct tape, commonly used when repairing circuits and connect broken things together.
+            apply_to:
+              - computer
+    - position: in the locked cabinet
+      tool:
+        name: disk 3
+        visible: False
+        states:
+          - desc: A disk, may contain some important data inside.
+            apply_to:
+              - computer
+    - position: in the open cabinet
+      tool:
+        name: blue liquid
+        states:
+          - desc: Strange blue liquid. It's sealed in a glass bottle.
+            apply_to:
+              - film processing toolset
+    - position: on the door of one cabinet
+      tool:
+        name: paper 2
+        states:
+          - desc: Strange blue liquid. It says -- ZZ=55, ZX+AZ=68. Seems like a math hint, you may need to calculate the values and solve it.
+
+
+- name: the control room
+  visible: False
+  desc: The control room of the whole system. There's a desk and a computer but it's turned off.
+  scene_relations:
+    Back to room on the left: room on the left
+    Go to the emergency exit: the emergency exit
+  items:
+    - position: on one side of the room
+      item:
+        name: safety door 4
+        states:
+          - desc: A locked safety door. It's elecrtically controlled. You have to find power source and provide electricity elsewhere to open it.
+    - position: on the wall
+      item:
+        name: silk painting
+        states:
+          - desc: A large silk painting. Looks strange in that place. There might be something hidden inside.
+            neg_reward: You may need to use a tool to cut open the painting to see what's inside.
+            transitions:
+              - wait_for:
+                  - apply, knife
+                trigger:
+                  - change_visible, False
+                  - change_visible, tool, wire cutter, True
+                  - change_visible, tool, remote detonator, True
+                reward: You cut the painting open and found a secret storage space inside.
+    - position: on the desk
+      item:
+        name: computer
+        states:
+          - desc: A computer. The wire is broken now and needs to be fixed first.
+            neg_reward: the wire is broken. fix it first.
+            transitions:
+              - wait_for:
+                  - apply, duct tape
+                trigger:
+                  - change_state, 1
+                reward: You fixed the wire with duct tape. but the plug is still missing.
+          - desc: A computer. The plug is missing now, so it's not working as there's no power.
+            neg_reward: the plug is missing. find it first.
+            transitions:
+              - wait_for:
+                  - apply, pickable plug
+                trigger:
+                  - change_state, 2
+                reward: Now the computer is open. You can see 2 disk slots.
+          - desc: A computer. You can see 2 disk slots. Try to insert two disks you have to see what will happen.
+            neg_reward: You may need to insert two disks you have to see what will happen.
+            transitions:
+              - wait_for:
+                  - apply, disk 1
+                  - apply, disk 3
+                trigger:
+                  - change_state, 3
+                  - change_visible, scene, the emergency exit, True
+                  - change_visible, item, safety door 4, False
+                reward: You inserted the disks nad authorized the computer. A door opened and you saw another disk slot coming out.
+          - desc: A computer with two disks already inserted. You can see another disk slot. Try to insert another disk to see what will happen.
+            neg_reward: You may need to insert another disk to see what will happen.
+            transitions:
+              - wait_for:
+                  - apply, disk 2
+                trigger:
+                  - change_visible, scene, secret office, True
+                  - change_visible, item, safety door 2, False
+                  - change_state, 4
+                reward: You inserted another disk and authorized the computer with higher priority. A door opened ...
+          - desc: A computer. There's nothing more you can do with it, as three disks are already inserted.
+  tools:
+    - position: on the floor
+      tool:
+        name: photo paper
+        states:
+          - desc: A photo paper, might be used to imprint something.
+            apply_to:
+              - film processing toolset
+    - position: on the door
+      tool:
+        name: paper 3
+        states:
+          - desc: A paper with a pattern -- 2451, seems like a 4-digit password hint.
+    - position: behind the silk painting
+      tool:
+        name: wire cutter
+        visible: False
+        states:
+          - desc: A wire cutter. Can cut thin metal wires.
+            apply_to:
+              - vent pipe
+    - position: behind the silk painting
+      tool:
+        name: remote detonator
+        visible: False
+        states:
+          - desc: A remote detonator. You can use it to ignite other explosives and control them to avoid hurting yourself.
+            apply_to:
+              - dynamite
+
+- name: the emergency exit
+  visible: False
+  desc: The emergency exit of the underground passage. There was a landslide here, and the road was blocked.
+  scene_relations:
+    Back to the control room: the control room
+  tools:
+    - position: among the debris
+      tool:
+        name: ultra-voilet light
+        states:
+          - desc: A ultra-voilet light.
+            apply_to:
+              - film processing toolset
+    - position: among the debris
+      tool:
+        name: knife
+        states:
+          - desc: A sharp knife that could easily cut things open.
+            apply_to:
+              - silk painting
+
+
+- name: second floor passage
+  visible: False
+  desc: You climbed up the ladder and reached the second floor passage.
+  scene_relations:
+    Back to the secret office: secret office
+  items:
+    - position: on the end of the passage
+      item:
+        name: safety door 5
+        states:
+          - desc: A safety door. The electric system that controls the door is broken. Brute force is the only way to open it.
+            neg_reward: You cannot open the door in a normal way, try to use a brute force method.
+            transitions:
+              - wait_for:
+                  - apply, dynamite
+                trigger:
+                  - change_visible, item, safety door 5, False
+                reward: You ignited the dynamite and blew the door open. You escaped. GAME END!

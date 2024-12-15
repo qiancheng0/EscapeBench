@@ -1,0 +1,581 @@
+- name: hallway
+  desc: You're in a shabby hallway with three doors.
+  scene_relations:
+    Go to the washroom: washroom
+    Go to the kitchen: kitchen
+  items: 
+    - position: On the right wall
+      item:
+        name: coded lock
+        states:
+        - desc: There's empty slot on code block.
+          transitions:
+            - wait_for: 
+                - apply, component of coded lock
+              trigger:
+                - change_state, 1
+              reward: The coded lock is now complete and could function normally
+        - desc: The coded lock now needs a correct time input to open.
+          transitions:
+            - wait_for:
+                - input, 17:45 
+              trigger: 
+                - change_visible, scene, kitchen, True
+                # - change_visible, tool, watch, False
+                - change_interact, False
+                - change_state, 2
+              reward: The coded lock is opened and you can enter a kitchen
+        - desc: The coded lock is opened
+    - position: On the left wall
+      item:
+        name: glass box
+        states:
+        - desc: There may be something inside the glass box, and you cannot get it directly
+          transitions:
+            - wait_for: 
+                - apply, emergency hammer
+              trigger: 
+                - change_visible, tool, watch, True
+                - change_state, 1
+                - change_interact, False
+              reward: The glass box is broken, you can see a watch inside
+        - desc: The glass box is broken
+    - position: On the ground
+      item:
+        name: toolbox
+        states:
+        - desc: It seems that the toolbox can be opened directly
+          transitions:  
+            - wait_for: 
+                - click
+              trigger: 
+                - change_visible, tool, handle, True
+                - change_state, 1
+                - change_interact, False
+              reward: The toolbox is opened and you can get a handle inside
+        - desc: The toolbox is opened       
+    - position: On the door in the front
+      item:
+        name: lockhole
+        states:
+        - desc: There is a bunch of keys in the lockhole, stuck there and needs to be hooked out
+          transitions:  
+            - wait_for: 
+                - apply, bicycle spoke
+              trigger: 
+                - change_visible, tool, bunch of keys, True
+                - change_state, 1
+                - change_interact, False
+              reward: There is a bunch of keys falling down to the ground behind the door  
+        - desc: The lockhole is empty now
+    - position: On the right wall
+      item:
+        name: first door on the right
+        states:
+        - desc: It seems that the door is locke
+          transitions:  
+            - wait_for: 
+                - apply, bunch of keys
+              trigger: 
+                - change_visible, scene, washroom, True
+                - change_state, 1
+                - change_interact, False
+              reward: The first door on the right is opened, and you can see a room inside
+        - desc: The first door on the right is opened
+  tools: 
+    - position: On the ground
+      tool:
+        name: pump
+        states:
+        - desc: a straight and metal pump, missing a part like a head to be useful
+          apply_to: 
+            - rubber patch
+    - position: On the ground
+      tool:
+        name: bicycle spoke
+        states:
+        - desc: a thin and hard bicycle spoke which can be used to prod things
+          apply_to: 
+            - lockhole
+    - position: On the left wall
+      tool:
+        name: emergency hammer
+        states:
+        - desc: an emergency hammer that is heavy and could break things
+          apply_to:
+            - glass box
+    - position: In a glass box on the left wall
+      tool:
+        name: watch
+        visible: False
+        states:
+        - desc: a watch that says the time is 17:45
+    - position: In a toolbox on the ground
+      tool:
+        name: handle
+        visible: False
+        states:
+        - desc: a handle missing a part to be useful
+          apply_to:
+            - nozzle
+    - position: On the ground
+      tool:
+        name: glass
+        visible: True
+        states:
+        - desc: a piece of glass with sharp edge
+          apply_to:
+            - tape
+    - position: In a jacket on the left wall
+      tool:
+        name: tape
+        visible: True
+        states:
+        - desc: a roll of tape, you may need only a strip of it
+          wait_for:
+            - glass
+        - desc: a strip of adhesive tape that can stick things together
+          apply_to:
+            - wire
+    - position: On the left wall
+      tool:
+        name: wire
+        visible: True
+        states:
+        - desc: a wire with insulation, but the insulation is broken with a crack
+          wait_for:
+            - tape
+        - desc: a curved wire with crack sticked by tape, can be used to hook the keys together
+          apply_to:
+            - bunch of keys
+    - position: On the ground
+      tool:
+        name: bunch of keys
+        visible: False
+        states:
+        - desc: a bunch of keys which needs hooked together to be useful
+          wait_for:
+            - wire
+        - desc: a bunch of keys now applicable
+          apply_to:
+            - first door on the right
+# scene 2            
+- name: washroom
+  desc: You're in a shabby and dirty washroom.
+  visible: False
+  scene_relations:
+    Back to the hallway: hallway
+  items: 
+    - position: On the left side
+      item:
+        name: sink
+        states:
+        - desc: The sink is blocked, you have to remove the clogged items
+          transitions:
+            - wait_for: 
+                - apply, rubber patch
+              trigger: 
+                - change_visible, tool, key 1, True
+                - change_state, 1
+                - change_interact, False
+              reward: The sink is drained and you can see a key inside
+        - desc: The sink is drained already
+    - position: On the front wall
+      item:
+        name: box 1
+        states:
+        - desc: The box is locked
+          transitions:
+            - wait_for: 
+                - apply, key 1
+              trigger: 
+                - change_visible, tool, nozzle, True
+                - change_state, 1
+                - change_interact, False
+              reward: The box is unlocked and you can see a nozzle inside
+        - desc: The box is opened
+    - position: On the right side
+      item:
+        name: toilet
+        states:
+        - desc: The lid of the toilet needs to be opened with things like a wrench
+          transitions:
+            - wait_for: 
+                - apply, nozzle
+              trigger: 
+                - change_visible, tool, component of coded lock, True
+                - change_state, 1
+                - change_interact, False
+              reward: The lid of the toilet is opened and you can see a component of the coded lock inside
+        - desc: The lid of the toilet is open
+    - position: On the front wall
+      item:
+        name: locked cabinet
+        states:
+        - desc: The cabinet is locked, with a triangular key hole
+          transitions:
+            - wait_for: 
+                - apply, triangular key
+              trigger: 
+                - change_visible, tool, flexible tube, True
+                - change_state, 1
+                - change_interact, False
+              reward: The cabinet is opened and you can see a flexible tube inside
+        - desc: The cabinate is open now
+  tools:
+    - position: In the locked cabinet
+      tool:
+        visible: False
+        name: flexible tube
+        states:
+          - desc: a flexible tube but too long, only needs part of it
+            wait_for: 
+              - garden shears
+          - desc: a flexible tube that can be used to connect the two ends
+            apply_to: 
+              - hearth
+    - position: On the sink
+      tool:
+        name: piece 1
+        states:
+          - desc: a piece of the fragment
+            apply_to: 
+              - circuit board
+    - position: In the trash can
+      tool:
+        name: piece 2
+        states:
+          - desc: a piece of the fragment seems
+            apply_to: 
+              - circuit board
+    - position: In the toilet
+      tool:
+        name: rubber patch
+        states:
+          - desc: a rubber patch that misses somewhere to hold
+            wait_for: 
+              - pump
+          - desc: With pump as handle, it forms a plunger that can be used to drain things
+            apply_to:
+              - sink
+    - position: In the sink
+      tool:
+        visible: False
+        name: key 1
+        states:
+          - desc: a normal key to unlock something
+            apply_to: 
+              - box 1
+    - position: In the box
+      tool:
+        visible: False
+        name: nozzle
+        states:
+          - desc: a joint that seems missing a part to hold it
+            wait_for: 
+              - handle
+          - desc: With metal handle, it forms a wrench that can be fix things.
+            apply_to: 
+              - toilet
+    - position: In the toilet
+      tool:
+        visible: False
+        name: component of coded lock
+        states:
+          - desc: a metal fragment that seems could fit into a slot
+            apply_to: 
+              - coded lock
+# scene 3            
+- name: kitchen
+  desc: You're in a kitchen
+  visible: False
+  scene_relations:
+    Back to the hallway: hallway
+    Go to the storage room: storage room
+    Go to the hidden room: hidden room
+  items:      
+    - position: In the middle 
+      item:
+        name: hearth
+        states:
+        - desc: The hearth is locked
+          transitions:
+            - wait_for: 
+                - apply, small key
+              trigger: 
+                - change_state, 1
+              reward: The hearth is opened and waiting for being lighted
+        - desc: The hearth is waiting for being lighted, you have to find energy source and connect to it. Multiple things are awaiting to be applied.
+          transitions:
+            - wait_for: 
+                - apply, gas tank
+                - apply, flexible tube
+              trigger: 
+                - change_state, 2
+              reward: The hearth is lighted and you can now use it to heat things
+        - desc: The hearth is lighted, and you can use heat things. It needs a container and the thing to be heated. Multiple things are awaiting to be applied.
+          transitions:
+            - wait_for: 
+                - apply, frying pan
+                - apply, piece of ice
+              trigger: 
+                - change_visible, tool, swipe card, True  
+                - change_state, 3
+                - change_interact, False
+              reward: The ice is melted and you can see a swipe card inside.
+        - desc: A normal hearth, already used it to heat things before.
+    
+    - position: On the hearth 
+      item:
+        name: circuit board
+        states:
+        - desc: The metal circuit board with several empty slots, missing some components
+          transitions:
+            - wait_for: 
+                - apply, piece 1
+                - apply, piece 2
+                - apply, piece 3
+                - apply, piece 4
+              trigger: 
+                - change_visible, tool, key 3, True
+                - change_state, 1
+                - change_interact, False
+              reward: The circuit board is completed and a drawer is opened, which you can see a key inside
+        - desc: A completed circuit board
+    - position: On the right side 
+      item:
+        name: door on the right
+        states:
+        - desc: The door is locked
+          transitions:
+            - wait_for: 
+                - apply, key 2
+              trigger: 
+                - change_visible, scene, storage room, True
+                - change_interact, item, light switch, True
+                - change_state, 1
+                - change_interact, False
+              reward: The door on the right is opened, and you can see a storage room inside. You can also see a light switch on the wall
+        - desc: The door is now open
+    - position: On the right wall 
+      item:
+        interactable: False
+        name: light switch
+        states:
+        - desc: The light switch is off
+          transitions:
+            - wait_for: 
+                - click
+              trigger: 
+                - change_visible, tool, garden shears, True
+                - change_state, 1
+                - change_interact, False
+              reward: The light switch is on and you can see a garden shears on the shelf
+        - desc: The light switch is on, you could see the room clearly
+    - position: On the left side 
+      item:
+        name: door on the left
+        states:
+        - desc: The door is locked
+          transitions:
+            - wait_for: 
+                - apply, key 3
+              trigger: 
+                - change_visible, scene, hidden room, True
+                - change_state, 1
+                - change_interact, False
+              reward: The door on the right is opened, and you can see a hidden room inside. 
+        - desc: The door is unlocked now
+    - position: In the fridge
+      item:
+        name: block of ice
+        states:
+        - desc: The block of ice is frozen and you may want to get only a corner piece of from it
+          transitions:
+            - wait_for: 
+                - apply, chisel
+              trigger: 
+                - change_visible, tool, piece of ice, True
+                - change_state, 1
+                - change_interact, False
+              reward: You break the block of ice and get a piece of it
+        - desc: A block of ice, with a piece cut off
+    - position: On the front wall
+      item:
+        name: birthday chart
+        states:
+        - desc: The birthday chart is hanging on the wall with a six-digit number "690716" on it
+  tools:
+    - position: On the desk in the corner
+      tool:
+        name: frying pan
+        states:
+          - desc: an iron frying pan good for making dinner
+            apply_to: 
+              - hearth
+    - position: On the left wall
+      tool:
+        name: small key
+        states:
+          - desc: a normal small key in silver color
+            apply_to: 
+              - hearth
+    - position: On the right table
+      tool:
+        name: piece 3
+        states:
+          - desc: a piece of the fragment
+            apply_to: 
+              - circuit board
+    - position: In the fridge on the right side
+      tool:
+        name: piece 4
+        states:
+          - desc: a piece of the fragment
+            apply_to: 
+              - circuit board
+    - position: On the right shelf
+      tool:
+        name: key 2
+        states:
+          - desc: a normal key to unlock something
+            apply_to: 
+              - door on the right
+    - position: In the drawer of the hearth
+      tool:
+        visible: False
+        name: key 3
+        states:
+          - desc: a key with a chain
+            apply_to: 
+              - door on the left
+    - position: In the fridge
+      tool:
+        visible: False
+        name: piece of ice
+        states:
+          - desc: a piece of ice that have something inside
+            apply_to: 
+              - hearth
+    - position: In the piece of ice
+      tool:
+        visible: False
+        name: swipe card
+        states:
+          - desc: a swipe card with name 'Jason' on it
+            apply_to: 
+              - front door
+# scene 4            
+- name: storage room
+  desc: You're in a storage room
+  visible: False
+  scene_relations:
+    Back to the kitchen: kitchen
+  tools:
+    - position: On the shelf
+      tool:
+        name: gas tank
+        states:
+          - desc: a full tank of gas with a mouth extending out
+            apply_to: 
+              - hearth
+    - position: On the shelf
+      tool:
+        visible: False
+        name: garden shears
+        states:
+          - desc: a normal garden shears with a sharp end
+            apply_to: 
+              - flexible tube
+# scene 5           
+- name: hidden room
+  desc: You're in a hidden room with a front door and a keypad safe
+  visible: False
+  scene_relations:
+    Back to the kitchen: kitchen
+  items: 
+    - position: In the front
+      item:
+        name: front door
+        states:
+        - desc: The door with a card reader beside, have to first authorize to open
+          neg_reward: The red light shows, you may need to give authorization through card reader
+          transitions:
+            - wait_for: 
+                - apply, swipe card
+              trigger: 
+                - change_state, 1
+              reward: The card reader turns on a green light and shows 'Authorization Succeed'
+        - desc: The door now requires a 6-digit password to unlock, and you can see another four-digit number "7049" on the door
+          transitions:
+            - wait_for: 
+                - input, 690716
+              trigger: 
+                - change_interact, False
+              reward: You successfully unlock the front door and escape! GAME END!
+    - position: On the right wall
+      item:
+        name: keypad safe
+        states:
+        - desc: The keypad safe requires a 4-digit code to open
+          transitions:
+            - wait_for: 
+                - input, 7049
+              trigger: 
+                - change_visible, tool, buttons, True
+                - change_state, 1
+                - change_interact, False
+              reward: The keypad safe is opened and you can see buttons inside
+        - desc: The safe is now open
+    - position: On the right wall
+      item:
+        name: cabinet
+        states:
+        - desc: The cabinet has two holes on it, requiring to fit in something to open
+          transitions:
+            - wait_for: 
+                - apply, buttons
+              trigger: 
+                - change_state, 1
+              reward: The cabinet is opened and you need something heavy to make one hidden item appear
+        - desc: The cabinet requires something to pull down hidden space which you cannot reach now
+          transitions:
+            - wait_for: 
+                - apply, brick
+              trigger: 
+                - change_visible, tool, chisel, True
+                - change_state, 2
+                - change_interact, False
+              reward: You can see a chisel inside
+        - desc: The hidden cabinate space comes out now
+  tools:
+    - position: On the front wall
+      tool:
+        name: triangular key
+        states:
+          - desc: a rare triangular key, interesting shape
+            apply_to: 
+              - locked cabinet
+    - position: In a keypad safe
+      tool:
+        visible: False
+        name: buttons
+        states:
+          - desc: A pair of button, not sure what it might be used for
+            apply_to: 
+              - cabinet
+    - position: At the corner
+      tool:
+        name: brick
+        states:
+          - desc: a very heavy piece of brick
+            apply_to: 
+              - cabinet
+    - position: In the cabinet
+      tool:
+        visible: False
+        name: chisel
+        states:
+          - desc: a chisel with a sharp blade to scrape things
+            apply_to: 
+              - block of ice

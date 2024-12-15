@@ -1,0 +1,651 @@
+- name: hallway
+  desc: You are in a hallway with a blocked path straight ahead, a locked cabinet on the left, and a corridor to the right.
+  scene_relations:
+    To the blocked path close-up: blocked path close-up
+    To the cabinet close-up: cabinet close-up
+    To the hallway right: hallway right
+
+- name: blocked path close-up
+  desc: A closer look at the pile of debris blocking the hallway. 
+  scene_relations:
+    Back to the hallway: hallway
+  items:
+  - position: Bottom left corner of the debris
+    item:
+      name: drawer without lock
+      interactable: True
+      states:
+      - desc: The drawer is closed but not locked. You need simply interact with it to open it.
+        neg_reward: It might be worth opening the drawer to find something useful.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 1
+      - desc: The drawer is now open, the book inside seems have a piece of paper hidden in it. You should click to interact with it to pick it up.
+        neg_reward: You need to further interact by click the paper to pick it up.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, tool, paper1, True
+            - change_interact, False
+            - change_state, 2
+          reward: You've found a piece of paper with a code on it.
+      - desc: The drawer is open.
+
+  tools:
+  - position: Inside the drawer
+    tool:
+      name: paper1
+      visible: False
+      states:
+      - desc: A piece of paper with the a code written on it.
+        apply_to:
+        - drawer with code lock
+
+- name: cabinet close-up
+  desc: A closer look at the locked cabinet on the left wall.
+  scene_relations:
+    Back to the hallway: hallway
+  items:
+  - position: On the cabinet door
+    item:
+      name: padlock
+      states:
+      - desc: A sturdy padlock secures the cabinet. But seems jamed and rusty inside, shuold be lubricated in order to use.
+        neg_reward: The padlock is jammed. You need to apply something to loosen it.
+        transitions:
+        - wait_for:
+            - apply, lubricant
+          trigger:
+            - change_state, 1
+      - desc: The padlock is lubricated and now can be unlocked with a key.
+        neg_reward: The padlock is lubricated. You could normally unlocked it with a matched key.
+        transitions:
+        - wait_for:
+            - apply, small key
+          trigger:
+            - change_state, 2
+      - desc: The padlock is now unlocked, but the cabinet is still closed. You need to further interact by click the cabinet door to open it.
+        neg_reward: Simply interact with the cabinet door to open it.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 3
+      - desc: The cabinet is now open, revealing a tons of clothes inside, but seems something is hidden in the clothes.
+        neg_reward: You need to further interact by click the clothes to find something useful.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, tool, ladder, True
+            - change_interact, False
+            - change_state, 4
+          reward: You've found a ladder hidden in the clothes.
+      - desc: The cabinet is open.
+
+  tools:
+  - position: Inside the cabinet
+    tool:
+      name: ladder
+      visible: False
+      states:
+      - desc: A sturdy ladder that can be used to reach high places.
+        apply_to:
+        - ventilation fan
+
+- name: hallway right
+  desc: A hallway with doors leading to Room 805, a small locked cabinet on the left, and a large open cabinet on the right. There's also a door leading to another room at the end of the hallway.
+  scene_relations:
+    To the small cabinet close-up: small cabinet close-up
+    To the large cabinet close-up: large cabinet close-up
+    To the ventilation fan close-up: ventilation fan close-up
+    To the operating room door overview: operating room door overview
+    To the operating room: operating room
+    To room 805 door view: room 805 door view
+    To room 805: room 805
+    To the hallway: hallway
+
+
+- name: small cabinet close-up
+  desc: A closer look at the small cabinet on the left.
+  scene_relations:
+    Back to the hallway right: hallway right
+  items:
+  - position: On the cabinet door
+    item:
+      name: small cabinet door
+      states:
+      - desc: The small cabinet is missing a handle and cannot be opened.
+        neg_reward: It looks like you have to first ensemble a handle to open the cabinet.
+        transitions:
+        - wait_for:
+            - apply, door handle
+          trigger:
+            - change_state, 1
+      - desc: The small cabinet is now unlocked and can be opened. You need to further interact by click the cabinet door to open it.
+        neg_reward: Simply interact with the cabinet door to open it.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 2
+            - change_visible, tool, paper4, True
+            - change_interact, False
+      - desc: The small cabinet is open. There is a piece of paper inside.
+
+  tools:
+  - position: Inside the small cabinet
+    tool:
+      name: paper4
+      visible: False
+      states:
+      - desc: A piece of paper with a code on it (paper4).
+        apply_to:
+        - drawer with code lock
+
+- name: large cabinet close-up
+  desc: A closer look at the large cabinet on the right wall. The door is slightly ajar, and it can be opened easily.
+  scene_relations:
+    Back to the hallway right: hallway right
+  items:
+  - position: On the cabinet door
+    item:
+      name: large cabinet door
+      interactable: True
+      states:
+      - desc: The large cabinet door is slightly ajar. You can open it by simply interacting with it.
+        neg_reward: The cabinet looks like it can be opened easily by simply interacting with it.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 1
+            - change_interact, False
+            - change_visible, tool, key for room 805, True
+      - desc: The large cabinet is now fully open, revealing something inside.
+
+  tools:
+  - position: Inside the large cabinet
+    tool:
+      name: key for room 805
+      visible: False
+      states:
+      - desc: There's a key inside the cabinet, labeled "Room 805"
+        apply_to:
+        - room 805 door
+
+- name: room 805 door view
+  desc: There's a door to Room 805.
+  scene_relations:
+    Back to the hallway right: hallway right
+  items:
+  - position: On the door
+    item:
+      name: room 805 door
+      states:
+      - desc: The door to Room 805 is locked, with a keyhole.
+        neg_reward: The door won't open. It seems to be locked.
+        transitions:
+        - wait_for:
+            - apply, key for room 805
+          trigger:
+            - change_state, 1
+      - desc: The door to Room 805 is now unlocked and can be opened. You need to further interact by click the door to open it.
+        neg_reward: Simply interact with the door to open it.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, scene, room 805, True
+            - change_interact, False
+            - change_state, 2
+      - desc: The door to Room 805 is open.
+
+- name: ventilation fan close-up
+  desc: A closer look at the ventilation fan at the end of the hallway.
+  scene_relations:
+    Back to the hallway right: hallway right
+    To the elevator room: elevator room  # 这里明确写出电梯间场景
+  items:
+  - position: On the wall
+    item:
+      name: ventilation fan
+      states:
+      - desc: A ventilation fan is mounted on the wall, it's too high to reach directly.
+        neg_reward: The fan is mounted too high. You need something to reach it.
+        transitions:
+        - wait_for:
+            - apply, ladder
+          trigger:
+            - change_state, 1
+      - desc: You can now reach the ventilation fan using the ladder.
+        neg_reward: You can simply interact with the ventilation fan now to get something.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, scene, elevator room, True
+            - change_interact, False
+            - change_state, 2
+        reward: You've used the ladder and discovered a new area, the elevator room.
+      - desc: The ventilation fan is now accessible.
+
+- name: elevator room
+  desc: You are now inside the elevator room. There's an elevator and a piece of paper with a code on it.
+  visible: False
+  scene_relations:
+    Back to the ventilation fan close-up: ventilation fan close-up
+    To the elevator interior: elevator interior
+  items:
+  - position: On the floor
+    item:
+      name: paper with code
+      states:
+      - desc: A piece of paper with the code "1121 = " written on it, seems like part of a code for math solving.
+        neg_reward: You cannot bring it with you, but could use it as a hint later.
+
+- name: elevator interior
+  desc: You are inside the elevator. There's a control panel with an exposed circuit board.
+  scene_relations:
+    Back to the elevator room: elevator room
+  items:
+  - position: On the control panel
+    item:
+      name: circuit board
+      states:
+      - desc: An exposed circuit board that is broken. It seems like you might need a electrical tool to fix it.
+        neg_reward: The circuit board is exposed and need a tool to fix it before you can use the elevator.
+        transitions:
+        - wait_for:
+            - apply, electric drill
+          trigger:
+            - change_interact, False
+          reward: Congratulations! You've fixed the elevator and completed the game. GAME END!
+        
+
+- name: operating room door overview
+  desc: A door at the end of the hallway.
+  scene_relations:
+    Back to the hallway right: hallway right
+  items:
+  - position: At end of the hallway
+    item:
+      name: operating room door
+      states:
+      - desc: The door is locked and won't open. There's a card reader next to it.
+        neg_reward: The door is tightly locked, and might need a card to slide in the card reader for authorization.
+        transitions:
+        - wait_for:
+            - apply, keycard
+          trigger:
+            - change_state, 1
+            - change_visible, scene, operating room, True
+            - change_interact, False
+      - desc: The door is now unlocked. You can enter.
+
+
+- name: room 805
+  desc: You are inside room 805. There is a desk, a left bookshelf, a right bookshelf, a bed, and a bedside table.
+  visible: False
+  scene_relations:
+    To the desk close-up: desk close-up
+    To the left bookshelf close-up: left bookshelf close-up
+    To the right bookshelf close-up: right bookshelf close-up
+    To the bedside table close-up: bedside table close-up
+    To the right part of the room: 805 right room
+    To the hallway right: hallway right
+
+- name: desk close-up
+  desc: A close-up view of the desk.
+  scene_relations:
+    Back to the room 805: room 805
+  items:
+  - position: Under the desk
+    item:
+      name: drawer with code lock
+      states:
+      - desc: The drawer is locked with a 12-character code lock. It can only be opened after filling in multiple paper codes.
+        neg_reward: You need to apply all four paper codes to open the drawer.
+        transitions:
+        - wait_for:
+            - apply, paper1
+            - apply, paper2
+            - apply, paper3
+            - apply, paper4
+          trigger:
+            - change_state, 1
+      - desc: The drawer is now unlocked.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, tool, lubricant, True
+            - change_interact, False
+            - change_state, 2
+      - desc: The drawer is now open, revealing a lubricant bottle inside.
+
+  tools:
+  - position: Inside the drawer
+    tool:
+      name: lubricant
+      visible: False
+      states:
+      - desc: A bottle of lubricant, useful to lubricate and loose rusty things.
+        apply_to:
+        - padlock
+
+- name: left bookshelf close-up
+  desc: A closer look at the left bookshelf.
+  scene_relations:
+    Back to room 805: room 805
+  items:
+  - position: On the bookshelf
+    item:
+      name: book1
+      interactable: True
+      states:
+      - desc: Book1 is in the default state (placed in).
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 1
+            - change_interact, item, book4, True
+      - desc: Book1 is pulled out.
+
+  - position: On the bookshelf
+    item:
+      name: book2
+      interactable: False
+      states:
+      - desc: Book2 is in the default state (placed in).
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 1
+            - change_interact, item, book3, True
+      - desc: Book2 is pulled out.
+
+  - position: On the bookshelf
+    item:
+      name: book3
+      interactable: False
+      states:
+      - desc: Book3 is in the default state (placed in).
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 1
+            - change_interact, item, book5, True
+      - desc: Book3 is pulled out.
+
+  - position: On the bookshelf
+    item:
+      name: book4
+      interactable: False
+      states:
+      - desc: Book4 is in the default state (placed in).
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 1
+            - change_interact, item, book2, True
+      - desc: Book4 is pulled out.
+
+  - position: On the bookshelf
+    item:
+      name: book5
+      interactable: False
+      states:
+      - desc: Book5 is in the default state (placed in).
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_state, 1
+            - change_visible, tool, keycard, True
+            - change_interact, False
+            - change_interact, item, book4, False
+            - change_interact, item, book3, False
+            - change_interact, item, book2, False
+            - change_interact, item, book1, False
+      - desc: Book5 is pulled out. Something hidden is revealed on the shelf
+        
+
+  tools:
+  - position: On the bookshelf
+    tool:
+      name: keycard
+      visible: False
+      states:
+      - desc: A keycard with name "Dr. Smith" on it, might be used for authorization.
+        apply_to:
+        - operating room door
+
+- name: bedside table close-up
+  desc: A close-up view of the bedside table.
+  scene_relations:
+    Back to room 805: room 805
+  items:
+  - position: Beside the bed
+    item:
+      name: bedside drawer
+      states:
+      - desc: The drawer is locked with a 3-digit code lock.
+        neg_reward: You need to input the correct 3-digit code to open it. Try to use 3-digit hint you got.
+        transitions:
+        - wait_for:
+            - input, 150
+          trigger:
+            - change_state, 1
+      - desc: The drawer is now unlocked, some books covered a piece of paper.
+        neg_reward: You need to simply interact to retrieve the paper.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, tool, paper2, True
+            - change_interact, False
+            - change_state, 2
+          reward: You've found a piece of paper with part of the code on it.
+      - desc: The drawer is open.
+  
+  tools:
+  - position: Inside the drawer
+    tool:
+      name: paper2
+      visible: False
+      states:
+      - desc: A piece of paper with part of the code on it.
+        apply_to:
+        - drawer with code lock
+
+- name: right bookshelf close-up
+  desc: A closer look at the right bookshelf.
+  scene_relations:
+    Back to room 805: room 805
+  tools:
+  - position: On the shelf
+    tool:
+      name: battery
+      states:
+      - desc: A battery with power and still usable.
+        apply_to:
+        - unfunctional drill
+
+- name: 805 right room
+  desc: You are in the right part of room 805. There is a TV cabinet, a globe, and two paintings on the wall.
+  scene_relations:
+    Back to the room 805: room 805
+  items:
+  - position: Left wall
+    item:
+      name: painting2
+      interactable: True
+      states:
+      - desc: A painting showing the number "150" in bold.
+        neg_reward: It could be a hint for something.
+
+  tools:
+  - position: On top of the TV cabinet
+    tool:
+      name: drill bit
+      visible: True
+      states:
+      - desc: A drill bit that seems could be ensemble with something else.
+        apply_to:
+        - unfunctional drill
+
+- name: operating room
+  desc: You are inside the operating room. There is a surgical table, a cabinet on the left, and a human anatomy poster on the wall.
+  visible: False
+  scene_relations:
+    To the surgical table close-up: surgical table close-up
+    To the cabinet close-up: operating room cabinet close-up
+    To the anatomy poster close-up: anatomy poster close-up
+    To the hallway right: hallway right
+
+- name: surgical table close-up
+  desc: A close-up view of the surgical table. There is a key hidden somewhere on the table.
+  scene_relations:
+    Back to the operating room: operating room
+  tools:
+  - position: On the surgical table
+    tool:
+      name: small key
+      visible: True
+      states:
+      - desc: A small key with a tag writes "lock" on it.
+        apply_to:
+        - padlock
+
+- name: operating room cabinet close-up
+  desc: A closer look at the cabinet. There are two sections, the upper and lower parts, containing various medical items.
+  scene_relations:
+    Back to the operating room: operating room
+    To the upper cabinet: upper cabinet close-up
+    To the lower cabinet: lower cabinet close-up
+
+- name: upper cabinet close-up
+  desc: A closer look at the upper section of the cabinet. There are medical items and a piece of paper.
+  scene_relations:
+    Back to the operating room cabinet close-up: operating room cabinet close-up
+  tools:
+  - position: On the shelf
+    tool:
+      name: paper3
+      visible: True
+      states:
+      - desc: A piece of paper with some code on it.
+        apply_to:
+        - drawer with code lock
+
+- name: lower cabinet close-up
+  desc: A closer look at the lower section of the cabinet.
+  scene_relations:
+    Back to the operating room cabinet close-up: operating room cabinet close-up
+  tools:
+  - position: Upper drawer
+    tool:
+      name: door handle
+      visible: True
+      states:
+      - desc: A handle that could be used to open some kind of door.
+        apply_to:
+        - small cabinet door
+
+  items:
+  - position: Bottom drawer
+    item:
+      name: locked drawer
+      states:
+      - desc: The drawer is locked and requires a math code to open. The equation is 8 4 6 = 6 7 4. You need to solve it by filling in 3 basic operations (+, -, *) in the space. For example, format should be like 8-4*6=6+7*4, but this is wrong as both sides are not equal.
+        neg_reward: The drawer won't open until you enter the correct operation (hint - only +, -, * are used).
+        transitions:
+        - wait_for:
+            - input, 8*4+6=6*7-4
+          trigger:
+            - change_state, 1
+      - desc: The drawer is now unlocked, revealing something inside. You have to click to interact with it.
+        neg_reward: You need to further interact by click the item to pick it up.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, item, drawer contents, True
+            - change_interact, False
+            - change_state, 2
+      - desc: The drawer is open.
+
+  - position: Inside the bottom drawer
+    item:
+      name: drawer contents
+      visible: False
+      interactable: True
+      states:
+      - desc: A paper piece that writes '1212 +', seems like part of a hint
+
+- name: anatomy poster close-up
+  desc: A closer look at the anatomy poster.
+  scene_relations:
+    Back to the operating room: operating room
+  items:
+  - position: Behind the poster
+    item:
+      name: safe
+      states:
+      - desc: A locked safe is hidden behind the poster. It requires a 4-digit code to open.
+        neg_reward: The safe is locked. You shuold find two parts of the hints about a math equation, and solve it to get the code.
+        transitions:
+        - wait_for:
+            - input, 2333
+          trigger:
+            - change_state, 1
+      - desc: The safe is now unlocked, revealing something inside. You need to click to interact with it.
+        neg_reward: You need to further interact by click the item to pick it up.
+        transitions:
+        - wait_for:
+            - click
+          trigger:
+            - change_visible, item, unfunctional drill, True
+            - change_interact, False
+            - change_state, 2
+      - desc: The safe is open.
+
+  - position: Inside the safe
+    item:
+      name: unfunctional drill
+      visible: False
+      interactable: True
+      states:
+      - desc: An electric drill is inside the safe. It's currently out of power.
+        neg_reward: You need to first power it on.
+        transitions:
+        - wait_for:
+            - apply, battery
+          trigger:
+            - change_state, 1
+      - desc: The electric drill is now powered on but still lacks a head to function properly.
+        neg_reward: You need to ensemble the head of this drill to make it functional.
+        transitions:
+        - wait_for:
+            - apply, drill bit
+          trigger:
+            - become_tool, electric drill
+            - change_visible, False
+
+  tools:
+  - position: Inside the safe
+    tool:
+      name: electric drill
+      visible: False
+      states:
+      - desc: The electric drill is now fully assembled and ready to fix things.
+        apply_to:
+        - circuit board

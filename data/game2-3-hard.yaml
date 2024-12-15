@@ -1,0 +1,1281 @@
+- name: outside of the cabin house
+  desc: The cabin house is located in a beautiful forest. There are several steps of stairs at the entrance to get to the front door.
+  scene_relations:
+    To the stairs close-up: stairs close-up
+    To the front door close-up: front door close-up
+    To the windows close-up: windows close-up from outside
+
+- name: stairs close-up
+  desc: A close look at the entrance stairs. There are several stones behind the stairs and a piece of chalk on one step.
+  scene_relations:
+    Back to the outside of the cabin house: outside of the cabin house
+  tools:
+  - position: Behind the stairs
+    tool:
+      name: chalk
+      states:
+      - desc: A piece of chalk on one step of the stairs, there's some dust when picking up.
+        wait_for:
+        - pestle
+      - desc: Some dust of chalk. You may apply it to some objects.
+        apply_to:
+        - mirror
+
+  - position: On one step of the stairs
+    tool:
+      name: stone
+      states:
+      - desc: One of the stones behind the entrance stairs, hard and heavy.
+        apply_to:
+        - window
+
+- name: front door close-up
+  desc: A close look at the front door. There are three club cards on the door and a "= 240" written next.
+  scene_relations:
+    Back to the outside of the cabin house: outside of the cabin house
+  items:
+  - position: On the door
+    item:
+      name: handle on the front foor
+      states:
+      - desc: There is a handle on the front door.
+
+- name: windows close-up from outside
+  desc: A close look at windows from outside. All the windows are closed.
+  scene_relations:
+    Back to the outside of the cabin house: outside of the cabin house
+    To the workspace area: workspace area
+  items:
+  - position: On the outer wall of the house
+    item:
+      name: window
+      states:
+      - desc: One of the windows on the outer wall. Seems could break in.
+        transitions:
+        - wait_for:
+          - apply, stone
+          trigger:
+          - change_state, 1
+          - change_visible, scene, workspace area, True
+          - change_interact, False
+          reward: The window on the outer wall is broken now. There is a workspace area inside.
+      - desc: The window on the outer wall is broken now. There is a workspace area inside.
+
+- name: workspace area
+  visible: False
+  desc: A workspace area in a corner. There is a desk on the right, a cabinet on the left, a shelf on the right side of the wall, two photos of a car and a map on the left side of the wall. There is also a ladder that goes to the attic.
+  scene_relations:
+    Back to the windows close-up from outside: windows close-up from outside
+    To the workspace cabinet close-up: workspace cabinet close-up
+    To the desk close-up: desk close-up
+    To the workspace shelf close-up: workspace shelf close-up
+    To the car photos and map close-up: car photos and map close-up
+    To the attic: attic
+    To the kitchen: kitchen
+    To the living room: living room
+
+- name: workspace cabinet close-up
+  desc: A close look at the cabinet in the workspace. Left part is open and there are several file folders. There is a closed door on the right part.
+  scene_relations:
+    Back to the workspace area: workspace area
+  items:
+  - position: On the front of the workspace cabinet
+    item:
+      name: cabinet door
+      states:
+      - desc: The cabinet door is closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, battery, True
+          - change_interact, False
+          reward: The cabinet door is open now. There is a battery in the cabinet.
+      - desc: The cabinet door is open now.
+
+  tools:
+  - position: In the cabinet
+    tool:
+      name: battery
+      visible: False
+      states:
+      - desc: A battery in the workspace cabinet.
+        apply_to:
+        - battery slot
+
+- name: desk close-up
+  desc: A desk in the workspace area. There is a club card, two heart cards, and a "= 290" written next. There is also a ruler on the table.
+  scene_relations:
+    Back to the workspace area: workspace area
+  tools:
+  - position: On the desk
+    tool:
+      name: ruler
+      states:
+      - desc: A ruler on the workspace desk. Made of iron and has a sharp edge, thin and long.
+        apply_to:
+        - attic door
+
+  - position: In the first drawer on the right
+    tool:
+      name: badge with castle pattern
+      visible: False
+      states:
+      - desc: A small badge with castle pattern, made of metal.
+        apply_to:
+        - five badge slots
+
+  items:
+  - position: On the right below the desk
+    item:
+      name: first drawer on the right
+      states:
+      - desc: The drawer is locked. There is a 3-digit password lock.
+        transitions:
+        - wait_for:
+          - input, 330
+          trigger:
+          - change_state, 1
+          reward: The drawer is unlcoked. You can open it to see what is inside now.
+      - desc: The drawer is unlocked. It is closed now.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 2
+          - change_visible, tool, badge with castle pattern, True
+          - change_interact, False
+          reward: The drawer is opened. There is a badge with castle pattern you might want to collect.
+      - desc: The drawer is open
+
+  - position: On the right below the desk
+    item:
+      name: second drawer on the right
+      states:
+      - desc: The drawer is closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The drawer is open now. But it is empty.
+      - desc: The drawer is open now. But it is empty.
+
+- name: workspace shelf close-up
+  desc: A shelf in the workspace area. There is a yellow cube, a red pyramid, a blue hemisphere on the shelf.
+  scene_relations:
+    Back to the workspace area: workspace area
+  items:
+  - position: On the left (the 1st position) on the shelf
+    item:
+      name: yellow cube
+      states:
+      - desc: The yellow cube is on the shelf. You may further interact with it.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The yellow cube is turned over. There is a circle is on the bottom side of it.
+      - desc: The yellow cube is turned over. There is a circle is on the bottom side of it.
+
+  - position: In the middle (the 2nd position) on the shelf
+    item: 
+      name: red pyramid
+      states:
+      - desc: The red pyramid is on the shelf. You may further interact with it.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The red pyramid is turned over. There is a diamond is on the bottom side of it.
+      - desc: The red pyramid is turned over. There is a diamond is on the bottom side of it.
+
+  - position: On the right (the 3rd position) on the shelf
+    item: 
+      name: blue hemisphere
+      states:
+      - desc: The blue hemisphere is on the shelf. You may further interact with it.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The blue hemisphere is turned over. There is a triangle is on the bottom side of it.
+      - desc: The blue hemisphere is turned over. There is a triangle is on the bottom side of it.
+
+  - position: On the right (the 4th position) on the shelf
+    item:
+      name: green cylinder placed on shelf
+      visible: False
+      states:
+      - desc: The green cylinder is on the shelf. You may further interact with it.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The green cylinder is turned over. There is a square is on the bottom side of it.
+      - desc: The green cylinder is turned over. There is a square is on the bottom side of it.
+
+  - position: On the right (the 4th position) on the shelf
+    item: 
+      name: empty 4th shelf position
+      states:
+      - desc: The 4th position on the shelf on the right of the blue hemisphere, which is empty now.
+        transitions:
+        - wait_for:
+          - apply, green cylinder
+          trigger:
+          - change_visible, False
+          - change_visible, item, green cylinder placed on shelf, True
+          reward: The green cylinder has been placed onto the shelf.
+
+- name: car photos and map close-up
+  desc: The left side of the wall in the workspace area. There is a black-and-white car photo, a colored car photo and a map on the wall.
+  scene_relations:
+    Back to the workspace area: workspace area
+  tools:
+  - position: On the left side of the wall in the workspace area
+    tool:
+      name: map
+      states:
+      - desc: A map with coordinates. These are the objects in the map along with their coordinates. Tree (A 5). Flag (D 5). Castle (D 8). Birds (D 2). Deer (E 6). Hills (G 5).
+  
+  items:
+  - position: On the left side of the wall in the workspace area
+    item: 
+      name: black-and-white car photo
+      states:
+      - desc: A black-and-white car photo. Nothing special about it.
+
+  - position: On the left side of the wall in the workspace area
+    item: 
+      name: colored car photo
+      states:
+      - desc: A colored car photo. The car is painted in four colors. From left to right, they are red, green, blue, and yellow. The color seems to be hint about something.
+
+- name: attic
+  desc: The attic on the second floor. There is a painting on the wall, a messy bed in the right corner, a radio in the left corner, and a closed small door.
+  scene_relations:
+    Back to the workspace area: workspace area
+    To the attic door close-up: attic door close-up
+  tools:
+  - position: On the wall behind the painting
+    tool:
+      name: magnet
+      visible: False
+      states:
+      - desc: A normal magnet
+        apply_to:
+        - magnet slot
+
+  items:
+  - position: On the wall in the attic
+    item:
+      name: painting
+      states:
+      - desc: The painting is on the wall.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, magnet, True
+          - change_interact, False
+          reward: The painting is taken off the wall and there is a magnet on the wall used to stick the painting on the wall.
+      - desc: The painting is off the wall and is placed on the floor.
+
+- name: attic door close-up
+  desc: A close look at the door in the attic.
+  scene_relations:
+    Back to the attic: attic
+    To the fingerprint scanner close-up: fingerprint scanner close-up
+  tools:
+  - position: In the right corner of storage space in attic
+    tool:
+      name: adhesive tape
+      visible: False
+      states:
+      - desc: A roll of adhesive tape, sticky and transparent.
+        apply_to:
+        - mirror
+
+  - position: In the middle of storage space in attic
+    tool:
+      name: green cylinder
+      visible: False
+      states:
+      - desc: A small green cylinder
+        apply_to:
+        - empty 4th shelf position
+
+  - position: In the safe in attic
+    tool:
+      name: badge with tree pattern
+      visible: False
+      states:
+      - desc: A badge with tree pattern, made of metal.
+        apply_to:
+        - five badge slots
+
+  items:
+  - position: In the attic on second floor
+    item:
+      name: attic door
+      states:
+      - desc: The attic door is closed, have to find a way to pry open it.
+        transitions:
+        - wait_for:
+          - apply, ruler
+          trigger:
+          - change_state, 1
+          - change_visible, tool, adhesive tape, True
+          - change_visible, tool, green cylinder, True
+          - change_visible, item, attic safe, True
+          - change_visible, scene, fingerprint scanner close-up, True
+          - change_interact, False
+          reward: The attic door is open now. There is a storage space with some stuff inside.
+      - desc: The attic door is open. There is a storage space with some stuff inside.
+
+  - position: In the left part of the attic storage space
+    item:
+      name: attic safe
+      visible: False
+      states:
+      - desc: A safe in the attic storage area. It is locked now.
+      - desc: A safe in the attic storage area. It is unlocked now.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, badge with tree pattern, True
+          - change_interact, False
+          reward: The safe in the attic storage space is open. There is a badge with tree pattern in it.
+      - desc: A safe in the attic storage area. It is open now. There is a badge with tree pattern in it.
+
+- name: fingerprint scanner close-up
+  visible: False
+  desc: A close look at the fingerprint in the attic storage space.
+  scene_relations:
+    Back to the attic door close-up: attic door close-up
+  tools:
+  - position: In one of the screw hole in the right part of the attic storage space
+    tool:
+      name: badge with bird pattern
+      visible: False
+      states:
+      - desc: A badge with bird pattern, made of metal.
+        apply_to:
+        - five badge slots
+
+  items:
+  - position: In the left part of the attic storage space
+    item:
+      name: fingerprint scanner
+      states:
+      - desc: A working fingerprint scanner. You need a valid fingerprint for authorization.
+        transitions:
+        - wait_for:
+          - apply, adhesive tape with fingerprint
+          trigger:
+          - change_state, 1
+          - change_state, item, attic safe, 1
+          - change_interact, False
+          reward: The safe in the attic storage space is unlocked now.
+      - desc: A working fingerprint scanner. The safe in the attic storage space is unlocked now.
+
+  - position: In the right part of the attic storage space
+    item:
+      name: bolt
+      states:
+      - desc: A bolt installed next to the fingerprint scanner.
+
+  - position: In the right part of the attic storage space
+    item:
+      name: loose bolt
+      states:
+      - desc: A bolt installed next to the fingerprint scanner. A little loose now.
+        transitions:
+        - wait_for:
+          - apply, wrench
+          trigger:
+          - change_state, 1
+          - change_visible, tool, badge with bird pattern, True
+          - change_interact, False
+          reward: The loose bolt is screwed off. There is a badge with bird pattern in the screw hole.
+      - desc: The bolt installed next to the fingerprint scanner has been screwed off.
+
+- name: kitchen
+  desc: The kitchen to the right of the workspace area. On the right side, there is a sink, a shelf above the sink, and a mirror next to the sink. On the left side, there is a food preparation area and a shelf above it.
+  scene_relations:
+    Back to the workspace area: workspace area
+    Back to the windows close-up from outside: windows close-up from outside
+    To the shelf above sink close-up: shelf above sink close-up
+    To the mirror close-up: mirror close-up
+    To the drawers below sink close-up: drawers below sink close-up
+    To the shelf above food preparation area close-up: shelf above food preparation area close-up
+    To the drawers below food preparation area close-up: drawers below food preparation area close-up
+    To the sink close-up: sink close-up
+    To the kitchen door close-up: kitchen door close-up
+    To the storage room: storage room
+
+- name: shelf above sink close-up
+  desc: A close look at the shelf above the sink in the kitchen. There are some plates and a bottle of glycerin on the shelf.
+  scene_relations:
+    Back to the kitchen: kitchen
+  tools:
+  - position: On the shelf above the sink in the kitchen
+    tool:
+      name: glycerin
+      states:
+      - desc: A bottle of glycerin, a chemical liquid. It is transparent and sticky.
+        apply_to:
+        - fireplace
+
+- name: mirror close-up
+  desc: A close look at the mirror next to the sink in the kitchen. There are stains and dirts on the mirror.
+  scene_relations:
+    Back to the kitchen: kitchen
+  tools:
+  - position: Stuck on the mirror
+    tool:
+      name: adhesive tape with fingerprint
+      visible: False
+      states:
+      - desc: A piece of adhesive tape with fingerprint, copied from the mirror in the kitchen.
+        apply_to:
+        - fingerprint scanner
+
+  items:
+  - position: Next to the sink in the kitchen
+    item:
+      name: mirror
+      states:
+      - desc: A mirror with some stains and dirts. There might be something you want hidden on the mirror.
+        transitions:
+        - wait_for:
+          - apply, chalk
+          trigger:
+          - change_state, 1
+          reward: The mirror is covered with chalk dust.
+      - desc: A mirror covered with chalk dust. Something might reveal if gently remove the dust.
+        transitions:
+        - wait_for:
+          - apply, brush
+          trigger:
+          - change_state, 2
+          reward: A clear fingerprint on the mirror shows up in chalk dust.
+      - desc: A mirror with a clear fingerprint showing up in chalk dust.
+        transitions:
+        - wait_for:
+          - apply, adhesive tape
+          trigger:
+          - change_interact, False
+          - change_visible, tool, adhesive tape with fingerprint, True
+          - change_state, 3
+          reward: The fingerprint on the mirror is successfully copied onto the adhesive tape. You can tear that piece of tape off the mirror now.
+      - desc: The fingerprint on the mirror is successfully copied onto the adhesive tape.
+
+- name: drawers below sink close-up
+  desc: A close look at the drawers below the sink in the kitchen.
+  scene_relations:
+    Back to the kitchen: kitchen
+  tools:
+  - position: In the lower right drawer below the sink
+    tool:
+      name: table sheet
+      visible: False
+      states:
+      - desc: This is the table content in this sheet. "| 1 | 4 | 2 | 8 |\n| 3 | 6 | 6 | 1 |\n| 2 | 7 | 5 | 4 |\n| 7 | 5 | 3 | 8 |"
+
+  items:
+  - position: On the lower left side of the sink
+    item:
+      name: lower left drawer below sink
+      states:
+      - desc: The drawer on the lower left side of the sink. It is closed now.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The drawer on the lower left side of the sink is open now. There is a cookware set.
+      - desc: The drawer is open now, nothing special here.
+
+  - position: On the lower right side of the sink
+    item:
+      name: lower right drawer below sink
+      states:
+      - desc: The drawer on the lower right side of the sink. It is closed now.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, table sheet, True
+          - change_interact, False
+          reward: The drawer on the lower right side of the sink is open now. There is a table sheet paper.
+      - desc: The drawer on the lower right side of the sink is open now
+
+- name: shelf above food preparation area close-up
+  desc: A close look at the shelf above food preparation area close-up in the kitchen.
+  scene_relations:
+    Back to the kitchen: kitchen
+  items:
+  - position: On the front of the shelf above food preparation area
+    item:
+      name: left door of the shelf above food preparation area
+      states:
+      - desc: This half of shelf door is open. There are some plates in the shelf.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: This half of shelf door is closed. Something is outside of it.
+      - desc: This half of shelf door is closed. There are two cards on the outer side of it. From left to right, they are a spade card and a club card.
+
+  - position: On the front of the shelf above food preparation area
+    item:
+      name: right door of the shelf above food preparation area
+      states:
+      - desc: This half of shelf door is closed. On the outer side of it, there is a heart card and a "=" next. The answer after "=" has been wiped out.
+
+- name: drawers below food preparation area close-up
+  desc: A close look at the drawers below food preparation area close-up in the kitchen.
+  scene_relations:
+    Back to the kitchen: kitchen
+  tools:
+  - position: In the shelf the below food preparation area
+    tool:
+      name: pestle
+      visible: False
+      states:
+      - desc: A pestle for grinding things
+        apply_to:
+        - chalk
+
+  - position: In the drawer the below food preparation area
+    tool:
+      name: cup of cold water
+      visible: False
+      states:
+      - desc: A cup of cold water in the drawer in kitchen. There is an empty table sheet painted on the mug cup. "|   |   |   |   |\n|   |   |   |   |\n|   |   |   |   |\n|   |   |   |   |"
+        apply_to:
+        - fireplace
+
+  items:
+  - position: On the lower left side of the food preparation area
+    item:
+      name: shelf below food preparation area
+      states:
+      - desc: The shelf below the food preparation area. It is closed now.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, pestle, True
+          - change_interact, False
+          reward: The shelf below the food preparation area is open now. There is a pestle in it.
+      - desc: The shelf below the food preparation area is open now.
+
+  - position: On the lower right side of the food preparation area
+    item:
+      name: drawer below food preparation area
+      states:
+      - desc: The drawer below the food preparation area. It is closed now.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, cup of cold water, True
+          - change_interact, False
+          reward: The drawer below the food preparation area is open now. There is a cup of cold water in it.
+      - desc: The drawer below the food preparation area is open now.
+
+- name: sink close-up
+  desc: A close look at the sink in the kitchen.
+  scene_relations:
+    Back to the kitchen: kitchen
+  tools:
+  - position: To the left of the sink
+    tool:
+      name: brush
+      states:
+      - desc: A brush with short handle and soft head.
+        apply_to:
+        - mirror
+  
+  - position: In the sink
+    tool:
+      name: cup of hot water
+      visible: False
+      states:
+      - desc: A cup of hot water. There is an table sheet painted on the mug cup. Some grids in the table turns blue when the mug is heated. Here "x" indicates the grids that turn blue. "| x | x |   | x |\n|   |   | x |   |\n| x | x | x |   |\n|   |   | x |   |"
+
+  items:
+  - position: Above the sink
+    item:
+      name: tap
+      states:
+      - desc: The tap in the kitchen. There is only cold water available now.
+      - desc: The tap in the kitchen. The hot water is available now, you may get hot water from here.
+        transitions:
+        - wait_for:
+          - apply, mug
+          trigger:
+          - change_visible, tool, cup of hot water, True
+          - change_interact, False
+          reward: Now you can obtain a cup of hot water.
+
+- name: kitchen door close-up
+  desc: A close look at the door in the kitchen. There are five badge slots and one password display under each slot. Each display can display one letter and one number.
+  scene_relations:
+    Back to the kitchen: kitchen
+  items:
+  - position: On the upper part of the kitchen door
+    item:
+      name: five badge slots
+      states:
+      - desc: There are 4 empty slots among the five badge slots.
+        transitions:
+        - wait_for:
+          - apply, badge with tree pattern
+          - apply, badge with hill pattern
+          - apply, badge with castle pattern
+          - apply, badge with bird pattern
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: Four of the badge slots have been filled in. That is enough. Now you should figure out the password below each badge slot.
+      - desc: Four of the five badge slots have been filled in. From left to right, there is a bird badge, a tree badge, a flag badge, a hill badge, and a castle badge.
+
+  - position: On the lower part of the kitchen door
+    item:
+      name: five password displays
+      states:
+      - desc: You should input correct coordinate password for each badge slot. Please follow the format like this to input the passwords. A1-B2-C3-D4-E5.
+        transitions:
+        - wait_for:
+          - input, D2-A5-D5-G5-D8
+          trigger:
+          - change_visible, scene, kitchen door close-up, False
+          - change_visible, scene, storage room, True
+          - change_interact, False
+          - change_state, 1
+          reward: The door in the kitchen is unlocked. The door goes to a storage room. Now you should go back to the scene of kitchen to open it
+      - desc: The door in the kitchen is unlocked. The door goes to a storage room.
+
+- name: storage room
+  visible: False
+  desc: The storage room that connects to the kitchen. There is a safe in this room.
+  scene_relations:
+    Back to the kitchen: kitchen
+    To the storage room safe close-up: storage room safe close-up
+    To the storage shelf close-up: storage shelf close-up
+    To the cellar door close-up: cellar door close-up
+
+- name: storage room safe close-up
+  desc: A close look at the safe in the storage room. It contains two parts. The left part involves a 4-digit password lock. The right part involves a magnet slot.
+  scene_relations:
+    Back to the storage room: storage room
+  tools:
+  - position: In the right part of the storage room safe
+    tool:
+      name: big brush
+      visible: False
+      states:
+      - desc: A big round brush with ring to tie
+        apply_to:
+        - chain
+
+  items:
+  - position: On the left of the storage room safe
+    item:
+      name: password lock
+      states:
+      - desc: A 4-digit password lock. It is not activated yet.
+      - desc: A 4-digit password lock. It is activated now. There is a empty slot of circle shape.
+        transitions:
+        - wait_for:
+          - apply, lock block
+          trigger:
+          - change_state, 2
+          reward: Now the password lock is ready. You can input password now.
+      - desc: A 4-digit password lock. It is activated now. A lock block has been installed on it. You need to input 4 digits.
+        transitions:
+        - wait_for:
+          - input, 0368
+          trigger:
+          - change_state, 3
+          - change_visible, item, red button, True
+          - change_interact, False
+          reward: Now the password lock is unlocked and open.
+      - desc: A 4-digit password lock. The password lock has been unlocked and open.
+
+  - position: In the left part of the storage room safe
+    item:
+      name: red button
+      visible: False
+      states:
+      - desc: A red button awiating for you to press.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_interact, False
+          reward: The exit door unlocks, and you can now leave. GAME END!
+
+  - position: On the right of the storage room safe
+    item:
+      name: magnet slot
+      states:
+      - desc: The magnet slot is empty.
+        transitions:
+        - wait_for:
+          - apply, magnet
+          trigger:
+          - change_state, item, right door of storage room safe, 1
+          - change_interact, False
+          - change_state, 1
+          reward: Now the right part of the storage room safe has been unlocked.
+      - desc: The magnet slot is filled with a magnet. The right part of the storage room safe is unlocked.
+
+  - position: On the right of the storage room safe
+    item:
+      name: right door of storage room safe
+      states:
+      - desc: The right door of storage room safe is locked.
+      - desc: The right door of storage room safe is unlocked. It is currently closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 2
+          - change_visible, tool, big brush, True
+          - change_interact, False
+          reward: The right door of storage room safe is open now.
+      - desc: The right door of storage room safe is open now.
+
+- name: storage shelf close-up
+  desc: A close look at the storage shelf in the storage room. There is a lock block, a weight, a sealed box, and some other sundries on the shelf.
+  scene_relations:
+    Back to the storage room: storage room
+  tools:
+  - position: On the second level of the storage shelf
+    tool:
+      name: lock block
+      states:
+      - desc: A metal round-shaped lock block with Engligh letter arranged in a circle on it.
+        apply_to:
+        - password lock
+
+  - position: On the third level of the storage shelf
+    tool:
+      name: weight
+      states:
+      - desc: A metal weight, heavy and solid.
+        apply_to:
+        - chain
+
+- name: cellar door close-up
+  desc: A close look at the cellar door on the ground in the storage room.
+  scene_relations:
+    Back to the storage room: storage room
+  tools:
+  - position: Behind the cellar door in the storage room
+    tool:
+      name: plier
+      visible: False
+      states:
+      - desc: A plier to cut open hard things
+        apply_to:
+        - weird container
+
+  - position: Behind the cellar door in the storage room
+    tool:
+      name: firewood
+      visible: False
+      states:
+      - desc: Some firewood, dry and could be used for burning.
+        apply_to:
+        - fireplace
+
+  items:
+  - position: On the cellar door
+    item:
+      name: handle slot
+      states:
+      - desc: There's no handle installed yet. You cannot open the cellar door.
+        transitions:
+        - wait_for:
+          - apply, handle
+          trigger:
+          - change_visible, False
+          - change_interact, False
+          - change_state, item, cellar door, 1
+          reward: The handle has been installed on the cellar door. Now you can interact with the cellar door.
+
+  - position: On the ground in the storage room
+    item:
+      name: cellar door
+      states:
+      - desc: The cellar door without handle.
+      - desc: The cellar door with handle. It is currently closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 2
+          - change_visible, tool, plier, True
+          - change_visible, tool, firewood, True
+          - change_interact, False
+          reward: The cellar door is opened.
+      - desc: The cellar door with handle. It is currently open.
+
+- name: living room
+  desc: The living to the left of the workspace area. There is a cabinet on the left, a clock, two portrait photos and a fireplace ahead, a shelf and a drawer on the right, and table and chairs in the middle.
+  scene_relations:
+    Back to the workspace area: workspace area
+    Back to the windows close-up from outside: windows close-up from outside
+    To the living room cabinet close-up: living room cabinet close-up
+    To the clock and photos close-up: clock and photos close-up
+    To the living room shelf close-up: living room shelf close-up
+    To the living room drawer close-up: living room drawer close-up
+    To the fireplace close-up: fireplace close-up
+    To the ceiling door close-up: ceiling door close-up
+
+- name: living room cabinet close-up
+  desc: A close look at the cabinet in the living room. There is a safe and some books in the cabinet, and a toolbox next to the cabinet.
+  scene_relations:
+    Back to the living room: living room
+    To the living room safe close-up: living room safe close-up
+    To the toolbox close-up: toolbox close-up
+    To the handbook close-up: handbook close-up
+  tools:
+  - position: In the toolbox next to the cabinet in the living room
+    tool:
+      name: screwdriver
+      visible: False
+      states:
+      - desc: A normal screwdriver
+        apply_to:
+        - battery slot
+
+  - position: In the safe in the cabinet in living room
+    tool:
+      name: wrench
+      visible: False
+      states:
+      - desc: A normal wrench
+        apply_to:
+        - loose bolt
+
+  - position: Woven on the barrel next to the toolbox in the living room
+    tool:
+      name: rope
+      visible: False
+      states:
+      - desc: A piece of rope that is strong and tough
+        apply_to:
+        - ceiling door
+
+  items:
+  - position: Next to the cabinet
+    item:
+      name: unlocked toolbox
+      visible: False
+      states:
+      - desc: The toolbox is unlocked now, but it is closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, screwdriver, True
+          - change_interact, False
+          reward: The toolbox is open.
+      - desc: The toolbox is unlocked and open.
+
+  - position: Next to the cabinet
+    item:
+      name: unlocked living room safe
+      visible: False
+      states:
+      - desc: The safe in the living room is unlocked now. But it is closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, wrench, True
+          - change_visible, scene, handbook close-up, True
+          reward: The safe in the living room is open. There is a wrench and a handbook in it.
+      - desc: The safe in the living room is unlocked and open.
+
+  - position: Next to the toolbox
+    item:
+      name: wooden barrel
+      states:
+      - desc: The wooden barrel is tied with rope tightly.
+        transitions:
+        - wait_for:
+          - apply, scalpel
+          trigger:
+          - change_visible, tool, rope, True
+          - change_interact, False
+          - change_state, 1
+          reward: A piece of rope is cut off the barrel.
+      - desc: Just a wooden barrel. Nothing is tied onto it.
+
+- name: living room safe close-up
+  desc: A close look at the safe in cabinet in the living room. There is an unlit light and an empty battery slot on the front of the safe.
+  scene_relations:
+    Back to the living room: living room cabinet close-up
+  items:
+  - position: On the front of the safe in the living room
+    item:
+      name: battery slot
+      states:
+      - desc: The battery slot is empty and there is a lid that screws on the battery slot.
+        transitions:
+        - wait_for:
+          - apply, screwdriver
+          trigger:
+          - change_state, 1
+          reward: The screw of the lid on the battery slot is removed. The lid is then removed.
+      - desc: The battery slot is empty and there is no lid on it.
+        transitions:
+        - wait_for:
+          - apply, battery
+          trigger:
+          - change_visible, scene, living room safe close-up, False
+          - change_visible, item, unlocked living room safe, True
+          - change_interact, False
+          - change_state, 2
+          reward: A battery is in the battery slot of the safe in the living room. The safe is in power and can be opened now. You should go back to the living room cabinet close-up to open it.
+      - desc: The battery slot is filled with a battery. The safe in the living room is in power now.
+
+- name: toolbox close-up
+  desc: A close look at the toolbox next to the cabinet in the living room. There is a numeric keypad pannel on the left and a clock-shaped logo along with a "C-Locks" text under the logo.
+  scene_relations:
+    Back to the living room: living room cabinet close-up
+  items:
+  - position: On the front of toolbox in living room
+    item:
+      name: toolbox keypad pannel
+      states:
+      - desc: The numeric keypad pannel on front of the toolbox. It requires a 4-digit password to unlock.
+        transitions:
+        - wait_for:
+          - input, 5487
+          trigger:
+          - change_visible, scene, toolbox close-up, False
+          - change_visible, item, unlocked toolbox, True
+          - change_interact, False
+          reward: Now this toolbox has been unlocked. You should go back to the scene of living room cabinet close-up to open it.
+
+- name: handbook close-up
+  visible: False
+  desc: A close look at the content of a handbook in the safe in the living room. It lists the translations between Arabic numerals, English, and Latin. This is the content. "1 - one - umis. 2 - two - duo. 3 - three - tres. 4 - four - quattuor. 5 - five - quinque. 6 - six - sex. 7 - seven - septem. 8 - eight - octo. 9 - nine - novem. 0 - zero - nihilum."
+  scene_relations:
+    Back to the living room cabinet close-up: living room cabinet close-up
+    
+- name: clock and photos close-up
+  desc: A close look at the clock and photos on the wall above the fireplace in the living room. The time on the clock is seven past nine. Notably, the positions of "4" and "5" on the clock are reversed and the positions of "7" and "8" are also reversed (forming 5487 as a hint). There are two cards stuck on the wall via adhesive tape next to the clock. From left to right, they are a heart card and a blade card. To the right of the second card, there is some remaining of adhesive tape. There is also a "= 395" below the two cards.
+  scene_relations:
+    Back to the living room: living room
+  tools:
+  - position: Below the clock on the fireplace
+    tool:
+      name: scalpel
+      states:
+      - desc: A scalpel with a sharp blade
+        apply_to:
+        - wooden barrel
+
+  items:
+  - position: Next to the clock above the fireplace
+    item:
+      name: adhesive tape remaining
+      states:
+      - desc: The remaining of adhesive tape on the wall, waiting to be used to stick something.
+        transitions:
+        - wait_for:
+          - apply, spade card
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The spade card is stuck onto the wall. Now it is observed that there is a heart card, two spade cards, and a "= 395" next.
+      - desc: The spade card is stuck onto the wall. Now it is observed that there is a heart card, two spade cards, and a "= 395" next.
+
+- name: living room shelf close-up
+  desc: A close look at the shelf above the drawer in the living room. There are a lot of books, a pyramid model, and a desktop magnifying glass on the shelf.
+  scene_relations:
+    Back to the living room: living room
+  tools:
+  - position: Inside the book with lock
+    tool:
+      name: potassium
+      visible: False
+      states:
+      - desc: A bottle of potassium. It may react fiercely with other chemical to produce heat.
+        apply_to:
+        - fireplace
+
+  items:
+  - position: On the shelf in the living room
+    item:
+      name: book with lock
+      states:
+      - desc: A book with lock on the top.
+        transitions:
+        - wait_for:
+          - apply, key
+          trigger:
+          - change_state, 1
+          reward: The book is unlocked
+      - desc: A book with lock. Now it is unlocked and closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 2
+          - change_visible, tool, potassium, True
+          - change_interact, False
+          reward: The book is open.
+      - desc: A book with lock. Now it is unlocked and open.
+
+- name: living room drawer close-up
+  desc: A close look at the drawer below the shelf in the living room. There is a chain with a lock on the front of the drawer.
+  scene_relations:
+    Back to the living room: living room
+  tools:
+  - position: In the left part of the drawer in the living room
+    tool:
+      name: badge with hill pattern
+      visible: False
+      states:
+      - desc: A badge with hill pattern, made of metal.
+        apply_to:
+        - five badge slots
+
+  - position: On the floor in front of the drawer in the living room
+    tool:
+      name: chain
+      visible: False
+      states:
+      - desc: a long mental chain that could be used to tie things together.
+        wait_for:
+        - weight
+        - big brush
+      - desc: A chain with a heavy weight tied on one end and a big brush on the other end.
+        apply_to:
+        - fireplace pipe
+
+  items:
+  - position: On the front of the drawer in living room
+    item:
+      name: lock of living room drawer
+      states:
+      - desc: A combination lock that has four slots in total. The value for each slot is a shape among circle, square, diamond, and triangle. Please follow the the format like this to input the combination e.g. circle-square-diamond-triangle
+        transitions:
+        - wait_for:
+          - input, diamond-square-triangle-circle
+          trigger:
+          - change_visible, False
+          - change_visible, item, left door of living room drawer, True
+          - change_visible, tool, chain, True
+          reward: The drawer is unlocked and the lock is removed. The chain is also released.
+
+  - position: On the front of the drawer in living room
+    item:
+      name: left door of living room drawer
+      visible: False
+      states:
+      - desc: The left door of living room drawer is closed.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, badge with hill pattern, True
+          reward: The left door of the drawer is opened.
+      - desc: The left door of living room drawer has been opened.
+
+- name: fireplace close-up
+  desc: A close look at the fireplace in the living room. There is spade card left on the floor, and a fire stick placed next to the fireplace.
+  scene_relations:
+    Back to the living room: living room
+  tools:
+  - position: On the floor near fireplace
+    tool:
+      name: spade card
+      states:
+      - desc: A spade card left on the floor
+        apply_to:
+        - adhesive tape remaining
+
+  - position: Next to the fireplace
+    tool:
+      name: fire stick
+      states:
+      - desc: A long fire stick that can crush things hot to touch.
+        apply_to:
+        - fireplace
+
+  - position: In the fireplace
+    tool:
+      name: key
+      visible: False
+      states:
+      - desc: A key that falls from the fireplace pipe
+        apply_to:
+        - book with lock
+
+  - position: Next to the fireplace
+    tool:
+      name: mug
+      visible: False
+      states:
+      - desc: An empty mug after the water in it has been used. There is an empty table sheet painted on the mug cup. "|   |   |   |   |\n|   |   |   |   |\n|   |   |   |   |\n|   |   |   |   |"
+        apply_to:
+        - tap
+
+  - position: In the weird container after burning
+    tool:
+      name: note sheet
+      visible: False
+      states:
+      - desc: A note sheet. There is a text printed on it. "A = N. AVUVYHZGERFFRKBPGB."
+
+  items:
+  - position: In the wall in living room
+    item:
+      name: fireplace
+      states:
+      - desc: The fireplace in the living room. It is empty now.
+      - desc: The fireplace in the living room. It is empty. The pipe has been cleaned and unclogged.
+        transitions:
+        - wait_for:
+          - apply, firewood
+          - apply, potassium
+          - apply, glycerin
+          trigger:
+          - change_state, 2
+          reward: The fireplace is burning now.
+      - desc: The fireplace in the living room. It is burning. Something seems appear in charcoal.
+        transitions:
+        - wait_for:
+          - apply, cup of cold water
+          trigger:
+          - change_state, 3
+          - change_state, item, tap, 1
+          - change_visible, tool, mug, True
+          reward: The burning firewood in the fireplace has been put off. After pouring off the water, there is an empty mug left.
+      - desc: The fireplace in the living room. The fire has been put off. There is some charcoal left in the fireplace.
+        transitions:
+        - wait_for:
+          - apply, fire stick
+          trigger:
+          - change_interact, False
+          - change_visible, item, weird container, True
+          - change_visible, item, inner fireplace wall, True
+          - change_state, 4
+          reward: A weird container is found in the charcoal.
+      - desc: The fireplace in the living room. The fire has been put off. There is some charcoal left in the fireplace.
+
+  - position: In the charcoal after burning
+    item:
+      name: weird container
+      visible: False
+      states:
+      - desc: A weird container, made of metal.
+        transitions:
+        - wait_for:
+          - apply, plier
+          trigger:
+          - change_visible, False
+          - change_visible, tool, note sheet, True
+          reward: The weird container is open. There is a piece of note inside.
+
+  - position: In the fireplace
+    item:
+      name: inner fireplace wall
+      visible: False
+      states:
+      - desc: A close look at the wall in the fireplace. Some brick are pressable. Those bricks on the wall forms a table structure like this. "|   |   |   |   |\n|   |   |   |   |\n|   |   |   |   |\n|   |   |   |   |" While some bricks should not be pressed, please input the order of bricks to be pressed in the format like this. | 1 |   | 2 |   |\n|   | 3 |   | 4 |\n| 5 |   |   | 6 |\n|   |   |   |   |
+        transitions:
+        - wait_for:
+          - input, | 1 | 4 |   | 8 |\n|   |   | 6 |   |\n| 2 | 7 | 5 |   |\n|   |   | 3 |   |
+          trigger:
+          - change_state, item, password lock, 1
+          - change_interact, False
+          - change_state, 1
+          reward: The password lock in the storage room is now activated.
+      - desc: The password lock in the storage room is now activated.
+
+- name: ceiling door close-up
+  desc: A close look at the ceiling door in the living room that goes to the second floor. There is a hook on that door.
+  scene_relations:
+    Back to the living room: living room
+    To the second floor: second floor
+  items:
+  - position: On the ceiling in the middle of the living room
+    item:
+      name: ceiling door
+      states:
+      - desc: A ceiling door with a hook on it. It's too high to reach.
+        transitions:
+        - wait_for:
+          - apply, rope
+          trigger:
+          - change_state, 1
+          - change_visible, scene, second floor, True
+          - change_interact, False
+          reward: Now the rope has been tied to the hook on the ceiling door. You can enter the second floor by climbing the rope.
+      - desc: A ceiling door with a hook on it. A rope is tied to the hook on the ceiling door for climbing.
+
+- name: second floor
+  visible: False
+  desc: The second floor of the house. There is a water heater, a fireplace pipe, and some other sundries.
+  scene_relations:
+    Back to the ceiling door close-up: ceiling door close-up
+  tools:
+  - position: On the floor of the second floor near the water heater
+    tool:
+      name: handle
+      states:
+      - desc: A door handle
+        apply_to:
+        - handle slot
+
+  items:
+  - position: Right above the fireplace on the first floor
+    item:
+      name: fireplace pipe
+      states:
+      - desc: There is no air flow in the fireplace pipe, you may need to unclog it.
+        transitions:
+        - wait_for:
+          - apply, chain
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          - change_state, item, fireplace, 1
+          - change_visible, tool, key, True
+          reward: The fireplace has been unclogged. Now air can flow in the pipe and you use the fireplace. Also, something falls off the pipe. Maybe you need to check it in the fireplace on the first floor.
+      - desc: The fireplace has been unclogged. Air can flow in the pipe.

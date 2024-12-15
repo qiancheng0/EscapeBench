@@ -1,0 +1,248 @@
+{
+    "position": "initial room -> stair",
+    "action_answer": "click(hose)"
+}
+{
+    "position": "initial room -> stair",
+    "action_answer": "click(key 1)"
+}
+{
+    "position": "initial room -> stair",
+    "action_answer": "click(paper 1)"
+}
+{
+    "position": "initial room -> stair -> the boiler room",
+    "action_answer": "click(key 2)"
+}
+{
+    "position": "initial room -> stair -> the boiler room",
+    "action_answer": "click(hacksaw)"
+}
+{
+    "position": "initial room -> stair -> the boiler room",
+    "action_answer": "input(3141, iron box)"
+}
+{
+    "position": "initial room -> stair -> the boiler room",
+    "action_answer": "click(saw blade)"
+}
+{
+    "position": "initial room -> stair -> the boiler room",
+    "action_answer": "craft(hacksaw, saw blade)"
+}
+{
+    "position": "initial room -> iron fence close-up",
+    "action_answer": "apply(hacksaw, old bar)"
+}
+{
+    "position": "initial room -> iron fence close-up",
+    "action_answer": "click(gas can)"
+}
+{
+    "position": "initial room -> stair",
+    "action_answer": "apply(hose, oil drum)"
+}
+{
+    "position": "initial room -> stair",
+    "action_answer": "apply(gas can, oil drum)"
+}
+{
+    "position": "initial room -> stair -> the boiler room",
+    "action_answer": "apply(gas can, boiler)"
+}
+{
+    "position": "initial room -> room on the right",
+    "action_answer": "apply(key 1, lock of power distribution box)"
+}
+{
+    "position": "initial room -> stair -> the boiler room",
+    "action_answer": "apply(key 2, boiler)"
+}
+{
+    "position": "initial room -> room on the right -> distribution box close-up",
+    "action_answer": "click(power distribution box)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> bed close-up",
+    "action_answer": "click(pillow)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> bed close-up",
+    "action_answer": "click(disk 1)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> bed close-up",
+    "action_answer": "click(film)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "click(iodine)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "click(blue liquid)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "click(paper 2)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "apply(iodine, paper)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "input(55401530, rotary lock)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "click(screwdriver)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "click(lever)"
+}
+{
+    "position": "initial room -> room on the right -> distribution box close-up",
+    "action_answer": "apply(lever, power distribution box)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "apply(screwdriver, plug)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "click(pickable plug)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "click(paper 3)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "click(photo paper)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "input(2451, combination lock)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "click(duct tape)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory -> cabinet close-up",
+    "action_answer": "click(disk 3)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "apply(duct tape, computer)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "apply(pickable plug, computer)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "apply(disk 1, computer)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "apply(disk 3, computer)"
+}
+{
+    "position": "initial room -> room on the left -> the control room -> the emergency exit",
+    "action_answer": "click(ultra-voilet light)"
+}
+{
+    "position": "initial room -> room on the left -> the control room -> the emergency exit",
+    "action_answer": "click(knife)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "apply(knife, silk painting)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "click(wire cutter)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "click(remote detonator)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "apply(wire cutter, vent pipe)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "click(disk 2)"
+}
+{
+    "position": "initial room -> room on the left -> the control room",
+    "action_answer": "apply(disk 2, computer)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "click(yellow liquid)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "click(wrench)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "apply(photo paper, film processing toolset)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "apply(film, film processing toolset)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "apply(ultra-voilet light, film processing toolset)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "apply(yellow liquid, film processing toolset)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "apply(blue liquid, film processing toolset)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office",
+    "action_answer": "click(imprinted photo paper)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "input(1991281, strange lock)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "click(dynamite)"
+}
+{
+    "position": "initial room -> room on the right -> the dormitory",
+    "action_answer": "craft(remote detonator, dynamite)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office -> the bathroom",
+    "action_answer": "click(shaking mirror)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office -> the bathroom",
+    "action_answer": "apply(wrench, water pipe)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office -> the bathroom",
+    "action_answer": "click(paper 4)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office -> the bathroom",
+    "action_answer": "input(18437, shaking mirror)"
+}
+{
+    "position": "initial room -> stair -> the boiler room -> secret office -> second floor passage",
+    "action_answer": "apply(dynamite, safety door 5)"
+}

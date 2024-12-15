@@ -1,0 +1,288 @@
+{
+    "position": "warehouse outside",
+    "action_answer": "click(wet shipping list)"
+}
+{
+    "position": "warehouse outside -> garbage disposal place",
+    "action_answer": "click(hammer)"
+}
+{
+    "position": "warehouse outside -> garbage disposal place",
+    "action_answer": "click(diagram)"
+}
+{
+    "position": "warehouse outside -> crane overview",
+    "action_answer": "click(silver key)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner",
+    "action_answer": "apply(silver key, electric box)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> electric box inside",
+    "action_answer": "click(switch A03)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> electric box inside",
+    "action_answer": "click(switch A09)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> electric box inside",
+    "action_answer": "click(switch A12)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> electric box inside",
+    "action_answer": "click(switch A13)"
+}
+{
+    "position": "warehouse outside -> crane overview",
+    "action_answer": "click(crane)"
+}
+{
+    "position": "warehouse outside -> crane overview",
+    "action_answer": "click(chisel)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner",
+    "action_answer": "apply(chisel, warehouse door)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner",
+    "action_answer": "apply(hammer, warehouse door)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "click(paper piece 'a')"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region table",
+    "action_answer": "click(alarm clock)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region table",
+    "action_answer": "click(gold key with bolt sign)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview",
+    "action_answer": "click(paper piece 'k')"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "apply(paper piece 'a', name slot)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "apply(paper piece 'k', name slot)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "apply(gold key with bolt sign, cabinet key lock)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "click(blue tape)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "click(blower dryer)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "craft(wet shipping list, blower dryer)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle -> control device on pillar",
+    "action_answer": "apply(blue tape, wire on pillar)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle -> wash basin place",
+    "action_answer": "click(paper piece 'c')"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle -> wash basin place",
+    "action_answer": "click(toilet plunger)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle -> wash basin place",
+    "action_answer": "click(tennis ball)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region left",
+    "action_answer": "input(16, brown box with missing number)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview",
+    "action_answer": "apply(toilet plunger, frosted glass window)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview",
+    "action_answer": "click(square key)"
+}
+{
+    "position": "warehouse outside",
+    "action_answer": "apply(tennis ball, dagger inserted in sign)"
+}
+{
+    "position": "warehouse outside",
+    "action_answer": "click(dagger)"
+}
+{
+    "position": "warehouse outside -> garbage disposal place",
+    "action_answer": "apply(square key, green garbage bin)"
+}
+{
+    "position": "warehouse outside -> garbage disposal place",
+    "action_answer": "click(paper piece 'J')"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "apply(paper piece 'J', name slot)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "apply(paper piece 'c', name slot)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "input(1325, digit password lock)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "click(keycard with lanyard)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview",
+    "action_answer": "apply(keycard with lanyard, office door)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room desk",
+    "action_answer": "click(ruler)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room desk",
+    "action_answer": "click(painting)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "click(measuring cup)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "input(blue, iron safe)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "click(karabiner)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "apply(ruler, closed cabinet under drawer)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "click(scissors)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "click(tweezers)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "apply(tweezers, corner of piece of paper)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "click(piece of paper code)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> boxes pile in hallway",
+    "action_answer": "apply(scissors, yellow wire roll)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> boxes pile in hallway",
+    "action_answer": "click(yellow wire)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle -> wash basin place",
+    "action_answer": "apply(measuring cup, wash basin)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region left",
+    "action_answer": "apply(dagger, brown box with missing number)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region left",
+    "action_answer": "click(blue plasticine)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview -> office room drawers",
+    "action_answer": "apply(measuring cup, communicator)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> boxes pile in hallway",
+    "action_answer": "input(23415, blue tool box)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> boxes pile in hallway",
+    "action_answer": "click(screwdriver)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region table",
+    "action_answer": "apply(screwdriver, alarm clock)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region table",
+    "action_answer": "click(alarm clock battery)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region table",
+    "action_answer": "craft(alarm clock battery, blue plasticine)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region table",
+    "action_answer": "craft(alarm clock battery, yellow wire)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview",
+    "action_answer": "apply(alarm clock battery, card reader)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> front desk office overview",
+    "action_answer": "input(84459731, old-fashioned phone)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> front desk office overview -> front desk locker",
+    "action_answer": "input(3499, front desk locker lock)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> front desk office overview -> front desk locker",
+    "action_answer": "click(telescopic hook)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle",
+    "action_answer": "apply(telescopic hook, messy wire wrapped on ceiling)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle",
+    "action_answer": "apply(karabiner, blue container)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle -> control device on pillar",
+    "action_answer": "click(red buttons on box)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> shelves region overview -> shelves region middle",
+    "action_answer": "click(sledghammer)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview",
+    "action_answer": "apply(sledghammer, wall in office room)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> middle hallway -> office door overview -> office room overview",
+    "action_answer": "click(exit code paper)"
+}
+{
+    "position": "warehouse outside -> warehouse door corner -> warehouse leftside overview -> left hallway",
+    "action_answer": "input(100, exit door)"
+}

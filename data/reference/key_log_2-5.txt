@@ -1,0 +1,232 @@
+{
+    "position": "van in dessert",
+    "action_answer": "click(wood stick)"
+}
+{
+    "position": "van in dessert -> trunk of the van",
+    "action_answer": "click(trunk door)"
+}
+{
+    "position": "van in dessert -> trunk of the van",
+    "action_answer": "click(rag)"
+}
+{
+    "position": "van in dessert -> trunk of the van",
+    "action_answer": "click(wire cutter)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "click(bunch of keys)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "apply(wire cutter, iron wire)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "click(stepladder)"
+}
+{
+    "position": "van in dessert -> back of the van -> top of the van",
+    "action_answer": "apply(wood stick, skylight)"
+}
+{
+    "position": "van in dessert -> back of the van -> top of the van",
+    "action_answer": "click(silver key)"
+}
+{
+    "position": "van in dessert -> trunk of the van -> repair kit in the trunk",
+    "action_answer": "apply(silver key, repair kit box)"
+}
+{
+    "position": "van in dessert -> trunk of the van -> repair kit in the trunk",
+    "action_answer": "click(engine oil)"
+}
+{
+    "position": "van in dessert -> trunk of the van -> repair kit in the trunk",
+    "action_answer": "craft(engine oil, rag)"
+}
+{
+    "position": "van in dessert -> trunk of the van -> repair kit in the trunk",
+    "action_answer": "craft(rag, bunch of keys)"
+}
+{
+    "position": "van in dessert -> door of the van",
+    "action_answer": "apply(bunch of keys, van door)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview",
+    "action_answer": "click(seat switch)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview",
+    "action_answer": "click(water bottle)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk",
+    "action_answer": "click(left seat)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk",
+    "action_answer": "click(solar panel)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk",
+    "action_answer": "click(magazine)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk -> book shelf",
+    "action_answer": "click(wrench)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk -> computer on the desk",
+    "action_answer": "click(old thesis paper)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "click(screwdriver)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "click(shelf door 1)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "click(cup)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "craft(water bottle, cup)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "click(microwave)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "apply(cup, microwave)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "click(cup with hot water)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "click(shelf door 2)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van",
+    "action_answer": "click(tin foil)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview",
+    "action_answer": "click(battery)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview",
+    "action_answer": "apply(tin foil, torch light)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview",
+    "action_answer": "apply(battery, torch light)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview",
+    "action_answer": "click(bed shelf 1)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview",
+    "action_answer": "click(light bulb)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview -> right side of bed",
+    "action_answer": "apply(wrench, generator)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> drawers",
+    "action_answer": "input(2610, top drawer)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> drawers",
+    "action_answer": "click(battery clip)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview -> right side of bed",
+    "action_answer": "apply(battery clip, generator)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "apply(screwdriver, license plate space)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "click(license plate)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "apply(torch light with power, license plate space)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "click(shelf key)"
+}
+{
+    "position": "van in dessert -> back of the van -> underneath part of the van",
+    "action_answer": "click(mental card)"
+}
+{
+    "position": "van in dessert -> back of the van -> top of the van",
+    "action_answer": "apply(light bulb, spotlight)"
+}
+{
+    "position": "van in dessert -> back of the van -> top of the van",
+    "action_answer": "apply(solar panel, solar panel slot)"
+}
+{
+    "position": "van in dessert -> door of the van",
+    "action_answer": "apply(cup with hot water, mud)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview",
+    "action_answer": "apply(shelf key, bed shelf 2)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview -> bed shelf inside",
+    "action_answer": "click(scraper)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview -> bed shelf inside",
+    "action_answer": "apply(mental card, safe box)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview -> bed shelf inside",
+    "action_answer": "input(3149, safe box)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> bed overview -> bed shelf inside",
+    "action_answer": "click(USB flash disk)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> drawers",
+    "action_answer": "input(05062011, bottom drawer)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> passage way in van -> drawers",
+    "action_answer": "click(paper with names)"
+}
+{
+    "position": "van in dessert -> door of the van",
+    "action_answer": "apply(scraper, mud)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk -> computer on the desk",
+    "action_answer": "apply(USB flash disk, computer)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk -> computer on the desk",
+    "action_answer": "input(Jacob Korakon, computer)"
+}
+{
+    "position": "van in dessert -> door of the van -> van indoor front overview -> front desk -> computer on the desk",
+    "action_answer": "input(1927, computer)"
+}

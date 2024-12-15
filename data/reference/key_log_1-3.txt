@@ -1,0 +1,152 @@
+{
+"position": "the hallway",
+"action_answer": "click(paper 1)"
+}
+{
+"position": "the hallway -> left corner of the hallway",
+"action_answer": "click(book)"
+}
+{
+"position": "the hallway -> left corner of the hallway",
+"action_answer": "click(book)"
+}
+{
+"position": "the hallway -> left corner of the hallway",
+"action_answer": "click(book)"
+}
+{
+"position": "the hallway -> left corner of the hallway",
+"action_answer": "click(pipe)"
+}
+{
+"position": "the hallway",
+"action_answer": "apply(pipe, brick wall)"
+}
+{
+"position": "the hallway",
+"action_answer": "click(strange key)"
+}
+{
+"position": "the hallway -> the elevator room",
+"action_answer": "apply(strange key, wooden groove)"
+}
+{
+"position": "the hallway -> the elevator room",
+"action_answer": "input(7428, lockbox)"
+}
+{
+"position": "the hallway -> the elevator room",
+"action_answer": "click(gold key)"
+}
+{
+"position": "the hallway",
+"action_answer": "apply(gold key, black door)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "click(bottle of wine)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "click(pool ball 1)"
+}
+{
+"position": "the hallway -> the billiard room -> front desk",
+"action_answer": "click(button)"
+}
+{
+"position": "the hallway -> the billiard room -> front desk",
+"action_answer": "click(knife)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "click(chair)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "click(bronze key)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "apply(knife, chair)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "click(paper 2)"
+}
+{
+"position": "the hallway -> the billiard room -> front desk",
+"action_answer": "input(4305, safe)"
+}
+{
+"position": "the hallway -> the billiard room -> front desk",
+"action_answer": "click(pool ball 3)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "apply(bronze key, wooden door)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "click(key in the wall)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "apply(key in the wall, suitcase)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "click(pool ball 4)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "click(hammer)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "apply(hammer, nails and board)"
+}
+{
+"position": "the hallway -> the billiard room",
+"action_answer": "click(pool ball 2)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "apply(pool ball 1, pockets)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "apply(pool ball 3, pockets)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "apply(pool ball 4, pockets)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "apply(pool ball 2, pockets)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "input(2134, pockets)"
+}
+{
+"position": "the hallway -> the billiard room -> pool table",
+"action_answer": "click(key card 1)"
+}
+{
+"position": "the hallway -> the billiard room -> front desk",
+"action_answer": "apply(key card 1, cashier)"
+}
+{
+"position": "the hallway -> the billiard room -> front desk",
+"action_answer": "apply(bottle of wine, cashier)"
+}
+{
+"position": "the hallway -> the billiard room -> front desk",
+"action_answer": "click(key card 2)"
+}
+{
+"position": "the hallway",
+"action_answer": "apply(key card 2, exit door)"
+}

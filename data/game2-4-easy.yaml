@@ -1,0 +1,690 @@
+- name: basement entrance
+  desc: The entrance of a basement. There are some boxes on your right, a cabinate on you right, and a huge wall in front of you. There's a large number 7 on the wall. The wall seems have some cracks on it.
+  scene_relations:
+    Explore left side of the basment: basement leftside
+    Go through the door into hallway: hallway behind door
+  items:
+  - position: On the ground
+    item:
+      name: floor tile area
+      states:
+      - desc: A white piece of floor tile, a little loose on edges, seems could be opened.
+        neg_reward: You may simply interact to take the tile away.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          reward: You remove the floor tile from the ground, there's soil below it.
+      - desc: The floor tile is removed and the soil below it appears. Seems there's something hidden in it, you have to dig it out.
+        neg_reward: You may try to use a sharp tool to dig the soil and get the thing beneath out.
+        transitions:
+        - wait_for:
+          - apply, spade
+          trigger:
+          - change_state, 2
+          - change_visible, tool, control handle, True
+          - change_interact, False
+          reward: The hard soil is digged by the spade, and a control handle appears beneath the soil.
+      - desc: The floor tile is removed, and the soil is digged.
+  - position: On the ground
+    item:
+      name: piece of trash paper
+      states:
+      - desc: A white piece of paper on the ground, seems covering something. You may pick it up.
+        neg_reward: You should simply interact to see what's hidden beneath it.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, silver key, True
+          - change_interact, False
+          reward: You look below the white trash paper, and found there's a key beneath it.
+      - desc: A normal piece of paper on the ground, nothing interesting.
+  - position: In front of you
+    item:
+      name: huge basement wall
+      interactable: False
+      states:
+      - desc: A huge wall with number 7 on it. There's crack on the wall. You cannot interact with it.
+      - desc: The huge wall disappears now, revealing a hidden space. A hallway appears behind the wall. You cannot interact with the wall.
+
+  tools:
+  - position: On the ground beneath the paper
+    tool:
+      name: control handle
+      visible: False
+      states:
+      - desc: A semisphere shaped handle with a round port at one end, could connect to a fitting slot for full control.
+        apply_to:
+        - machine control panel
+  - position: On the ground
+    tool:
+      name: key card
+      states:
+      - desc: A key card, might be used for authorization. May have multiple uses.
+        apply_to:
+        - card reader
+        - safe 2
+  - position: On the ground beneath the paper
+    tool:
+      name: silver key
+      visible: False
+      states:
+      - desc: A silver color key with a round head, maybe could open something.
+        apply_to:
+        - rusty cabinate
+  - position: On a pant hanging on the wall
+    tool:
+      name: belt
+      states:
+      - desc: A leather belt that is near 1 meter long, black and has strong tenacity, could serve as good transmission.
+        apply_to:
+        - gear set
+  - position: In the box beside the wall
+    tool:
+      name: wrench
+      states:
+      - desc: A metal wrench with two heads, both ends shaped like a hexagon slot, could be used to screw things off.
+        apply_to:
+        - water pipe
+
+
+- name: basement leftside
+  desc: The left side of the basement. There's dim light shining on a set of electronic control machine set. It has several large iron cabinates, and many pipes linking them. The floor is scattered with trash.
+  scene_relations:
+    Explore the machine device set: control machine set
+    Back to the basement entrance: basement entrance
+  items:
+  - position: Beside the left side wall corner
+    item:
+      name: water pipe
+      states:
+      - desc: There's a red valve on the pipe, seems like a switch for control. Its connection port to the pipe is in hexagon shape, but it's now screwed tightly and you cannot turn it.
+        neg_reward: You may want to use the valve handle elsewhere, try to get it off the pipe.
+        transitions:
+        - wait_for:
+          - apply, wrench
+          trigger:
+          - change_state, 1
+          - change_visible, tool, valve handle, True
+          reward: The valve is unscrewed from the pipe, and you get a valve handle.
+      - desc: A pipe beside the wall corner, with the valve taken off. There's an empty hexagon port. You may apply the used valve back to further control it later.
+        neg_reward: You may first use the valve handle elsewhere, and then get back here and re-assemble it back again.
+        transitions:
+        - wait_for:
+          - apply, used valve handle
+          trigger:
+          - change_state, 2
+          reward: The handle is assembled back to the pipe. You could take control over it again.
+      - desc: A pipe with the valve assembled back to it. You could now take control over the pipe through the handle.
+        neg_reward: Try simply interact to turn on the handle now.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 3
+          - change_interact, False.
+          - change_visible, item, machine control panel, True
+          reward: The handle is turned on, water can now pass the pipe valve and enter the huge machine in the room.
+      - desc: The handle on the pipe is turned on, water can now pass the pipe valve and enter the huge machine in the room. You could interact with the machine's ultimate control now.
+  - position: Embedded inside the wall in the front
+    item:
+      name: rusty cabinate
+      states:
+      - desc: There's a rusty cabinate door, with a keyhole on it. It's currently locked, in need of a key.
+        neg_reward: You may need a matched key to open the cabinate.
+        transitions:
+        - wait_for:
+          - apply, silver key
+          trigger:
+          - change_state, 1
+          - change_visible, tool, spade, True
+          - change_interact, False
+          reward: The cabinate opens, and there's a spade inside.
+      - desc: A rusty cabinate, now the door already opened.
+  - position: On the wall
+    item:
+      name: machine control panel
+      visible: False
+      states:
+      - desc: There's a machine control panel on the wall. There's a round port on it, seemingly missing something to fully control.
+        neg_reward: You may need a tool to connect to the port to turn the machine set on.
+        transitions:
+        - wait_for:
+          - apply, control handle
+          trigger:
+          - change_state, 1
+          reward: The control handle is now asssembled to it. You may finally turn on the machine set now.
+      - desc: The machine control panel now with the handle assembled to it, could turn on the machine now.
+        neg_reward: You may simply interact to rotate the handle on the panel to switch on the machine.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 2
+          - change_state, item, huge basement wall, 1
+          - change_visible, scene, hallway behind door, True
+          - change_interact, False
+          reward: The machine is turned on now, there's a huge cracking sound, a hidden door opens from basement entrance ...
+      - desc: The machine control panel with a handle on it, the machine is already turned on.
+
+  tools:
+  - position: On the water pipe
+    tool:
+      name: valve handle
+      visible: False
+      states:
+      - desc: A red valve handle with its own shape and the port's shape both in hexagon.
+        apply_to:
+        - distribution box control
+  - position: Inside the cabinate
+    tool:
+      name: spade
+      visible: False
+      states:
+      - desc: a spade with long wood handle and a head made of iron, still sharp to dig things
+        apply_to:
+        - floor tile area
+
+
+- name: control machine set
+  desc: A huge control machine set, with several iron cabinate and boxes connected by pipes.
+  scene_relations:
+    Back to the left side of basement: basement leftside
+  items:
+  - position: On one metal cabinate surface
+    item:
+      name: distribution box control
+      states:
+      - desc: There's a hexagon port on the control borad, but seems something is missing now. There's a word 'rotate' above the port on the cabinate surface.
+        neg_reward: You may assemble a tool with right port shape on to it.
+        transitions:
+        - wait_for:
+          - apply, valve handle
+          trigger:
+          - change_state, 1
+          - change_visible, item, gear set, True
+          reward: The valve handle is assembled to the port.
+      - desc: The distribution box with the valve handle connected now. But you cannot rotate it now. Solve other puzzles first!
+        neg_reward: You may first explore what is missing else where and get back to it again.
+      - desc: The distribution box with the valve handle connected now. You could rotate the handle to switch on the electric box now.
+        neg_reward: You may simply interact to rotate the valve handle.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 3
+          - change_visible, tool, used valve handle, True
+          - change_interact, False
+          reward: The electric box is switeched on, the gear set near it starts to move. You may get the valve handle back and use it else where.
+      - desc: The distribution box is now switched on.
+  - position: Beside the distribution box
+    item:
+      name: gear set
+      visible: False
+      states:
+      - desc: There's a set of gears but with one independent from all others, seems missing something to connect them all together in order to transmit things.
+        neg_reward: You may try to assemble something in this gear set to make it intact before transmitting things.
+        transitions:
+        - wait_for:
+          - apply, belt
+          trigger:
+          - change_state, 1
+          - change_state, item, distribution box control, 2
+          - change_interact, False
+          reward: The gears are all connect together now, it could work normally now with power.
+      - desc: The gear set intact and ready now. You may now switch on the power now to make them move.
+
+  tools:
+  - position: On the distribution box control
+    tool:
+      name: used valve handle
+      visible: False
+      states:
+      - desc: A red valve handle with its own shape and the port's shape both in hexagon.
+        apply_to:
+        - water pipe
+
+- name: hallway behind door
+  visible: False
+  desc: A dim hallway behind the basement's wall. There's trash and wire every where. It leads to a room on the far end.
+  scene_relations:
+    Go into the room it leads to: lab room overview
+    Back to the basement entrance: basement entrance
+  items:
+  - position: On the left side wall of the hallway
+    item:
+      name: iron door
+      states:
+      - desc: The iron door has a digital lock on it, need to input a 4-digit password. There's a wave sign beside the lock, shape like a sound wave.
+        neg_reward: The wave sign maybe related to where the password hint lies. Find 4-digit password hint related to it.
+        transitions:
+        - wait_for:
+          - input, 2463
+          trigger:
+          - change_state, 1
+          - change_interact, False
+          reward: The iron door opens, you can escpae from it now. GAME END!
+      - desc: The iron door is open now.
+
+- name: lab room overview
+  desc: A lab room with bright light on. There's a bunch of desks, an experiment area, and different yellow color cabinates all around the room. Seems like a secret place for chemical experiments.
+  scene_relations:
+    Explore the computer desk: computer desk
+    Explore left wall full of safes: wall of safes
+    Explore the experiment table area: experiment table area
+    Go inside the cabin room: cabin room
+    Back to the hallway: hallway behind door
+  items:
+  - position: In the front
+    item:
+      name: cabin door lock
+      states:
+      - desc: The door is currently locked. The keyhole is old and rusty now, should open the door through a brute force way using some chemicals.
+        neg_reward: You may try to break this lock by pore something into its keyhole to break it. Try to make some chemicals first.
+        transitions:
+        - wait_for:
+          - apply, strong acid
+          trigger:
+          - change_state, 1
+          - change_visible, scene, cabin room, True
+          - change_interact, False
+          reward: The cabin door lock is break open, you can get into the cabin room now.
+      - desc: The door lock is break open by strong acid, you can go into room now.
+  
+- name: computer desk
+  desc: A computer desk with a computer, a key borad and printer on it. There are also some unimportant files scattered on the desk.
+  scene_relations:
+    Back to the lab room overview: lab room overview
+  items:
+  - position: On the left side
+    item:
+      name: card reader
+      states:
+      - desc: A card reader that is connected to the computer. The computer needs some thing to authorize to open.
+        neg_reward: You may try to find a matched tool to give authorization before using the computer.
+        transitions:
+        - wait_for:
+          - apply, key card
+          trigger:
+          - change_state, 1
+          - change_visible, tool, printed code paper, True
+          - change_interact, False
+          reward: The computer and printer are both on. The printer prints out a code paper.
+      - desc: A normal card reader connected to the computer, which is already authorized now.
+
+  tools:
+  - position: From the printer
+    tool:
+      name: printed code paper
+      visible: False
+      states:
+      - desc: A code paper that writes 'encryption successful, 7(black)-7(blue)-5(blue)-2(black)-4(black)-0(blue)-8(black)-9(blue)'. Two different background colors seem indicates two different 4-digit password hints.
+  - position: Beside the computer
+    tool:
+      name: lighter
+      states:
+      - desc: A normal lighter that could give fire. On it there writes 'IX VII L', the roman numerals seem like password hint if turned into number.
+        apply_to:
+        - alcohol burner
+
+
+- name: wall of safes
+  desc: A wall with 4 safes on it. The upper right one is open but there's nothing in it.
+  scene_relations:
+    Back to the lab room overview: lab room overview
+  items:
+  - position: On the upper left
+    item:
+      name: safe 1
+      states:
+      - desc: There's a key hole on the safe. It's currently locked.
+        neg_reward: You may try to open this safe with a matched key.
+        transitions:
+        - wait_for:
+          - apply, safe key
+          trigger:
+          - change_state, 1
+          - change_visible, tool, sound list, True
+          - change_interact, False
+          reward: The safe 1 opens, and there's something in it.
+      - desc: The door of safe 1 opens now.
+  - position: On the bottom left
+    item:
+      name: safe 2
+      states:
+      - desc: There's a card reader on the safe, and you should authorize the identity first before giving password.
+        neg_reward: You may try to authorize it through something you get first.
+        transitions:
+        - wait_for:
+          - apply, key card
+          trigger:
+          - change_state, 1
+          reward: The key card is inserted, authorization succeeds.
+      - desc: The password pad is now on. It needs a 4-digit password input. The background of the password pad is black.
+        neg_reward: Pay attention to the background color, and find the password hints according to it.
+        transitions:
+        - wait_for:
+          - input, 7248
+          trigger:
+          - change_state, 2
+          - change_visible, tool, measuring cup, True
+          - change_interact, False
+          reward: The safe 2 opens, and there's something in it.
+      - desc: The door of safe 2 opens now.
+  - position: On the bottom right
+    item:
+      name: safe 3
+      states:
+      - desc: There's a round disk on the safe, and a circular slot in it, seems something is missing.
+        neg_reward: Find a matched metal tool to fill in the slot first.
+        transitions:
+        - wait_for:
+          - apply, iron hoop
+          trigger:
+          - change_state, 1
+          - change_visible, tool, cable, True
+          - change_interact, False
+          reward: The safe 3 opens, and there's something in it.
+      - desc: The door of safe 3 opens now.
+
+  tools:
+  - position: Inside safe 1
+    tool:
+      name: sound list
+      visible: False
+      states:
+      - desc: A list of animal sound on it, inlcuding 'owl, whale, crow(circled), bear, ...' Pay special attention to what is circled.
+  - position: Inside safe 2
+    tool:
+      name: measuring cup
+      visible: False
+      states:
+      - desc: A measuring cup about 100ml, currently empty and could get water into it.
+        apply_to:
+        - water box
+      - desc: A measuring cup about 100ml, with some water in it now.
+        apply_to:
+        - flask
+  - position: Inside safe 3
+    tool:
+      name: cable
+      visible: False
+      states:
+      - desc: A cable with both ends in USB, may connect some electronic devices together.
+        apply_to:
+        - recorder
+
+
+- name: experiment table area
+  desc: The experiment table with a large pad on it. There are some cabinates above and some drawers below, both opened ones and closed ones.
+  scene_relations:
+    Back to the lab room overview: lab room overview
+  items:
+  - position: Above the table
+    item:
+      name: cabinate 1
+      states:
+      - desc: The cabinate with a 4-digit number lock. There a sign of fire beside it. Pay attention to hints that may not be in our commonly used number pattern.
+        neg_reward: The sign of fire seems like where the hint lies. Find number hint related to it.
+        transitions:
+        - wait_for:
+          - input, 9750
+          trigger:
+          - change_state, 1
+          - change_visible, tool, alcohol burner, True
+          - change_interact, False
+          reward: The cabinate opens and there's an alcohol burner inside.
+      - desc: The cabinate door is now open.
+  - position: On the table
+    item:
+      name: experiment table pad
+      states:
+      - desc: The pad used for conducting experiment, especially when chemical needs heated. You may apply two things here to conduct experiment.
+        neg_reward: Find the heat source and what is the container for chemical reaction. Make sure all the things are crafted and ready to use for experiment.
+        transitions:
+        - wait_for:
+          - apply, alcohol burner
+          - apply, flask
+          trigger:
+          - change_state, 1
+          - change_visible, tool, strong acid, True
+          - change_interact, False
+          reward: The solution is heated, producing a kind of strong acid.
+      - desc: A normal experiment pad where you have just completed a chemical reaction through heating.
+  - position: On the right beside table
+    item:
+      name: water box
+      states:
+      - desc: A box of water with a tap in the front. Could get water from here.
+        neg_reward: You may get water from here.
+        transitions:
+        - wait_for:
+          - apply, measuring cup
+          trigger:
+          - change_state, 1
+          - change_state, tool, measuring cup, 1
+          - change_interact, False
+          reward: The measuring cup is now filled with some water.
+      - desc: An empty water box now.
+  - position: Beneath the table
+    item:
+      name: drawer 1
+      states:
+      - desc: A drawer that is locked, requiring 4-digit password. The background of the password pad is blue. Find 4-digit password hints with color related to it.
+        neg_reward: Pay attention to the background color, and find the password hints according to it.
+        transitions:
+        - wait_for:
+          - input, 7509
+          trigger:
+          - change_state, 1
+          - change_visible, tool, frequency list, True
+          - change_interact, False
+          reward: The drawer 1 is now open, there's a piece of paper inside it.
+      - desc: The drawer 1 is now unlocked and open.
+  - position: Beneath the table
+    item:
+      name: drawer 2
+      states:
+      - desc: A drawer that is closed but seems not locked.
+        neg_reward: Simply interact with it to try open it.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, iron hoop, True
+          - change_interact, False
+          reward: The drawer 2 is now open, there's something inside it.
+      - desc: The drawer 2 is now unlocked and open.
+  - position: On the table beside the water box
+    item:
+      name: blender machine
+      states:
+      - desc: A machine with three empty slots, could be used to blend solutions. Three empty slots should fit something of same type.
+        neg_reward: You may fill in all the slot with what you have. Just one tools is needed.
+        transitions:
+        - wait_for:
+          - apply, solution bottles
+          trigger:
+          - change_state, 1
+          - change_visible, tool, concentrated solution, True
+          - change_visible, False
+          reward: You blend three solutions together and the machine produces a concentration.
+
+  tools:
+  - position: In cabinate 1
+    tool:
+      name: alcohol burner
+      visible: False
+      states:
+      - desc: An alcohol burner, could be used to heat chemicals in experiments, not lighted currently.
+        wait_for:
+        - lighter
+      - desc: An alcohol burner, now with the fire lighted and burning, ready to be used.
+        apply_to:
+        - experiment table pad
+  - position: In cabinate 2
+    tool:
+      name: flask
+      states:
+      - desc: An normal flask that could be used as container for chemical reaction. It's empty currently.
+        wait_for:
+        - measuring cup
+      - desc: An flask with some water in it, could dilute chemicals further added into it.
+        wait_for:
+        - concentrated solution
+      - desc: An flask with diluted solution in it. It's ready to be used for experiment now.
+        apply_to:
+        - experiment table pad
+  - position: In cabinate 2
+    tool:
+      name: solution bottles
+      states:
+      - desc: Three bottles of solutions, should blend them before using.
+        apply_to:
+        - blender machine
+  - position: On the experimental table pad
+    tool:
+      name: strong acid
+      visible: False
+      states:
+      - desc: A strong acid with erosion effact, could easily corrode things even like metal.
+        apply_to:
+        - cabin door lock
+  - position: Inside drawer 1
+    tool:
+      name: frequency list
+      visible: False
+      states:
+      - desc: A list of sound frequency made by different animals, 'owl 125 Hz, crow 130 Hz, whale 230 Hz, bear 200 Hz, penguin 120 Hz, ...' Only one of these seems useful.
+  - position: Inside drawer 2
+    tool:
+      name: iron hoop
+      visible: False
+      states:
+      - desc: A circular piece of iron, seems to be fragment of something and could fit somewhere round.
+        apply_to:
+        - safe 3
+  - position: In the blender machine
+    tool:
+      name: concentrated solution
+      visible: False
+      states:
+      - desc: A concentrated chemical solution, need to be diluted before using.
+        apply_to:
+        - flask
+  
+
+- name: cabin room
+  visible: False
+  desc: There's a desk in the cabin room right side. There are some cabinates above the desk, and there's a recorder on the desk, with a waveform detector.
+  scene_relations:
+    Back to the lab room overview: lab room overview
+  items:
+  - position: On the desk left side
+    item:
+      name: recorder
+      states:
+      - desc: The recorder is not connected to the waveform detector. It's not working now. Both devices have USB ports.
+        neg_reward: You should try connect these two devices first to power both on first.
+        transitions:
+        - wait_for:
+          - apply, cable
+          trigger:
+          - change_state, 1
+          - change_interact, item, waveform detector, True
+          - change_interact, False
+          reward: The recorder is connected with the waveform detector now.
+      - desc: The recorder is connected with the waveform detector now.
+  - position: On the desk right side
+    item:
+      name: waveform detector
+      interactable: False
+      states:
+      - desc: The detector screen requires an input. There's a word 'animal' on the screen. Should be an animal of 4 digits.
+        neg_reward: You should try to input the name of a correct target animal from tool hints you have.
+        transitions:
+        - wait_for:
+          - input, crow
+          trigger:
+          - change_state, 1
+          reward: The detector screen shows input is correct.
+      - desc: The detector screen requires an input. There's a word 'base frequency' on the screen. You should input a number according to your chosen animal.
+        neg_reward: You should try to input a frequency number using the hint.
+        transitions:
+        - wait_for:
+          - input, 130
+          trigger:
+          - change_state, 2
+          - change_interact, False
+          reward: The detector screen shows input is correct.
+      - desc: The detector shows a wave, its peak value indicating 2, 4, 6, 3 these four levels respectively. Seems like a 4-digit password hint from wave.
+  - position: In the left corner
+    item:
+      name: blue tool box
+      states:
+      - desc: A blue plastic tool box with a broken lock on it, seems you could open it directly.
+        neg_reward: You should try to simply interact to open the box.
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, metal plate, True
+          - change_interact, False
+          reward: The tool box opens, and there's a metal plate inside it.
+      - desc: A blue plastic tool box with a broken lock on it, now the box is open.
+  - position: In the right corner
+    item:
+      name: grinding wheel
+      states:
+      - desc: A grinding wheel with a handle, could be used to polish materials like metal and iron.
+        neg_reward: Think about how you might need to use it, and what needs to be polished.
+        transitions:
+        - wait_for:
+          - apply, metal plate
+          trigger:
+          - change_state, 1
+          - change_state, tool, metal plate, 1
+          - change_interact, False
+          reward: The metal plate is polished, and it's now ready to be used.
+      - desc: A grinding wheel with a handle, nothing special.
+  - position: In the middle of the desk
+    item:
+      name: mechanical case
+      states:
+      - desc: A box with a round slot on it, seems needing a gear-like object connect the mechanism inside.
+        neg_reward: You may use a tool that is already polished to fit in.
+        transitions:
+        - wait_for:
+          - apply, metal plate
+          trigger:
+          - change_state, 1
+          - change_visible, tool, safe key, True
+          - change_interact, False
+          reward: The mechanical case opens, and there's a safe key inside it.
+      - desc: An open mechanical case now.
+  
+  tools:
+  - position: In the tool box
+    tool:
+      name: metal plate
+      visible: False
+      states:
+      - desc: A thick metal plate with rough surface, need further polish to be useful.
+        apply_to:
+        - grinding wheel
+      - desc: A polished metal plate, with a mirror-like surface, could be assembled to some device now.
+        apply_to:
+        - mechanical case
+  - position: In the mechanical case
+    tool:
+      name: safe key
+      visible: False
+      states:
+      - desc: A key with a round head, seems could open something.
+        apply_to:
+        - safe 1

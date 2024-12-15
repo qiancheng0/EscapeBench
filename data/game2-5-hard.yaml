@@ -1,0 +1,701 @@
+- name: van in dessert
+  desc: There is a van in the middle of the dessert, the scenario around it is very dry and wild.
+  scene_relations:
+    Go to back of the van: back of the van
+    Go to trunk of the van: trunk of the van
+    Go to door of the van: door of the van
+  items:
+  - position: On the ground
+    item:
+      name: wild cactus
+      states:
+      - desc: The wild cactus is dry and withered
+  tools:
+  - position: Beside the van on the ground
+    tool:
+      name: wood stick
+      states:
+      - desc: a long, thin, and straight piece of wood with hard texture
+        apply_to:
+        - skylight
+
+- name: back of the van
+  desc: There is a stepladder on the back but is currently folded underneath. There seems to be something on the top but you couldn't reach it.
+  scene_relations:
+    Back to the van in dessert: van in dessert
+    Go to the top of the van: top of the van
+    Explore the underneath part of the van: underneath part of the van
+
+- name: underneath part of the van
+  desc: There is a stepladder on the right side. There is a license plate on the left side.
+  scene_relations:
+    Back to the back of the van: back of the van
+  tools:
+    - position: On the ground underneath the van
+      tool:
+        name: bunch of keys
+        states:
+          - desc: a bunch of keys with a keychain and some rust on it
+            wait_for:
+              - rag
+          - desc: a bunch of keys with a keychain
+            apply_to:
+              - van door
+    - position: On the ground under the space
+      tool:
+        visible: False
+        name: license plate
+        states:
+          - desc: a license plate with written "May California 2011"
+    - position: Inside the space behind the license plate
+      tool:
+        visible: False
+        name: shelf key
+        states:
+          - desc: a black key
+            apply_to:
+              - bed shelf 2
+    - position: Inside the space behind the license plate
+      tool:
+        visible: False
+        name: mental card
+        states:
+          - desc: a normal mental card
+            apply_to:
+              - safe box
+  items:
+    - position: On the left side
+      item:
+        name: license plate space
+        states:
+          - desc: The license plate is currently fixed to the van with four screws
+            transitions:
+              - wait_for:
+                  - apply, screwdriver
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, license plate, True
+                reward: The license plate dropped to the ground
+          - desc: There is a very dark space inside the license plate
+            transitions:
+              - wait_for:
+                  - apply, torch light with power
+                trigger:
+                  - change_visible, tool, shelf key, True
+                  - change_visible, tool, mental card, True
+                  - change_interact, False
+                reward: The license plate dropped to the ground
+          - desc: There is a dark space inside the license plate, things have alredy been taken out
+    - position: At the bottom of the stepladder
+      item:
+        name: iron wire
+        states:
+          - desc: The iron wire is rusty and old, tied the stepladder underneath the van
+            transitions:
+              - wait_for:
+                  - apply, wire cutter
+                trigger:
+                  - change_visible, item, iron wire, False
+                  - change_interact, item, stepladder, True
+                reward: The iron wire is untied, now the stepladder is free
+    - position: On the right side
+      item:
+        name: stepladder
+        interactable: False
+        states:
+          - desc: The stepladder is folded underneath, wire already untied
+            transitions:
+              - wait_for:
+                  - click
+                trigger:
+                  - change_state, 1
+                  - change_interact, item, stepladder, False
+                  - change_visible, scene, top of the van, True
+                reward: The stepladder is unfolded, now you can reach the top of the van
+          - desc: The stepladder is unfolded, now you can reach the top of the van
+          
+- name: top of the van
+  desc: There is a spotligh on the top, with a cable connected to it. The other end of the cable goes into the car. Beside the spotlight, there's a skylight in the near front.
+  visible: False
+  scene_relations:
+    Back to the back of the van: back of the van
+  items:
+    - position: At the further end of the van's top
+      item:
+        name: spotlight
+        states:
+          - desc: the spotlight has 9 slots, but there's only 8 light bulbs on it.
+            transitions:
+              - wait_for:
+                  - apply, light bulb
+                trigger:
+                  - change_state, 1
+                  - change_visible, item, solar panel slot, True
+                reward: The spotlight is intact now, but still there's no power.
+          - desc: the spotlight is intact, but no power
+          - desc: the spotlight is on, showing the 4 digits "3149"
+    - position: In the middle of the van's top
+      item:
+        name: solar panel slot
+        visible: False
+        interactable: False
+        states:
+          - desc: You should try to put pu somrthing on the slot
+            transitions:
+              - wait_for:
+                  - apply, solar panel
+                trigger:
+                  - change_state, 1
+                  - change_state, item, spotlight, 2
+                  - change_interact, False
+                  - change_interact, item, spotlight, False
+                reward: The solar panel is put on the top of the van, spotlight is on now
+          - desc: slot with a solar panel on it
+    - position: Before the spotlight
+      item:
+        name: skylight
+        states:
+          - desc: the skylight is tightly closed, cannont open by hand
+            transitions:
+              - wait_for:
+                  - apply, wood stick
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, silver key, True
+                  - change_interact, item, skylight, False
+                reward: The skylight is opened, there is a key on the top of the shelf inside the skylight
+          - desc: the skylight is open
+  tools:
+    - position: Inside the skylight, on the shelf top
+      tool:
+        name: silver key
+        visible: False
+        states:
+          - desc: a single silver key
+            apply_to:
+              - repair kit box
+          
+- name: trunk of the van
+  desc: The trunk has a white door. The door seems not locked. There are some decorations beside the door.
+  scene_relations:
+    Back to the van in dessert: van in dessert
+    Explore a repair toolkit in the trunk: repair kit in the trunk
+  items:
+    - position: On the left side
+      item:
+        name: trunk door
+        states:
+          - desc: the trunk door is closed but not locked
+            transitions:
+              - wait_for:
+                  - click
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, wire cutter, True
+                  - change_visible, tool, rag, True
+                  - change_visible, scene, repair kit in the trunk, True
+                  - change_interact, item, trunk door, False
+                reward: The trunk door is opened
+          - desc: the trunk door is open
+  tools:
+    - position: In the trunk
+      tool:
+        name: rag
+        visible: False
+        states:
+          - desc: a white and clean rag
+            wait_for:
+              - engine oil
+          - desc: a rag soaked with engine oil
+            apply_to:
+              - bunch of keys
+    - position: In the trunk
+      tool:
+        name: wire cutter
+        visible: False
+        states:
+          - desc: a wire cutter with red handle
+            apply_to:
+              - iron wire
+
+- name: repair kit in the trunk
+  desc: There is a blue repair kit box in the middle.
+  visible: False
+  scene_relations:
+    Back to the trunk of the van: trunk of the van
+  items:
+    - position: In the middle
+      item:
+        name: repair kit box
+        states:
+          - desc: a blue repair kit box with a keyhole
+            transitions:
+              - wait_for:
+                  - apply, silver key
+                trigger:
+                  - change_state, 1
+                  - change_visible, tool, engine oil, True
+                  - change_interact, item, repair kit box, False
+                reward: The repair kit box is opened, there is an engine oil inside
+          - desc: the repair kit box is open
+  tools:
+    - position: In the repair kit box
+      tool:
+        name: engine oil
+        visible: False
+        states:
+          - desc: a bottle of engine oil
+            apply_to:
+              - rag
+
+- name: door of the van
+  desc: The door is locked. There is a window on the left side, and some mud below the window.
+  scene_relations:
+    Back to the van in dessert: van in dessert
+    Go into inside of the door: van indoor front overview
+  items:
+    - position: In the middle
+      item:
+        name: van door
+        states:
+          - desc: the van door is locked, there's a keyhole on it
+            transitions:
+              - wait_for:
+                  - apply, bunch of keys
+                trigger:
+                  - change_state, 1
+                  - change_visible, scene, van indoor front overview, True
+                  - change_interact, item, van door, False
+                reward: The van door is unlocked, now you can get in.
+          - desc: the van door is open
+    - position: On the left side
+      item:
+        name: mud
+        states:
+          - desc: there's some mud beside the door, mud is dry and hard
+            transitions:
+              - wait_for:
+                  - apply, cup with hot water
+                trigger:
+                  - change_state, 1
+                reward: The mud is warmed now, it's easier to scrape it
+          - desc: there's some mud washed by hot water beside the door
+            transitions:
+              - wait_for:
+                  - apply, scraper
+                trigger:
+                  - change_state, 2
+                  - change_interact, False
+                reward: The mud is off now, there writes Jacob Korakon beside the door
+          - desc: the mud is off, there writes Jacob Korakon
+
+- name: van indoor front overview
+  desc: The front of the van is spacious. There is a seat on the left side, and a comfortable passenger seat on the right side. There's a front desk before the left seat.
+  visible: False
+  scene_relations:
+    Back to the door of the van: door of the van
+    Left to the passage way in van: passage way in van
+    Explore the front desk in the van: front desk
+  items:
+  - position: Behind the seat on the left
+    item:
+      name: seat switch
+      states:
+      - desc: a mental switch behind the left seat, the switch is off
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_interact, item, left seat, True
+          - change_interact, False
+          reward: The switch is on, something happens
+      - desc: a mental switch behind the left seat, the switch is on
+  tools:
+  - position: under the front desk
+    tool:
+      name: water bottle
+      states:
+      - desc: a water bottle with some water inside
+        apply_to:
+        - cup
+
+- name: front desk
+  desc: There's a seat behind the desk on the left, a book shelf on the top, and a computer screen in the middle of desk.
+  scene_relations:
+    Back to the front of the van overview: van indoor front overview
+    Explore the computer on the desk: computer on the desk
+    Explore the book shelf on the top: book shelf
+  items:
+  - position: On the left behind the desk
+    item:
+      name: left seat
+      interactable: False
+      states:
+      - desc: a comfortable seat, currently up right
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, solar panel, True
+          - change_interact, False
+          reward: The seat is down, there's something behind
+      - desc: the seat is pulled down
+  tools:
+  - position: behind the seat
+    tool:
+      name: solar panel
+      visible: False
+      states:
+      - desc: a solar panel with blue logo on it
+        apply_to:
+        - solar panel slot
+  - position: on the top of the seat
+    tool:
+      name: magazine
+      states:
+      - desc: a magazine with title "California 06"
+
+- name: book shelf
+  desc: The book shelf is full of books, with names "Ally 1", "Hunter 6", "Harper 3", "Violet 7", "Samuel 5", "Michael 2", "Victoria 4", "Brayden 8", "Liam 9"
+  scene_relations:
+    Back to the front desk: front desk
+  tools:
+  - position: Besides the books
+    tool:
+      name: wrench
+      states:
+      - desc: a silver wrench
+        apply_to:
+        - generator
+
+- name: computer on the desk
+  desc: There's a seat behind the desk on the left, a book shelf on the top, and a computer screen in the middle of desk.
+  scene_relations:
+    Back to the front desk: front desk
+  items:
+  - position: In the middle
+    item:
+      name: computer
+      states:
+      - desc: a computer, currently screen is blue with no storage device connected
+        transitions:
+        - wait_for:
+          - apply, USB flash disk
+          trigger:
+          - change_state, 1
+          reward: The computer is on now, on the screen it shows you have to input the owner's name
+      - desc: a computer, currently screen is on with a panel asking for owner's name
+        transitions:
+        - wait_for:
+          - input, Jacob Korakon
+          trigger:
+          - change_state, 2
+          reward: The name is correct, now you have to enter a 4 digit password
+      - desc: a computer, currently screen is on with a panel asking for a 4 digit password
+        transitions:
+        - wait_for:
+          - input, 1927
+          trigger:
+          - change_state, 3
+          reward: The password is correct, GAME END!
+      - desc: a computer, currently screen is on with a panel showing "GAME END!"
+  tools:
+  - position: on the desk behind the computer
+    tool:
+      name: old thesis paper
+      states:
+      - desc: a paper with title "[26] impact of solar panel to [10] years of energy consumption"
+
+- name: passage way in van
+  desc: There are some shelfs on the left top, currently closed. There's a microwave on the left on the table. There are some drawers below, and the bed is in front of you.
+  scene_relations:
+    Back to the front of the van overview: van indoor front overview
+    Back to the door of the van: door of the van
+    Explore the drawers: drawers
+    Go to the bed: bed overview
+  items:
+  - position: On the top left
+    item:
+      name: microwave
+      states:
+      - desc: a microwave set with temperature 500, currently closed
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          reward: The microwave is opened
+      - desc: a microwave set with temperature 500, currently opened
+        transitions:
+        - wait_for:
+          - apply, cup
+          trigger:
+          - change_state, 2
+          - change_visible, tool, cup with hot water, True
+          - change_interact, False
+          reward: The water in the cup is heated up
+      - desc: a normal microwave, once heated the wter
+  - position: On the top left
+    item:
+      name: shelf door 1
+      states:
+      - desc: a closed shelf door
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, cup, True
+          - change_interact, False
+          reward: The shelf's door opens
+      - desc: an opened shelf door
+  - position: On the top right
+    item:
+      name: shelf door 2
+      states:
+      - desc: a closed shelf door
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, tin foil, True
+          - change_interact, False
+          reward: The shelf's door opens
+      - desc: an opened shelf door
+  tools:
+  - position: In the top left shelf
+    tool:
+      name: cup
+      visible: False
+      states:
+      - desc: an empty cup
+        wait_for:
+        - water bottle
+      - desc: a cup with water inside
+        apply_to:
+        - microwave
+  - position: In the top right shelf
+    tool:
+      name: tin foil
+      visible: False
+      states:
+      - desc: a thin layer of tin foil
+        apply_to:
+        - torch light
+  - position: Beside the microwave
+    tool:
+      name: screwdriver
+      states:
+      - desc: a screwdriver with black handle
+        apply_to:
+        - license plate space
+  - position: In the microwave
+    tool:
+      name: cup with hot water
+      visible: False
+      states:
+      - desc: a cup of hot water
+        apply_to:
+        - mud
+
+- name: drawers
+  desc: Two drawer are under the table in passage way, each has a lock on it.
+  scene_relations:
+    Back to the passage way: passage way in van
+  items:
+  - position: On the top
+    item:
+      name: top drawer
+      states:
+      - desc: a wood drawer on the top, currently locked. In needs a four digit password to unlock.
+        transitions:
+        - wait_for:
+          - input, 2610
+          trigger:
+          - change_state, 1
+          - change_visible, tool, battery clip, True
+          - change_interact, False
+          reward: The drawer is unlocked, there is a battery clip inside
+      - desc: a wooden drawer on the top, currently unlocked
+  - position: At the bottom
+    item:
+      name: bottom drawer
+      states:
+      - desc: a wood drawer at the bottom, currently locked. In needs a eight digit password to unlock.
+        transitions:
+        - wait_for:
+          - input, 05062011
+          trigger:
+          - change_state, 1
+          - change_visible, tool, paper with names, True
+          - change_interact, False
+          reward: The drawer is unlocked, there is a paper with names inside
+      - desc: a wooden drawer at the bottom, currently unlocked
+  tools:
+  - position: In the top drawer
+    tool:
+      name: battery clip
+      visible: False
+      states:
+      - desc: a battery clip with two ends and wires connected
+        apply_to:
+        - generator
+  - position: In the bottom drawer
+    tool:
+      name: paper with names
+      visible: False
+      states:
+      - desc: a paper with different names on it, showing "Ally Liam Michael Violet"
+
+- name: bed overview
+  desc: The bed is very messy, with a torch and a hat on it. There are shelves on the top, right and left side.
+  scene_relations:
+    Back to the passage way: passage way in van
+    Go to see the right side of bed: right side of bed
+    Explore what's inside the bed shelf: bed shelf inside
+  items:
+  - position: In the middle of bed
+    item:
+      name: torch light
+      states:
+      - desc: a torch light currently out of power, the spring at the tail is missing, unable to pass the electricity
+        transitions:
+        - wait_for:
+          - apply, tin foil
+          trigger:
+          - change_state, 1
+          reward: The tin foil is wrapped to the tail of the torch light, now it can pass the electricity
+      - desc: a torch light currently out of power, tin foil is wrapped to the tail
+        transitions:
+        - wait_for:
+          - apply, battery
+          trigger:
+          - become_tool, torch light with power
+          - change_visible, False
+          reward: You have a torch light with power now
+  - position: On the top right
+    item:
+      name: bed shelf 2
+      states:
+      - desc: a shelf with a lock, currently locked
+        transitions:
+        - wait_for:
+          - apply, shelf key
+          trigger:
+          - change_state, 1
+          - change_visible, scene, bed shelf inside, True
+          - change_interact, False
+          reward: The shelf is unlocked, there is a something inside
+      - desc: a shelf with a lock, currently unlocked
+  - position: On the top left
+    item:
+      name: bed shelf 1
+      states:
+      - desc: a shelf that is closed
+        transitions:
+        - wait_for:
+          - click
+          trigger:
+          - change_state, 1
+          - change_visible, tool, light bulb, True
+          - change_interact, False
+          reward: The shelf is open, there is a light bulb inside
+      - desc: an open shelf
+  tools:
+  - position: on the bed beside the torch light
+    tool:
+      name: battery
+      states:
+      - desc: a normal battery
+        apply_to:
+        - torch light
+  - position: on the bed
+    tool:
+      name: torch light with power
+      visible: False
+      states:
+      - desc: a black torch light with power now
+        apply_to:
+        - license plate space
+  - position: inside the shelf on the top left
+    tool:
+      name: light bulb
+      visible: False
+      states:
+      - desc: a small light bulb
+        apply_to:
+        - spotlight
+
+- name: right side of bed
+  desc: A wall is on the right side of bed, a board on the wall.
+  scene_relations:
+    Back to the bed overview: bed overview
+  items:
+  - position: On the wall
+    item:
+      name: generator
+      states:
+      - desc: a wooden board currently closed the generator, with nails at 4 corners.
+        transitions:
+        - wait_for:
+          - apply, wrench
+          trigger:
+          - change_state, 1
+          reward: The board is pulled off, the generator is exposed
+      - desc: a generator with a red plug on the left, a black plug at the bottom, currently out of power
+        transitions:
+        - wait_for:
+          - apply, battery clip
+          trigger:
+          - change_state, 2
+          - change_interact, False
+          - change_interact, item, solar panel slot, True
+          reward: The generator is powered on, the solar panel slot opens now
+      - desc: A generator currently powered on
+
+- name: bed shelf inside  
+  desc: There's a bunch of things inside the shelf
+  visible: False
+  scene_relations:
+    Back to the bed overview: bed overview
+  items:
+  - position: Inside the shelf
+    item:
+      name: safe box
+      states:
+      - desc: a safe box with 16 card slots, but only 15 cards are on it
+        transitions:
+        - wait_for:
+          - apply, mental card
+          trigger:
+          - change_state, 1
+          reward: The safe box is filled with 16 cards, a panel in need of password is shown
+      - desc: a safe box in needs of a 4 digit password
+        transitions:
+        - wait_for:
+          - input, 3149
+          trigger:
+          - change_state, 2
+          - change_visible, tool, USB flash disk, True
+          - change_interact, False
+          reward: The safe box openes, there is a USB flash disk inside
+      - desc: a safe box that is open now
+  tools:
+  - position: On the left in shelf
+    tool:
+      name: scraper
+      states:
+      - desc: a scraper with a sharp edge
+        apply_to:
+        - mud
+  - position: Inside the safe box
+    tool:
+      name: USB flash disk
+      visible: False
+      states:
+      - desc: A 32GB USB flash disk
+        apply_to:
+        - computer

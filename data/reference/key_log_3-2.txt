@@ -1,0 +1,192 @@
+{
+    "position": "laundry room overview -> right corridor overview",
+    "action_answer": "click(dollar bill)"
+}
+{
+    "position": "laundry room overview -> right corridor overview",
+    "action_answer": "click(clothes)"
+}
+{
+    "position": "laundry room overview -> right corridor overview -> end of right corridor",
+    "action_answer": "click(plug)"
+}
+{
+    "position": "laundry room overview -> right corridor overview -> end of right corridor",
+    "action_answer": "apply(dollar bill, iron)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "apply(dollar bill, money exchanger)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(dollar coins)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(right half paper)"
+}
+{
+    "position": "laundry room overview",
+    "action_answer": "apply(dollar coins, vending machine)"
+}
+{
+    "position": "laundry room overview",
+    "action_answer": "click(soap)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "apply(soap, handbag)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(handbag)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(piler)"
+}
+{
+    "position": "laundry room overview -> laundry room left corner",
+    "action_answer": "click(game ticket)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "apply(game ticket, game machine)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "input(5974, information board)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(left half paper)"
+}
+{
+    "position": "laundry room overview -> left corridor overview",
+    "action_answer": "apply(dollar coins, drying machine)"
+}
+{
+    "position": "laundry room overview -> left corridor overview",
+    "action_answer": "click(key card)"
+}
+{
+    "position": "laundry room overview -> left corridor overview",
+    "action_answer": "input(5891, office door password pad)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview -> office room right side",
+    "action_answer": "click(besom)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview -> office room right side",
+    "action_answer": "click(gas tank)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview -> office room right side",
+    "action_answer": "apply(key card, drawer)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview -> office room right side",
+    "action_answer": "click(safe handle 2)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "apply(safe handle 2, safe)"
+}
+{
+    "position": "laundry room overview -> right corridor overview",
+    "action_answer": "apply(clothes, blue basin)"
+}
+{
+    "position": "laundry room overview -> right corridor overview",
+    "action_answer": "craft(clothes, besom)"
+}
+{
+    "position": "laundry room overview -> right corridor overview",
+    "action_answer": "apply(besom, graffiti)"
+}
+{
+    "position": "laundry room overview -> left corridor overview",
+    "action_answer": "input(1998, red mail box)"
+}
+{
+    "position": "laundry room overview -> left corridor overview",
+    "action_answer": "click(safe handle 1)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "apply(safe handle 1, safe)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "click(safe)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "click(wrench)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "click(drawing)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "apply(wrench, pipe on machine)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "click(pipe)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(pot culture)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(gold key)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "apply(piler, hanger)"
+}
+{
+    "position": "laundry room overview -> laundry room right corner",
+    "action_answer": "click(code paper)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "input(1232, tool box)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "click(nozzle)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "apply(gold key, iron gate)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "click(ladder)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "craft(pipe, gas tank)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "apply(ladder, air vent)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "apply(gas tank, air vent)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> end of left corridor",
+    "action_answer": "craft(nozzle, gas tank)"
+}
+{
+    "position": "laundry room overview -> left corridor overview -> office room overview",
+    "action_answer": "apply(gas tank, ventilation pipe fence)"
+}
