@@ -1,7 +1,7 @@
 # EscapeBench: Pushing Language Models to Think Outside the Box
 [**🌐 Homepage**](https://qiancheng0.github.io/files/escapebench/index.html) | [**📊 Dataset**](https://github.com/qiancheng0/EscapeBench/tree/main/data) | [**📖 Paper**](https://arxiv.org/pdf/) | [**🏆 Leaderboard**](https://github.com/qiancheng0/EscapeBench/tree/main?tab=readme-ov-file#-leaderboard)
 
-This repo contains the official evaluation code and dataset for the paper "EscapeBench: Towards Advancing the Creative Intelligence of Language Model Agents"
+This repo contains the official evaluation code and dataset for the paper "EscapeBench: Pushing Language Models to Think Outside the Box"
 
 This benchmark is designed to test the creativity of language models (LMs). It includes benchmark data, implementations of BaseAgent and EscapeAgent, and scripts for running tests.
 
