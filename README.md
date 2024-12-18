@@ -1,4 +1,4 @@
-# 🚪 EscapeBench: Enhancing LM Agent Creativity
+# EscapeBench: Pushing Language Models to Think Outside the Box
 This repo contains the official evaluation code and dataset for the paper "EscapeBench: Towards Advancing the Creative Intelligence of Language Model Agents"
 
 This benchmark is designed to test the creativity of language models (LMs). It includes benchmark data, implementations of BaseAgent and EscapeAgent, and scripts for running tests.
