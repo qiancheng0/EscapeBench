@@ -64,7 +64,7 @@ bash scripts/run_creative_opensource.sh
 ### Human Player
 We also support human players for the game. To play, specify the game in `scripts/run_human.sh`:
 ```txt
-<game>: Fill in the game you want to play (e.g., game1-1). Note that only one single paly is supported.
+<game>: Fill in the game you want to play (e.g., game1-1). Note that only one single play is supported.
 ```
 
 For human player mode, you can save your progress and continue from where you left off by specifying `--load_from` to load existing backed-up progress.
