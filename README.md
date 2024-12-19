@@ -126,7 +126,7 @@ Feel free to create you own room escape logic design based on our framework! Be 
 ## 🏆 Leaderboard
 Here is the current leaderboard for EscapeBench performance across different models:
 
-| Rank | Agent Model           | Total Steps | Hint Usage |
+| Rank | Agent Model           | Hint Usage  |Total Steps |
 |------|-----------------------|-------------|------------|
 | 1    | Claude-3.5-Sonnet     | 8.97        | 690.31     |
 | 2    | GPT-4o                | 10.30       | 723.61     |
