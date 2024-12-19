@@ -1,5 +1,5 @@
 # EscapeBench: Pushing Language Models to Think Outside the Box
-[**🌐 Homepage**](https://qiancheng0.github.io/files/escapebench/index.html) | [**📊 Dataset**](https://github.com/qiancheng0/EscapeBench/tree/main/data) | [**📖 Paper**](https://arxiv.org/pdf/) | [**🏆 Leaderboard**](https://github.com/qiancheng0/EscapeBench/tree/main?tab=readme-ov-file#-leaderboard)
+[**🌐 Homepage**](https://qiancheng0.github.io/files/escapebench/index.html) | [**📊 Dataset**](https://github.com/qiancheng0/EscapeBench/tree/main/data) | [**📖 Paper**](https://arxiv.org/pdf/2412.13549) | [**🏆 Leaderboard**](https://github.com/qiancheng0/EscapeBench/tree/main?tab=readme-ov-file#-leaderboard)
 
 This repo contains the official evaluation code and dataset for the paper "EscapeBench: Pushing Language Models to Think Outside the Box"
 
@@ -140,5 +140,11 @@ Here is the current leaderboard for EscapeBench performance across different mod
 | 10   | Llama-3.1-8B          | 25.86       | 1543.30    |
 
 ## 🖊️ Citation
-
-## Acknowledgement
+```text
+@article{qian2024escapebench,
+  title={EscapeBench: Pushing Language Models to Think Outside the Box},
+  author={Qian, Cheng and Han, Peixuan and Luo, Qinyu and He, Bingxiang and Chen, Xiusi and Zhang, Yuji and Du, Hongyi and Yao, Jiarui and Yang, Xiaocheng and Zhang, Denghui and Li, Yunzhu and Ji, Heng},
+  journal={arXiv preprint arXiv:2412.13549},
+  year={2024}
+}
+```
